@@ -1,0 +1,252 @@
+\chapter{Results}
+By performing a lasso and building a predicting score as sum of features multiplied by their importance derived from the lasso we obtain the following results. Note that the features are being kept separated. 
+
+
+RAD
+\begin{tabular}{lr}
+\toprule
+{} &  Lasso Importance \\
+\midrule
+Intensity-based interquartile range   &          0.153884 \\
+10th discretised intensity percentile &         -0.113928 \\
+Complexity                            &         -0.060896 \\
+Cluster prominence                    &         -0.057964 \\
+Area density - aligned bounding box   &         -0.045552 \\
+Asphericity                           &          0.025736 \\
+Number of compartments (GMM)          &         -0.023584 \\
+Local intensity peak                  &          0.022764 \\
+Global intensity peak                 &         -0.020052 \\
+Entropy                               &          0.001594 \\
+\bottomrule
+\end{tabular}
+
+
+CLINICHE
+
+\begin{tabular}{lr}
+\toprule
+{Feature Name} &  Lasso Importance \\
+\midrule
+CURB65             &          0.125837 \\
+Respiratory Rate   &          0.044918 \\
+Ground-glass       &         -0.032842 \\
+Age (years)        &          0.022695 \\
+Lung consolidation &          0.021103 \\
+Crazy Paving       &         -0.003770 \\
+\bottomrule
+\end{tabular}
+
+CLINICHE + RADIOMICHE 
+
+\begin{tabular}{lr}
+\toprule
+{Feature Name} &  Lasso Importance \\
+\midrule
+CURB65                                             &          0.106256 \\
+Intensity histogram quartile coefficient of dis... &          0.067802 \\
+Cluster shade                                      &         -0.031718 \\
+Area density - enclosing ellipsoid                 &         -0.030894 \\
+Ground-glass                                       &         -0.030125 \\
+Respiratory Rate                                   &          0.018603 \\
+Centre of mass shift (cm)                          &          0.016225 \\
+Normalised zone distance non-uniformity            &          0.016027 \\
+High dependence high grey level emphasis           &          0.012445 \\
+RECIST (cm)                                        &          0.012194 \\
+Lung consolidation                                 &          0.009602 \\
+Number of compartments (GMM)                       &         -0.005958 \\
+Small distance high grey level emphasis            &          0.002856 \\
+Age (years)                                        &          0.002662 \\
+Local intensity peak                               &          0.000458 \\
+Discretised interquartile range                    &          0.000204 \\
+\bottomrule
+\end{tabular}
+
+NUOVI RISULTATI CON CV MESSA A POSTO
+
+model with features CLI predicting on Death\newline
+\begin{tabular}{lr}
+\toprule
+{} &  Lasso Importance \\
+\midrule
+Intercept                &          0.179310 \\
+Respiratory Failure      &          0.125539 \\
+CURB65                   &          0.098730 \\
+NIV                      &          0.063025 \\
+High Flow Nasal Cannulae &         -0.054100 \\
+Age (years)              &          0.037878 \\
+Sex\_bin                  &         -0.030768 \\
+Respiratory Rate         &          0.029698 \\
+Hypertension             &         -0.025957 \\
+Febbre                   &         -0.024351 \\
+History of smoking       &         -0.004735 \\
+O2-therapy               &          0.001422 \\
+cPAP                     &          0.000000 \\
+Obesity                  &          0.000000 \\
+\bottomrule
+\end{tabular}
+
+model with features RAD predicting on Death\newline
+\begin{tabular}{lr}
+\toprule
+{} &  Lasso Importance \\
+\midrule
+Intercept                           &          0.179310 \\
+10th intensity percentile           &         -0.135324 \\
+Intensity-based interquartile range &          0.108819 \\
+Complexity                          &         -0.106005 \\
+Cluster prominence                  &         -0.071387 \\
+Area density - aligned bounding box &         -0.043236 \\
+Number of compartments (GMM)        &         -0.032827 \\
+Entropy                             &          0.032588 \\
+Asphericity                         &          0.031313 \\
+Local intensity peak                &          0.029984 \\
+Global intensity peak               &         -0.024439 \\
+Intensity range                     &          0.003523 \\
+Number of voxels of positive value  &          0.002876 \\
+Major axis length (cm)              &          0.000000 \\
+\bottomrule
+\end{tabular}
+
+model with features RADIOLOGICHE predicting on Death\newline
+\begin{tabular}{lr}
+\toprule
+{} &  Lasso Importance \\
+\midrule
+Intercept             &          0.179310 \\
+Ground-glass          &         -0.043392 \\
+Lung consolidation    &          0.036983 \\
+KVP                   &          0.006288 \\
+SliceThickness        &          0.000000 \\
+Bilateral Involvement &          0.000000 \\
+Crazy Paving          &         -0.000000 \\
+\bottomrule
+\end{tabular}
+
+model with features CLINICHE-RADIOMICHE predicting on Death\newline
+\begin{tabular}{lr}
+\toprule
+{} &  Lasso Importance \\
+\midrule
+Intercept                           &          0.179310 \\
+Respiratory Failure                 &          0.114018 \\
+CURB65                              &          0.087693 \\
+NIV                                 &          0.066066 \\
+High Flow Nasal Cannulae            &         -0.052176 \\
+10th intensity percentile           &         -0.045649 \\
+Complexity                          &         -0.045647 \\
+Age (years)                         &          0.035750 \\
+Intensity-based interquartile range &          0.033743 \\
+Cluster prominence                  &         -0.033215 \\
+Hypertension                        &         -0.029762 \\
+Febbre                              &         -0.027388 \\
+Sex\_bin                             &         -0.021811 \\
+Local intensity peak                &          0.019209 \\
+Area density - aligned bounding box &         -0.019154 \\
+Number of compartments (GMM)        &         -0.018901 \\
+Respiratory Rate                    &          0.018730 \\
+Asphericity                         &          0.011561 \\
+Global intensity peak               &         -0.011437 \\
+History of smoking                  &         -0.006063 \\
+Number of voxels of positive value  &         -0.002575 \\
+Obesity                             &         -0.000789 \\
+cPAP                                &          0.000000 \\
+O2-therapy                          &          0.000000 \\
+Intensity range                     &          0.000000 \\
+\bottomrule
+\end{tabular}
+
+model with features CLINICHE-RADIOLOGICHE predicting on Death\newline
+\begin{tabular}{lr}
+\toprule
+{} &  Lasso Importance \\
+\midrule
+Intercept                &          0.179310 \\
+Respiratory Failure      &          0.120194 \\
+CURB65                   &          0.094263 \\
+NIV                      &          0.057815 \\
+High Flow Nasal Cannulae &         -0.043542 \\
+Age (years)              &          0.032253 \\
+Ground-glass             &         -0.030685 \\
+Respiratory Rate         &          0.024414 \\
+Sex\_bin                  &         -0.023705 \\
+Febbre                   &         -0.022482 \\
+Lung consolidation       &          0.021949 \\
+Hypertension             &         -0.015673 \\
+KVP                      &          0.010137 \\
+SliceThickness           &          0.008467 \\
+Crazy Paving             &         -0.004071 \\
+History of smoking       &         -0.002543 \\
+Bilateral Involvement    &         -0.000000 \\
+cPAP                     &          0.000000 \\
+O2-therapy               &          0.000000 \\
+Obesity                  &         -0.000000 \\
+\bottomrule
+\end{tabular}
+
+model with features RADIOLOGICHE-RADIOMICHE predicting on Death\newline
+\begin{tabular}{lr}
+\toprule
+{} &  Lasso Importance \\
+\midrule
+Intercept                           &          0.179310 \\
+Intensity-based interquartile range &          0.134591 \\
+10th intensity percentile           &         -0.120165 \\
+Complexity                          &         -0.092609 \\
+Cluster prominence                  &         -0.072762 \\
+Ground-glass                        &         -0.053392 \\
+Area density - aligned bounding box &         -0.034919 \\
+Lung consolidation                  &          0.033863 \\
+Asphericity                         &          0.027229 \\
+Number of compartments (GMM)        &         -0.024474 \\
+Local intensity peak                &          0.022962 \\
+Global intensity peak               &         -0.016252 \\
+KVP                                 &          0.011303 \\
+Crazy Paving                        &         -0.011005 \\
+Bilateral Involvement               &         -0.009681 \\
+Major axis length (cm)              &          0.003229 \\
+Intensity range                     &          0.000000 \\
+Entropy                             &          0.000000 \\
+Number of voxels of positive value  &          0.000000 \\
+SliceThickness                      &         -0.000000 \\
+\bottomrule
+\end{tabular}
+
+model with features ALL predicting on Death\newline
+\begin{tabular}{lr}
+\toprule
+{} &  Lasso Importance \\
+\midrule
+Intercept                           &          0.179310 \\
+Respiratory Failure                 &          0.110246 \\
+CURB65                              &          0.087816 \\
+NIV                                 &          0.041397 \\
+Intensity-based interquartile range &          0.036132 \\
+High Flow Nasal Cannulae            &         -0.030074 \\
+Ground-glass                        &         -0.027476 \\
+Age (years)                         &          0.021863 \\
+Complexity                          &         -0.018867 \\
+Sex\_bin                             &         -0.018822 \\
+Febbre                              &         -0.016067 \\
+Lung consolidation                  &          0.014519 \\
+Cluster prominence                  &         -0.011701 \\
+Respiratory Rate                    &          0.009586 \\
+Number of compartments (GMM)        &         -0.005002 \\
+Hypertension                        &         -0.004976 \\
+Area density - aligned bounding box &         -0.003381 \\
+KVP                                 &          0.001906 \\
+Crazy Paving                        &         -0.001778 \\
+History of smoking                  &         -0.000000 \\
+Obesity                             &         -0.000000 \\
+O2-therapy                          &          0.000000 \\
+cPAP                                &          0.000000 \\
+Intensity range                     &          0.000000 \\
+SliceThickness                      &          0.000000 \\
+Global intensity peak               &         -0.000000 \\
+Number of voxels of positive value  &          0.000000 \\
+10th intensity percentile           &         -0.000000 \\
+Asphericity                         &          0.000000 \\
+Local intensity peak                &          0.000000 \\
+Bilateral Involvement               &         -0.000000 \\
+\bottomrule
+\end{tabular}
+
