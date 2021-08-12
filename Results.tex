@@ -250,3 +250,687 @@ Bilateral Involvement               &         -0.000000 \\
 \bottomrule
 \end{tabular}
 
+Risultati con il random forest classifier implementazione naive
+
+
+
+Accuracy score= 0.832183908045977
+RMSE= 0.40965362436334307
+
+\begin{tabular}{|c|c|c|c|c|}
+\toprule
+class     &  precision &    recall  &  f1-score   &  support \\
+\midrule
+0     &    0.84   &     0.98    &    0.91      &   357 \\
+1      &   0.65    &    0.14   &     0.23    &      78 \\
+\hline
+accuracy       &           &         &      0.83    &     435 \\
+macro avg    &   0.74    &    0.56    &    0.57      &   435 \\
+weighted avg   &    0.81   &     0.83      &  0.78    &    435 \\
+\bottomrule
+\end{tabular}
+
+
+
+\begin{tabular}{lr}
+\toprule
+feature &  RF\_importances \\
+\midrule
+Respiratory Failure                                &        0.073410 \\
+CURB65                                             &        0.048355 \\
+Age (years)                                        &        0.042183 \\
+Discretised interquartile range                    &        0.015215 \\
+Normalised zone size non-uniformity                &        0.014503 \\
+Zone size entropy                                  &        0.013022 \\
+Intensity histogram quartile coefficient of dis... &        0.012877 \\
+Dependence count entropy                           &        0.012349 \\
+Intensity histogram robust mean absolute deviation &        0.012038 \\
+Dependence count energy                            &        0.011250 \\
+Information correlation 2                          &        0.010936 \\
+Intensity-based interquartile range                &        0.010557 \\
+Intensity-based median absolute deviation          &        0.010335 \\
+Uniformity                                         &        0.010092 \\
+Normalised grey level non-uniformity (GLRLM)       &        0.009950 \\
+Entropy                                            &        0.009521 \\
+Skewness                                           &        0.009466 \\
+Respiratory Rate                                   &        0.009128 \\
+Run entropy                                        &        0.009112 \\
+Discretised intensity skewness                     &        0.009056 \\
+Zone distance entropy                              &        0.008693 \\
+Cluster prominence                                 &        0.008389 \\
+Large distance high grey level emphasis            &        0.008030 \\
+NIV                                                &        0.007973 \\
+XRayTubeCurrent                                    &        0.007913 \\
+Information correlation 1                          &        0.007777 \\
+Discretised intensity entropy                      &        0.007500 \\
+Intensity-based robust mean absolute deviation     &        0.007225 \\
+Angular second moment                              &        0.007216 \\
+Centre of mass shift (cm)                          &        0.007092 \\
+Thresholded area intensity peak (75\%)              &        0.007058 \\
+Normalised grey level non-uniformity (GLSZM)       &        0.007012 \\
+Small distance emphasis                            &        0.006851 \\
+Discretised intensity uniformity                   &        0.006661 \\
+Energy                                             &        0.006559 \\
+Standard deviation                                 &        0.006534 \\
+Small zone emphasis                                &        0.006514 \\
+Small distance high grey level emphasis            &        0.006364 \\
+Low grey level zone emphasis.1                     &        0.006298 \\
+Normalised zone distance non-uniformity            &        0.006248 \\
+Minor axis length (cm)                             &        0.006193 \\
+Volume density - enclosing ellipsoid               &        0.006183 \\
+Grey level variance (GLDZM)                        &        0.006142 \\
+Correlation                                        &        0.006067 \\
+Discretised intensity kurtosis                     &        0.006035 \\
+Dependence count non-uniformity                    &        0.005890 \\
+Thresholded area intensity peak (50\%)              &        0.005777 \\
+10th intensity percentile                          &        0.005728 \\
+Coarseness                                         &        0.005699 \\
+Sum entropy                                        &        0.005676 \\
+Inverse elongation                                 &        0.005667 \\
+Quartile coefficient of dispersion                 &        0.005654 \\
+Local intensity peak                               &        0.005412 \\
+High dependence low grey level emphasis            &        0.005345 \\
+Small distance low grey level emphasis             &        0.005263 \\
+Zone distance non-uniformity                       &        0.005247 \\
+Normalised grey level non-uniformity (GLDZM)       &        0.005240 \\
+Number of voxels of positive value                 &        0.005183 \\
+Major axis length (cm)                             &        0.005136 \\
+Sum variance                                       &        0.005116 \\
+Difference variance                                &        0.005107 \\
+Global intensity peak                              &        0.005086 \\
+Intensity-based coefficient of variation           &        0.004994 \\
+Volume at intensity fraction 90\%                   &        0.004927 \\
+Short run low grey level emphasis                  &        0.004892 \\
+Low grey level run emphasis                        &        0.004890 \\
+Joint Entropy                                      &        0.004789 \\
+Max value                                          &        0.004775 \\
+Area density - enclosing ellipsoid                 &        0.004775 \\
+Small zone low grey level emphasis                 &        0.004660 \\
+Strength                                           &        0.004638 \\
+High grey level zone emphasis.1                    &        0.004628 \\
+Joint maximum                                      &        0.004620 \\
+Low dependence emphasis                            &        0.004595 \\
+Number of grey levels                              &        0.004569 \\
+Intensity histogram mean absolute deviation        &        0.004473 \\
+Volume at intensity fraction 10\%                   &        0.004441 \\
+Intensity histogram median absolute deviation      &        0.004429 \\
+Grey level non-uniformity (GLRLM)                  &        0.004421 \\
+Surface to volume ratio                            &        0.004415 \\
+Grey level non-uniformity (GLDZM)                  &        0.004406 \\
+Intensity at volume fraction 90\%                   &        0.004379 \\
+Variance                                           &        0.004360 \\
+Low dependence low grey level emphasis             &        0.004319 \\
+Small zone high grey level emphasis                &        0.004311 \\
+High dependence high grey level emphasis           &        0.004226 \\
+RECIST (cm)                                        &        0.004199 \\
+Intensity range                                    &        0.004174 \\
+Compactness 2                                      &        0.004118 \\
+Compactness 1                                      &        0.004116 \\
+Large distance low grey level emphasis             &        0.004092 \\
+Flatness                                           &        0.004017 \\
+Volume density - aligned bounding box              &        0.004010 \\
+Least axis length (cm)                             &        0.004006 \\
+Complexity                                         &        0.003997 \\
+Kurtosis                                           &        0.003965 \\
+Grey level variance (GLSZM)                        &        0.003945 \\
+Zone percentage (GLDZM)                            &        0.003813 \\
+Maximum 3D diameter (cm)                           &        0.003752 \\
+Normalised grey level non-uniformity (NGLDM)       &        0.003651 \\
+Zone distance variance                             &        0.003640 \\
+Low grey level zone emphasis                       &        0.003564 \\
+Grey level non-uniformity (GLSZM)                  &        0.003548 \\
+Volume density - convex hull                       &        0.003526 \\
+Difference average                                 &        0.003520 \\
+Area density - oriented bounding box               &        0.003509 \\
+Volume density - oriented bounding box             &        0.003445 \\
+Contrast (GLCM)                                    &        0.003438 \\
+Short run emphasis                                 &        0.003383 \\
+Large zone high grey level emphasis                &        0.003379 \\
+Integrated intensity                               &        0.003356 \\
+Autocorrelation                                    &        0.003342 \\
+Intensity median value                             &        0.003335 \\
+High grey level zone emphasis                      &        0.003309 \\
+Area density - aligned bounding box                &        0.003294 \\
+Cluster tendency                                   &        0.003293 \\
+Grey level non-uniformity (NGLDM)                  &        0.003292 \\
+Asphericity                                        &        0.003287 \\
+Discretised intensity variance                     &        0.003284 \\
+O2-therapy                                         &        0.003272 \\
+Intensity-based mean absolute deviation            &        0.003255 \\
+Intensity fraction difference between volume fr... &        0.003247 \\
+Cluster shade                                      &        0.003224 \\
+Run length non-uniformity                          &        0.003223 \\
+Area density - convex hull                         &        0.003189 \\
+Normalised inverse difference                      &        0.003143 \\
+Dependence count variance                          &        0.003111 \\
+Zone percentage (GLSZM)                            &        0.003109 \\
+Homogeneity                                        &        0.003080 \\
+Intensity at volume fraction 10\%                   &        0.003073 \\
+Large distance emphasis                            &        0.002986 \\
+Difference entropy                                 &        0.002902 \\
+Low grey level count emphasis                      &        0.002878 \\
+Dissimilarity                                      &        0.002813 \\
+Volume fraction difference between intensity fr... &        0.002803 \\
+Low dependence high grey level emphasis            &        0.002782 \\
+Sum average                                        &        0.002762 \\
+Quadratic mean                                     &        0.002759 \\
+Sphericity                                         &        0.002757 \\
+Run length variance                                &        0.002732 \\
+Contrast (NGTDM)                                   &        0.002687 \\
+High Flow Nasal Cannulae                           &        0.002648 \\
+Grey level variance (NGLDM)                        &        0.002571 \\
+Spherical disproportion                            &        0.002547 \\
+Long run high grey level emphasis                  &        0.002542 \\
+Grey level variance (GLRLM)                        &        0.002435 \\
+Large zone emphasis                                &        0.002389 \\
+Short run high grey level emphasis                 &        0.002284 \\
+Joint average                                      &        0.002252 \\
+Area under the IVH curve                           &        0.002221 \\
+Busyness                                           &        0.002193 \\
+Inverse difference                                 &        0.002191 \\
+High grey level count emphasis                     &        0.002191 \\
+Long run emphasis                                  &        0.002127 \\
+Large zone low grey level emphasis                 &        0.002122 \\
+Normalized dependence count non-uniformity         &        0.002107 \\
+Intensity histogram coefficient of variation       &        0.002088 \\
+Mean discretised intensity                         &        0.002058 \\
+Minimum histogram gradient                         &        0.002054 \\
+Joint variance                                     &        0.002053 \\
+Intensity histogram mode                           &        0.002019 \\
+Intensity-based energy                             &        0.001905 \\
+Number of voxels                                   &        0.001859 \\
+Long run low grey level emphasis                   &        0.001836 \\
+90th intensity percentile                          &        0.001835 \\
+Maximum histogram gradient intensity               &        0.001818 \\
+High dependence emphasis                           &        0.001807 \\
+Normalised run length non-uniformity               &        0.001791 \\
+Normalised homogeneity                             &        0.001724 \\
+Median discretised intensity                       &        0.001629 \\
+High grey level run emphasis                       &        0.001585 \\
+Intensity mean value                               &        0.001539 \\
+Inverse variance                                   &        0.001530 \\
+Min value                                          &        0.001525 \\
+cPAP                                               &        0.001509 \\
+Discretised intensity standard deviation           &        0.001508 \\
+90th discretised intensity percentile              &        0.001472 \\
+Run percentage                                     &        0.001456 \\
+Minimum histogram gradient intensity               &        0.001437 \\
+Maximum histogram gradient                         &        0.001416 \\
+Lung consolidation                                 &        0.000839 \\
+Sex\_bin                                            &        0.000787 \\
+Number of compartments (GMM)                       &        0.000780 \\
+KVP                                                &        0.000769 \\
+Crazy Paving                                       &        0.000644 \\
+Ground-glass                                       &        0.000611 \\
+Obesity                                            &        0.000603 \\
+History of smoking                                 &        0.000572 \\
+SliceThickness                                     &        0.000526 \\
+Febbre                                             &        0.000449 \\
+Bilateral Involvement                              &        0.000440 \\
+Hypertension                                       &        0.000284 \\
+HRCT performed                                     &        0.000000 \\
+Discretised max value                              &        0.000000 \\
+Discretized intensity range                        &        0.000000 \\
+Number of grey levels after quantization           &        0.000000 \\
+Dependence count percentage                        &        0.000000 \\
+Discretised min value                              &        0.000000 \\
+\bottomrule
+\end{tabular}
+
+
+
+2d embedding con umap dati non scalati prima di umap, su gravity con percentili 25-75
+Accuracy score= 0.3586206896551724
+RMSE= 1.2317635241028795
+
+              precision    recall  f1-score   support
+
+           1       0.18      0.15      0.17        79
+           2       0.46      0.58      0.51       193
+           3       0.18      0.14      0.16        85
+           4       0.34      0.27      0.30        78
+
+    accuracy                           0.36       435
+   macro avg       0.29      0.28      0.28       435
+weighted avg       0.33      0.36      0.34       435
+
+\begin{tabular}{lr}
+\toprule
+{} &  RF\_importances \\
+\midrule
+1 &        0.508338 \\
+0 &        0.491662 \\
+\bottomrule
+\end{tabular}
+
+2d embedding con umap dati scalati prima di umap, su gravity con percentili 25-75
+
+Accuracy score= 0.4459770114942529
+RMSE= 1.02721585550122
+
+              precision    recall  f1-score   support
+
+           1       0.37      0.29      0.33        79
+           2       0.53      0.61      0.57       193
+           3       0.32      0.31      0.31        85
+           4       0.39      0.36      0.38        78
+
+    accuracy                           0.45       435
+   macro avg       0.40      0.39      0.40       435
+weighted avg       0.44      0.45      0.44       435
+
+\begin{tabular}{lr}
+\toprule
+{} &  RF\_importances \\
+\midrule
+0 &        0.530961 \\
+1 &        0.469039 \\
+\bottomrule
+\end{tabular}
+
+\large{RISULTATI CON FAT E MUSCLE)
+
+lassocv with features CLI predicting on Death
+
+\begin{tabular}{lr}
+\toprule
+{} &  lassocvL1 penalty Importance \\
+\midrule
+Intercept                &                      0.179724 \\
+Respiratory Failure      &                      0.128088 \\
+CURB65                   &                      0.102566 \\
+NIV                      &                      0.061168 \\
+High Flow Nasal Cannulae &                     -0.049616 \\
+Age (years)              &                      0.031801 \\
+Respiratory Rate         &                      0.024426 \\
+Hypertension             &                     -0.023176 \\
+Febbre                   &                     -0.021664 \\
+Sex\_bin                  &                      0.009949 \\
+History of smoking       &                     -0.002102 \\
+O2-therapy               &                      0.000486 \\
+Obesity                  &                     -0.000000 \\
+cPAP                     &                      0.000000 \\
+\bottomrule
+\end{tabular}
+
+lassocv with features RAD predicting on Death
+
+\begin{tabular}{lr}
+\toprule
+{} &  lassocvL1 penalty Importance \\
+\midrule
+Intercept                           &                      0.179723 \\
+10th intensity percentile           &                     -0.129937 \\
+Complexity                          &                     -0.106041 \\
+Intensity-based interquartile range &                      0.105169 \\
+Cluster prominence                  &                     -0.067630 \\
+Area density - aligned bounding box &                     -0.039259 \\
+Entropy                             &                      0.035969 \\
+Number of compartments (GMM)        &                     -0.033142 \\
+Local intensity peak                &                      0.029582 \\
+Asphericity                         &                      0.028715 \\
+Global intensity peak               &                     -0.025238 \\
+Intensity range                     &                      0.009107 \\
+Fat.surface                         &                      0.008150 \\
+Number of voxels of positive value  &                      0.000258 \\
+Major axis length (cm)              &                      0.000000 \\
+\bottomrule
+\end{tabular}
+
+lassocv with features RADIOLOGICHE predicting on Death
+
+\begin{tabular}{lr}
+\toprule
+{} &  lassocvL1 penalty Importance \\
+\midrule
+Intercept             &                      0.179724 \\
+Ground-glass          &                     -0.043786 \\
+Lung consolidation    &                      0.039074 \\
+XRayTubeCurrent       &                     -0.016411 \\
+KVP                   &                      0.005251 \\
+Crazy Paving          &                     -0.000000 \\
+Bilateral Involvement &                      0.000000 \\
+SliceThickness        &                      0.000000 \\
+\bottomrule
+\end{tabular}
+
+lassocv with features CLIRAD predicting on Death
+
+\begin{tabular}{lr}
+\toprule
+{} &  lassocvL1 penalty Importance \\
+\midrule
+Intercept                           &                      0.179724 \\
+Respiratory Failure                 &                      0.118604 \\
+CURB65                              &                      0.088668 \\
+NIV                                 &                      0.069345 \\
+High Flow Nasal Cannulae            &                     -0.050231 \\
+Complexity                          &                     -0.048003 \\
+10th intensity percentile           &                     -0.040592 \\
+Age (years)                         &                      0.039638 \\
+Hypertension                        &                     -0.032531 \\
+Area density - aligned bounding box &                     -0.031491 \\
+Cluster prominence                  &                     -0.028555 \\
+Febbre                              &                     -0.027227 \\
+Respiratory Rate                    &                      0.023872 \\
+Asphericity                         &                      0.022113 \\
+Sex\_bin                             &                      0.020739 \\
+Local intensity peak                &                      0.019734 \\
+Number of compartments (GMM)        &                     -0.016025 \\
+Global intensity peak               &                     -0.010200 \\
+History of smoking                  &                     -0.006554 \\
+Fat.surface                         &                      0.004962 \\
+Obesity                             &                     -0.002121 \\
+cPAP                                &                      0.001717 \\
+O2-therapy                          &                      0.001134 \\
+Intensity range                     &                      0.000000 \\
+Major axis length (cm)              &                      0.000000 \\
+Number of voxels of positive value  &                      0.000000 \\
+\bottomrule
+\end{tabular}
+
+lassocv with features CLIRADIOLOGICHE predicting on Death
+
+\begin{tabular}{lr}
+\toprule
+{} &  lassocvL1 penalty Importance \\
+\midrule
+Intercept                &                      0.179724 \\
+Respiratory Failure      &                      0.122234 \\
+CURB65                   &                      0.096522 \\
+NIV                      &                      0.058161 \\
+High Flow Nasal Cannulae &                     -0.041193 \\
+Ground-glass             &                     -0.030321 \\
+Age (years)              &                      0.028157 \\
+Lung consolidation       &                      0.023424 \\
+Respiratory Rate         &                      0.023238 \\
+Febbre                   &                     -0.020553 \\
+Hypertension             &                     -0.014563 \\
+SliceThickness           &                      0.011240 \\
+KVP                      &                      0.009409 \\
+Sex\_bin                  &                      0.007833 \\
+Crazy Paving             &                     -0.006860 \\
+XRayTubeCurrent          &                     -0.005432 \\
+History of smoking       &                     -0.001715 \\
+O2-therapy               &                      0.000000 \\
+cPAP                     &                      0.000000 \\
+Bilateral Involvement    &                     -0.000000 \\
+Obesity                  &                     -0.000000 \\
+\bottomrule
+\end{tabular}
+
+lassocv with features RADIOLOGICHE-RAD predicting on Death
+
+\begin{tabular}{lr}
+\toprule
+{} &  lassocvL1 penalty Importance \\
+\midrule
+Intercept                           &                      0.179724 \\
+Intensity-based interquartile range &                      0.132780 \\
+10th intensity percentile           &                     -0.101479 \\
+Complexity                          &                     -0.084790 \\
+Cluster prominence                  &                     -0.067690 \\
+XRayTubeCurrent                     &                     -0.057481 \\
+Ground-glass                        &                     -0.053869 \\
+Lung consolidation                  &                      0.032543 \\
+Area density - aligned bounding box &                     -0.032283 \\
+Fat.surface                         &                      0.027230 \\
+Local intensity peak                &                      0.025490 \\
+Asphericity                         &                      0.024992 \\
+Number of compartments (GMM)        &                     -0.022803 \\
+Major axis length (cm)              &                      0.015081 \\
+Global intensity peak               &                     -0.013740 \\
+Crazy Paving                        &                     -0.013243 \\
+SliceThickness                      &                      0.009068 \\
+Bilateral Involvement               &                     -0.007472 \\
+Number of voxels of positive value  &                      0.002466 \\
+KVP                                 &                      0.000967 \\
+Intensity range                     &                      0.000000 \\
+\bottomrule
+\end{tabular}
+
+lassocv with features ALL predicting on Death.
+
+\begin{tabular}{lr}
+\toprule
+{} &  lassocvL1 penalty Importance \\
+\midrule
+Intercept                           &                      0.179724 \\
+Respiratory Failure                 &                      0.113546 \\
+CURB65                              &                      0.090561 \\
+NIV                                 &                      0.045254 \\
+High Flow Nasal Cannulae            &                     -0.030218 \\
+Ground-glass                        &                     -0.028004 \\
+Complexity                          &                     -0.027004 \\
+Age (years)                         &                      0.021476 \\
+Lung consolidation                  &                      0.018403 \\
+Febbre                              &                     -0.016850 \\
+Intensity-based interquartile range &                      0.016214 \\
+Respiratory Rate                    &                      0.012148 \\
+XRayTubeCurrent                     &                     -0.012029 \\
+Cluster prominence                  &                     -0.010913 \\
+Fat.surface                         &                      0.010110 \\
+Hypertension                        &                     -0.008660 \\
+Area density - aligned bounding box &                     -0.008552 \\
+Sex\_bin                             &                      0.005420 \\
+Number of compartments (GMM)        &                     -0.003722 \\
+KVP                                 &                      0.003274 \\
+Crazy Paving                        &                     -0.003203 \\
+Local intensity peak                &                      0.002753 \\
+Major axis length (cm)              &                      0.000099 \\
+cPAP                                &                      0.000000 \\
+Number of voxels of positive value  &                     -0.000000 \\
+Intensity range                     &                      0.000000 \\
+O2-therapy                          &                      0.000000 \\
+Asphericity                         &                      0.000000 \\
+Obesity                             &                     -0.000000 \\
+Bilateral Involvement               &                     -0.000000 \\
+SliceThickness                      &                      0.000000 \\
+10th intensity percentile           &                     -0.000000 \\
+History of smoking                  &                     -0.000000 \\
+Global intensity peak               &                     -0.000000 \\
+\bottomrule
+\end{tabular}
+
+\large{USANDO ANCHE FAT E MUSCLE SURFACE}
+
+lassocv with features CLI predicting on ICU Admission
+
+\begin{tabular}{lr}
+\toprule
+{} &  lassocvL1 penalty Importance \\
+\midrule
+NIV                      &                      0.217471 \\
+Intercept                &                      0.177419 \\
+Respiratory Failure      &                      0.050953 \\
+High Flow Nasal Cannulae &                      0.015014 \\
+Febbre                   &                      0.009632 \\
+History of smoking       &                      0.002855 \\
+Sex\_bin                  &                     -0.001857 \\
+Age (years)              &                     -0.000000 \\
+Hypertension             &                      0.000000 \\
+Obesity                  &                      0.000000 \\
+O2-therapy               &                      0.000000 \\
+cPAP                     &                     -0.000000 \\
+Respiratory Rate         &                      0.000000 \\
+CURB65                   &                     -0.000000 \\
+\bottomrule
+\end{tabular}
+
+lassocv with features RAD predicting on ICU Admission
+
+\begin{tabular}{lr}
+\toprule
+{} &  lassocvL1 penalty Importance \\
+\midrule
+Intercept                           &                      0.177419 \\
+Number of voxels of positive value  &                      0.159984 \\
+Intensity range                     &                     -0.147273 \\
+Entropy                             &                      0.136924 \\
+Cluster prominence                  &                     -0.122875 \\
+Complexity                          &                     -0.097204 \\
+10th intensity percentile           &                     -0.083223 \\
+Area density - aligned bounding box &                     -0.035995 \\
+Major axis length (cm)              &                     -0.034635 \\
+Dependence count entropy            &                     -0.034174 \\
+Fat.surface                         &                      0.028454 \\
+Asphericity                         &                     -0.024527 \\
+Local intensity peak                &                     -0.019615 \\
+Global intensity peak               &                     -0.015779 \\
+Number of compartments (GMM)        &                     -0.000045 \\
+\bottomrule
+\end{tabular}
+
+lassocv with features RADIOLOGICHE predicting on ICU Admission
+
+\begin{tabular}{lr}
+\toprule
+{} &  lassocvL1 penalty Importance \\
+\midrule
+Intercept             &                  1.774194e-01 \\
+XRayTubeCurrent       &                  4.092988e-18 \\
+Lung consolidation    &                  0.000000e+00 \\
+Ground-glass          &                  0.000000e+00 \\
+Crazy Paving          &                  0.000000e+00 \\
+Bilateral Involvement &                  0.000000e+00 \\
+SliceThickness        &                 -0.000000e+00 \\
+KVP                   &                  0.000000e+00 \\
+\bottomrule
+\end{tabular}
+
+lassocv with features CLIRAD predicting on ICU Admission
+
+\begin{tabular}{lr}
+\toprule
+{} &  lassocvL1 penalty Importance \\
+\midrule
+NIV                                 &                      0.209694 \\
+Intercept                           &                      0.177419 \\
+Intensity range                     &                     -0.096034 \\
+Number of voxels of positive value  &                      0.094488 \\
+Cluster prominence                  &                     -0.085690 \\
+Respiratory Failure                 &                      0.060791 \\
+Complexity                          &                     -0.049243 \\
+Major axis length (cm)              &                     -0.043330 \\
+10th intensity percentile           &                     -0.040822 \\
+High Flow Nasal Cannulae            &                      0.029217 \\
+Area density - aligned bounding box &                     -0.026951 \\
+cPAP                                &                     -0.025035 \\
+Febbre                              &                      0.023916 \\
+Dependence count entropy            &                      0.020979 \\
+History of smoking                  &                      0.020918 \\
+Age (years)                         &                     -0.019277 \\
+Local intensity peak                &                     -0.017481 \\
+Sex\_bin                             &                     -0.013865 \\
+Hypertension                        &                      0.012981 \\
+O2-therapy                          &                      0.008794 \\
+Fat.surface                         &                     -0.008065 \\
+Asphericity                         &                      0.006228 \\
+Obesity                             &                      0.003853 \\
+Global intensity peak               &                     -0.000495 \\
+Number of compartments (GMM)        &                      0.000352 \\
+Respiratory Rate                    &                     -0.000000 \\
+\bottomrule
+\end{tabular}
+
+lassocv with features CLIRADIOLOGICHE predicting on ICU Admission
+
+\begin{tabular}{lr}
+\toprule
+{} &  lassocvL1 penalty Importance \\
+\midrule
+NIV                      &                      0.218300 \\
+Intercept                &                      0.177419 \\
+Respiratory Failure      &                      0.053616 \\
+High Flow Nasal Cannulae &                      0.018061 \\
+SliceThickness           &                      0.012860 \\
+Febbre                   &                      0.011785 \\
+History of smoking       &                      0.005857 \\
+Sex\_bin                  &                     -0.004416 \\
+Age (years)              &                     -0.004101 \\
+O2-therapy               &                      0.001615 \\
+CURB65                   &                      0.000000 \\
+Respiratory Rate         &                      0.000000 \\
+Lung consolidation       &                      0.000000 \\
+cPAP                     &                     -0.000000 \\
+Ground-glass             &                      0.000000 \\
+Hypertension             &                      0.000000 \\
+XRayTubeCurrent          &                      0.000000 \\
+KVP                      &                      0.000000 \\
+Bilateral Involvement    &                     -0.000000 \\
+Crazy Paving             &                     -0.000000 \\
+Obesity                  &                      0.000000 \\
+\bottomrule
+\end{tabular}
+
+lassocv with features RADIOLOGICHE-RAD predicting on ICU Admission
+
+\begin{tabular}{lr}
+\toprule
+{} &  lassocvL1 penalty Importance \\
+\midrule
+Intercept                           &                      0.177419 \\
+Dependence count entropy            &                      0.066657 \\
+Number of voxels of positive value  &                      0.022742 \\
+Fat.surface                         &                      0.015496 \\
+Complexity                          &                     -0.000000 \\
+Number of compartments (GMM)        &                      0.000000 \\
+Major axis length (cm)              &                      0.000000 \\
+Local intensity peak                &                     -0.000000 \\
+Intensity range                     &                     -0.000000 \\
+Global intensity peak               &                     -0.000000 \\
+Lung consolidation                  &                     -0.000000 \\
+Ground-glass                        &                      0.000000 \\
+Asphericity                         &                     -0.000000 \\
+Area density - aligned bounding box &                     -0.000000 \\
+10th intensity percentile           &                      0.000000 \\
+XRayTubeCurrent                     &                      0.000000 \\
+KVP                                 &                      0.000000 \\
+SliceThickness                      &                     -0.000000 \\
+Bilateral Involvement               &                     -0.000000 \\
+Crazy Paving                        &                      0.000000 \\
+Cluster prominence                  &                     -0.000000 \\
+\bottomrule
+\end{tabular}
+
+lassocv with features ALL predicting on ICU Admission
+
+\begin{tabular}{lr}
+\toprule
+{} &  lassocvL1 penalty Importance \\
+\midrule
+NIV                                 &                      0.213070 \\
+Intercept                           &                      0.177419 \\
+Respiratory Failure                 &                      0.042212 \\
+Complexity                          &                     -0.023928 \\
+High Flow Nasal Cannulae            &                      0.020592 \\
+Dependence count entropy            &                      0.013990 \\
+Febbre                              &                      0.007409 \\
+History of smoking                  &                      0.000389 \\
+O2-therapy                          &                      0.000000 \\
+Major axis length (cm)              &                      0.000000 \\
+XRayTubeCurrent                     &                      0.000000 \\
+KVP                                 &                      0.000000 \\
+SliceThickness                      &                      0.000000 \\
+Bilateral Involvement               &                     -0.000000 \\
+Crazy Paving                        &                     -0.000000 \\
+Ground-glass                        &                      0.000000 \\
+Lung consolidation                  &                     -0.000000 \\
+Fat.surface                         &                      0.000000 \\
+Number of voxels of positive value  &                      0.000000 \\
+Number of compartments (GMM)        &                     -0.000000 \\
+Intensity range                     &                     -0.000000 \\
+Local intensity peak                &                     -0.000000 \\
+cPAP                                &                     -0.000000 \\
+Global intensity peak               &                     -0.000000 \\
+Hypertension                        &                      0.000000 \\
+Cluster prominence                  &                     -0.000000 \\
+Asphericity                         &                      0.000000 \\
+Area density - aligned bounding box &                     -0.000000 \\
+10th intensity percentile           &                      0.000000 \\
+Sex\_bin                             &                     -0.000000 \\
+Respiratory Rate                    &                      0.000000 \\
+Obesity                             &                      0.000000 \\
+Age (years)                         &                     -0.000000 \\
+\bottomrule
+\end{tabular}
