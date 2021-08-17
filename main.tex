@@ -1,5 +1,10 @@
 \documentclass[12pt,a4paper]{report}
 
+\usepackage[utf8]{inputenc} %usa il formato utf8 per l'encoding
+\usepackage[T1]{fontenc} % usa un font ragionevole
+\usepackage{lmodern} % migliora alcuni dettagli della visualizzazione del font
+\usepackage{todonotes} %questo serve per mettere le note
+
 \usepackage{geometry}
 \usepackage{float}
 \usepackage{titlesec}
@@ -16,10 +21,10 @@
 \usepackage{subfig}
 \usepackage{graphicx}
 \usepackage{subfig}
-
 \usepackage[italian, english]{babel}  %%% !!! Cancellare 'english' per avere "Sommario, Capitolo..." !!!
 
 %------------------------------------------------------------------------------------
+% questi non dovrebbero servirti, in particolare con i pacchetti che ho aggiunto
 \newcommand{\eg}{\`e}
 \newcommand{\ea}{\'e}
 \newcommand{\Eg}{\`E}
@@ -53,7 +58,7 @@
 \DeclareCaptionFont{myblue}{\color{SubSectionBlue}}
 \captionsetup{labelfont={myblue,bf}}
 %------------------------------------------------------------------------------------
-\newcommand{\myboldverb}[1]{{\color{MyDarkBlue}\bfseries{#1}}} % per enfasi in grassetto 
+\newcommand{\myboldverb}[1]{{\color{MyDarkBlue}\bfseries{#1}}} % per enfasi in grassetto
 \newcommand{\myverb}[1]{{\color{MyDarkBlue}\texttt{#1}}} % in evidenza
 \newcommand{\myurl}[1]{{\color{MyDarkGreen}\url{#1}}} % per url
 \newcommand{\quotesection}[1]{{\color{SectionBlue}\textbf{Sezione \ref{#1}}}}
@@ -69,7 +74,7 @@
 \newtheorem*{remark}{Remark}
 
 \graphicspath{ {./imgs/} }
-\setlength\parskip{1\baselineskip}
+%\setlength\parskip{1\baselineskip} % meglio separare con l'indentazione, non con lo spazio interlinea
 %------------------------------------------------------------------------------------
 \geometry{
 	paper=a4paper, % Change to letterpaper for US letter
@@ -98,27 +103,27 @@
     \begin{center}
         \vspace*{0.2cm}
         {\fontsize{19pt}{20pt}\selectfont \textbf{Alma Mater Studiorum $\cdot$ University of Bologna}\par}
-    
+
         \par\noindent\rule{\textwidth}{.5pt}
         \rule[.5\baselineskip]{\textwidth}{1.5pt}
         \vspace{0.8cm}
-        
+
         \normalfont
-        
+
         Department of Physics and Astronomy
-        
+
         Master Degree in Physics
-        
+
         \Large
         \vspace{5cm}
         {\fontsize{22.5pt}{22.5}\textcolor{MyDarkRed}{\textbf{THESIS TITLE}}}
 
-        
+
         \vspace{4.5cm}
         \begin{minipage}[t]{0.64\textwidth}
         \begin{flushleft}
         {\fontsize{16pt}{16pt}\textbf{Supervisor:} \\ \textbf{\textcolor{MyDarkRed}{Prof. Enrico Giampieri}}} \\
-        {\fontsize{16pt}{16pt}\textbf{Co-Supervisor:} \\ \textbf{\textcolor{MyDarkRed}{Dott.sa Lidia Strigari}}} 
+        {\fontsize{16pt}{16pt}\textbf{Co-Supervisor:} \\ \textbf{\textcolor{MyDarkRed}{Dott.sa Lidia Strigari}}}
         \end{flushleft}
         \end{minipage}
         \begin{minipage}[t]{0.34\textwidth}
@@ -127,11 +132,11 @@
         \textbf{\textcolor{MyDarkRed}{Lorenzo Spagnoli}} \\
         \end{flushright}
         \end{minipage}\\
-        
+
         \vfill
         \vspace{0.3cm}
         \small
-        
+
         Academic Year {\textcolor{MyDarkRed} {2020-2021}}
     \end{center}
 \end{titlepage}
@@ -143,13 +148,15 @@
 
 \thispagestyle{empty}
 %\newpage
+\listoftodos
 %-------------------------------------ABSTRACT
 %\thispagestyle{empty}
 \vspace*{5cm}
-\renewcommand{\abstractname}{\color{MyDarkBlue}{Abstract}} 
+\renewcommand{\abstractname}{\color{MyDarkBlue}{Abstract}}
 \begin{abstract}
 %Useful diagnostic vs prognostic and data- vs law-driven given in \cite{1} page 18.
 
+\todo[inline]{queste tabelle ovviamente non vanno qui}
 Contingency table per le segmentazioni sostituibili
 
 \begin{tabular}{lrr}
@@ -176,9 +183,20 @@ Death &         &    \\
 \bottomrule
 \end{tabular}
 
-Since the start of 2020 \textit{Sars-COVID19} has given rise to a world-wide pandemic. In an attempt to slow down the fast and uncontrollable spreading of this disease various prevention and diagnostic methods have been developed. In this thesis, out of all these various methods, the attention is going to be put on Machine Learning methods used to predict prognosis that are based, for the most part, on data originating from medical images.
-The techniques belonging to the field of radiomcs will be used to extract information from images segmented using a software available in the hospital that provided the clinical data as well as the images. The usefulness of different families of variables will be evaluated through their performance in the methods used, namely Lasso regularized regression and Random Forest. Dimensionality reduction techniques will be used to attain a better understanding of the dataset at hand. 
-Following a first introductiory chapter in the second a basic theoretical overview of the necessary core concepts that will be needed throughout this whole work will be provided and then the focus will be shifted on the various methods and instruments used in the development of this thesis The third is going to be a report of the results and finally some conclusions will be derived from the previously presented results. It will be concluded that the segmentation and featue extraction step is of pivotal importance in driving the performance of the predictions. In fact, in this thesis, it seems that the information from the images adds no significant information to that derived from the clinical data. This can be taken as a symptom that the more complex \textit{Sars-COVID19} cases are still too difficult to be segmented automatically, or semi-automatically by untrained personnel, which will lead to counter-intuitive results further down the analysis pipeline.
+\todo[inline]{bisogna dividere i pagrafi, e consiglio una sola frase per riga. Dividere i paragrafi aiuta anche con il layout di tabelle e figure}.
+Since the start of 2020 \textit{Sars-COVID19} has given rise to a world-wide pandemic.\todo[inline]{ti consiglio di mettere la parola covid come macro per scriverla sempre in modo consistente}
+In an attempt to slow down the fast and uncontrollable spreading of this disease various prevention and diagnostic methods have been developed.
+In this thesis, out of all these various methods, the attention is going to be put on Machine Learning methods used to predict prognosis that are based, for the most part, on data originating from medical images.
+
+The techniques belonging to the field of radiomcs will be used to extract information from images segmented using a software available in the hospital that provided the clinical data as well as the images.
+The usefulness of different families of variables will be evaluated through their performance in the methods used, namely Lasso regularized regression and Random Forest.
+Dimensionality reduction techniques will be used to attain a better understanding of the dataset at hand.
+
+Following a first introductiory chapter in the second a basic theoretical overview of the necessary core concepts that will be needed throughout this whole work will be provided and then the focus will be shifted on the various methods and instruments used in the development of this thesis.
+The third is going to be a report of the results and finally some conclusions will be derived from the previously presented results.
+It will be concluded that the segmentation and feature extraction step is of pivotal importance in driving the performance of the predictions.
+In fact, in this thesis, it seems that the information from the images adds no significant information to that derived from the clinical data.
+This can be taken as a symptom that the more complex \textit{Sars-COVID19} cases are still too difficult to be segmented automatically, or semi-automatically by untrained personnel, which will lead to counter-intuitive results further down the analysis pipeline.
 
 \end{abstract}
 %-------------------------------------INDEX
