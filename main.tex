@@ -5,6 +5,9 @@
 \usepackage{lmodern} % migliora alcuni dettagli della visualizzazione del font
 \usepackage{todonotes} %questo serve per mettere le note
 
+\usepackage[nottoc]{tocbibind}%mette la bibliografia nella table of contents
+\usepackage[graphicx]{realboxes}%per ruotare le tabelle
+\usepackage{adjustbox}
 \usepackage{geometry}
 \usepackage{longtable}
 \usepackage{float}
@@ -21,6 +24,7 @@
 \usepackage{lineno}
 \usepackage{subfig}
 \usepackage{graphicx}
+
 \usepackage{subfig}
 \usepackage[italian, english]{babel}  %%% !!! Cancellare 'english' per avere "Sommario, Capitolo..." !!!
 
@@ -67,6 +71,8 @@
 \newcommand{\quotesubsubsection}[1]{{\color{SubSubSectionBlue}\textbf{Sezione \ref{#1}}}}
 \newcommand{\quotefigure}[1]{{\color{MyDarkGreen}\textbf{Figura \ref{#1}}}}
 \newcommand{\quotetable}[1]{{\color{MyDarkGreen}\textbf{Tabella \ref{#1}}}}
+
+\newcommand{\covid}{\textit{Sars-COVID19}}
 %--------------------------------------------------------------------------------------
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
@@ -157,35 +163,9 @@
 \begin{abstract}
 %Useful diagnostic vs prognostic and data- vs law-driven given in \cite{1} page 18.
 
-\todo[inline]{queste tabelle ovviamente non vanno qui}
-Contingency table per le segmentazioni sostituibili
-
-\begin{tabular}{lrr}
-\toprule
-{} & \multicolumn{2}{l}{ICU Admission} \\
- &       0 &  1 \\
-Death &         &    \\
-\midrule
-0     &       7 &  2 \\
-1     &       8 &  1 \\
-\bottomrule
-\end{tabular}
-
-Contingency table per le segmentazioni brutte o dubbie
-
-\begin{tabular}{lrr}
-\toprule
-{} & \multicolumn{2}{l}{ICU Admission} \\
- &       0 &  1 \\
-Death &         &    \\
-\midrule
-0     &      32 &  4 \\
-1     &      11 &  2 \\
-\bottomrule
-\end{tabular}
 
 \todo[inline]{bisogna dividere i pagrafi, e consiglio una sola frase per riga. Dividere i paragrafi aiuta anche con il layout di tabelle e figure}.
-Since the start of 2020 \textit{Sars-COVID19} has given rise to a world-wide pandemic.\todo[inline]{ti consiglio di mettere la parola covid come macro per scriverla sempre in modo consistente}
+Since the start of 2020 \covid has given rise to a world-wide pandemic
 In an attempt to slow down the fast and uncontrollable spreading of this disease various prevention and diagnostic methods have been developed.
 In this thesis, out of all these various methods, the attention is going to be put on Machine Learning methods used to predict prognosis that are based, for the most part, on data originating from medical images.
 
@@ -197,7 +177,7 @@ Following a first introductiory chapter in the second a basic theoretical overvi
 The third is going to be a report of the results and finally some conclusions will be derived from the previously presented results.
 It will be concluded that the segmentation and feature extraction step is of pivotal importance in driving the performance of the predictions.
 In fact, in this thesis, it seems that the information from the images adds no significant information to that derived from the clinical data.
-This can be taken as a symptom that the more complex \textit{Sars-COVID19} cases are still too difficult to be segmented automatically, or semi-automatically by untrained personnel, which will lead to counter-intuitive results further down the analysis pipeline.
+This can be taken as a symptom that the more complex \covid cases are still too difficult to be segmented automatically, or semi-automatically by untrained personnel, which will lead to counter-intuitive results further down the analysis pipeline.
 
 \end{abstract}
 %-------------------------------------INDEX
@@ -225,7 +205,7 @@ This can be taken as a symptom that the more complex \textit{Sars-COVID19} cases
 \include{Appendix}
 
 %-------------------------------------REFERENCES
-\chapter{Bibliography}
+
 \nocite{*}
 \bibliographystyle{abbrv}
 \bibliography{biblio}

@@ -13,8 +13,7 @@ The term digital refers to the discretization process that inherently happens in
 \end{definition}
 
 Generally pixel values stored as integers p$\in$ [0,2$^{n}$-1] with p,n$\in$ $\mathbb{N}$  or as p$\in$[0,1] with p$\in$ $\mathbb{R}$, the type of value stored within each pixel changes the nature of the image itself.
-\todo[inline]{CYMK si usa per la stampa (rappresenta lo spettro RGB in sottrazione), non per le immagini scientifiche}
-A single value is to be intended as the overall intensity of light coming from the part of the object contained corresponding to the gridspace and is used for a gray-scale representation, a set of three\footnote{The three values correspond each to the intensity of a single color, the most commonly used set of colors is the RGB-scale (Red, Green, Blue). Further information can be found by looking into Tristimulus theory\cite{Tristimulus}}  or four\footnote{Same as RGB but with four colors, the most common scale is CMYK (Cyan, Magenta, Yellow, blacK)} values can be intended as a color image.
+A single value is to be intended as the overall intensity of light coming from the part of the object contained corresponding to the gridspace and is used for a gray-scale representation, a set of three\footnote{The three values correspond each to the intensity of a single color, the most commonly used set of colors is the RGB-scale (Red, Green, Blue). Further information can be found by looking into Tristimulus theory\cite{Tristimulus}}  or four\footnote{Same as RGB but with four colors, the most common scale is CMYK (Cyan, Magenta, Yellow, blacK). This spectrum is mainly used in print.} values can be intended as a color image.
 
 \begin{figure}[H]
      \centering
@@ -60,7 +59,7 @@ Given the list-like nature of images one of the most natural things to do with t
 
 \begin{figure}[H]
   		\includegraphics[width=0.8\textwidth]{Contrast_enhancement.jpg}
-        \caption{Example of differences in contrast due to histogram equalization\label{fig:contrast_enhancement}\todo[inline]{cancella la scritta ``proposed method''}}
+        \caption{Example of differences in contrast due to histogram equalization\label{fig:contrast_enhancement}}
 \end{figure}
 
 This leads us to the concept of \textit{Contrast} which is a quantification of how well different intensities can be distinguished. If all the pixel values are bundled in a small range leaving most of the histogram empty then it's difficult to pick up the differences because they are small however, if the histogram has no preferentially populated ranges then the differences in values are being showed in the best possible way fig:$\ref{fig:contrast_enhancement}$. Note also that if looking at the histogram there are two(or more) well separated distributions it's possible that these also identify different objects in the image, which will for example allow for some basic background-foreground distinction.
@@ -79,7 +78,16 @@ Assuming they are being meaningfully used \footnote{For example adding/subtracti
 		\begin{equation}
 		q = p^{\gamma}
 		\end{equation}
-    \item Local: The output value at specific coordinates depends on a combination of the original values in a neighbourhood around that same coordinates. Some examples are all filtering operation such as edge enhancement, dilation and erosion. These filtering methods are based on performing convolutions in which the output value at each pixel is given bu the sum of pixel-wise multiplication between the starting matrix and a smaller (usually 3x3 or 5x5) matrix called kernel. The output image is obtained by moving the kernel along the starting matrix following a predefined stride, when moving near the borders the behavour is defined by the padding of the image. Stride, kernel shape and padding determine the shape of the output matrix \todo[inline]{un po' di esempi sarebbero utili}.
+    \item Local: The output value at specific coordinates depends on a combination of the original values in a neighbourhood around that same coordinates. Some examples are all filtering operation such as edge enhancement, dilation and erosion. These filtering methods are based on performing convolutions in which the output value at each pixel is given bu the sum of pixel-wise multiplication between the starting matrix and a smaller (usually 3x3 or 5x5) matrix called kernel. The output image is obtained by moving the kernel along the starting matrix following a predefined stride for example a (2,2) stride will move the kernel 2 pixels to the right and 2 down.
+When moving near the borders the behavour is defined by the padding of the image, most common choice for padding is zero padding, in which the image is considered to have only zeros outside of it, or no padding at all. 
+Stride \textbf{S}, kernel shape \textbf{K}
+\footnote{This formula works for square kernels, images and strides so a kernel MxM will have K=M.}
+ and padding \textbf{P} determine the shape of the output matrix given the input dimension \textbf{W} via the following formula:
+
+\begin{equation}
+Output Shape =\left[ \frac{W - K + P}{S}\right]+1
+\end{equation}
+
 		\item Global: The output value at specific coordinates depends on all the values of the original images. Most notable operation in this category is the Discrete Fourier Transform and it's inverse which allow switching between spatial and frequency domains. It's worth noting that high frequency encode patterns that change on small scales whereas low frequencies encode regions of the image that are constant or slowly varying.
 		\end{enumerate}
 \end{enumerate}
@@ -88,7 +96,9 @@ The aforementioned is surely not a comprehensive list of all that can be said on
 
 \vspace{7mm} %7mm vertical space
 
-Having seen what constitutes and image and what can be done with one it becomes interesting to explore how images are obtained. The following discussion is going to introduce briefly some of the methods used to obtain medical images, getting more in depth only on the modality used to obtain all the images used in this thesis which is Computed Tomography.\todo[inline]{perché hai scelto queste specifiche tecniche? a random?}
+Having seen what constitutes and image and what can be done with one it becomes interesting to explore how images are obtained. The following discussion is going to introduce briefly some of the methods used to obtain medical images, getting more in depth only on the modality used to obtain all the images used in this thesis which is Computed Tomography.
+This technique was used because it's the only one that can provide information on the internal structure of an organ which is very low in density and that has parts that are deep in the patients body. Since no metabolic process of interest is in play PET is not advisable, Ultra Sounds are used for superficial soft tissue which is not the case of the lungs and MRI, despite it's clear advantege in avoiding ionizing radioation, still has close to no acquisition protocol dedicated to lungs.
+\todo[inline]{perché hai scelto queste specifiche tecniche? a random?  Spiegato così va bene?}
 
 \begin{enumerate}
 \item Magnetic Resonance Imaging (MRI): This technique is based on the phenomenon of Nuclear Magnetic Resonance(NMR) which is what happens when diamagnetic atoms are placed inside a very strong uniform magnetic field are subject to Radio Frequency (RF) stimulus. These atoms absorb and re-emit the RF and supposing this behaviour can somehow be encoded with a positional dependence then it's possible to locate the resonant atoms given the response frequency measured. Suffices to say that this encoding is possible however the setup is very complex and the possible images obtainable with this method are very different and can emphasize very different tissue/material properties. Nothing more will be said on the topic since no data obtained with this methodology will be used. More details can be found in \cite{MRI}
@@ -112,7 +122,7 @@ In this light the interesting processes are how the radiation is created and sha
 \item How x-ray and matter interact as the first traverses the second
 \end{itemize}
 
-It would also be interesting to talk about reconstruction algorithms however since it's beyond the scopes of this work \todo[inline]{lascerei stare la parte in cui dici che è interessante, direi solo che non è in scope}, refer to \cite{xray_reconstruction} and \cite{PhysicsMedicalImaging}.
+For more information on reconstruction algorithms refer to \cite{xray_reconstruction} and \cite{PhysicsMedicalImaging}.
 
 \subsubsection{Generation and management of radiation: digital CT scanners}
 
@@ -140,9 +150,7 @@ The electron energy is largely wasted ($\sim 99\%$) as heat in the anode, which 
 
 Exploiting the phenomenon of beam hardening a filter, usually of the same material as the anode, is interposed between the beam and the patient to block lower energy photons from passing through thereby reducing the dose conveyed to the patient. At this point there may also be some form of collimation system which allows further shaping of the dose delivered. Having been collimated the beam traverses the patient and gets to the sensor of the machine, which nowadays are usually solid-state detectors.
 
-Naturally the description of these technologies can be done on a much finer level, however for the scopes of this work this description is deemed sufficient \todo[inline]{non stare sempre a giustificare il livello di dettaglio che hai inserito. ovviamente in tutti i topic si può dire di più.}
-
-At this point is where the differences between generations arise which,loosely speaking, can be found in the emission-detection configuration and technology.
+At this point is where the differences between generations arise which, loosely speaking, can be found in the emission-detection configuration and technology.
 
 \begin{itemize}
 \item $1^{st}$ generation-Pencil Beam: A single beam is shot onto a single sensor, both sensor and beam are translated across the body of the patient and then rotated of some angle. The process is repeated for various angles. Main advantages are scattering rejection and no need for relative calibration, main disadvantage is time of the exam
@@ -177,7 +185,7 @@ The machines used to obtain the images used in this thesis, all belonging to the
 \begin{figure}[H]
 \centering
   		\includegraphics[]{CT_machines_distribution_fin.png}
-        \caption{Acquisition parameter and machine distribution\label{fig:ct_dist}\todo[inline]{questa tabella richiede più dettagli di spiegazione. che cosa sono i numeri inseriti? la tabella dovrebbe poter essere compresa in modo completo senza troppi riferimenti al testo.}}
+        \caption{Acquisition parameter and machine distribution. KVP indicates the KiloVoltPeak used during the acquisition, Convolutional kernels are used by the factories to indicate which reconstruction algorithm is used. Machine indicated the name of the instrument that provided the images and slice thickness indicates the vertical width of the pixel.\label{fig:ct_dist}\todo[inline]{questa tabella richiede più dettagli di spiegazione. che cosa sono i numeri inseriti? la tabella dovrebbe poter essere compresa in modo completo senza troppi riferimenti al testo.}}
 \end{figure}
 
 \begin{enumerate}
@@ -312,7 +320,7 @@ At each node the separation between the two label categories $c_1, c_2$ due to t
 	\end{split}
 \end{equation}
 
-The Gini impurity for a feature is then computed as an average of the gini coefficients of all the deriving nodes weighted by the number of samples in each of the nodes.  This method can be obviously generalized to cases in which features are continuous by thresholding the features choosing the value that best improves the separation of the deriving node, a way to choose possible thresholds is to take all the means computed with all adjacent measurements. It's important to note firstly that there is no restiction on using, along different branches, different tresholds for the same feature and, secondly, that the same featue can end up at different depths along diffenrent branches. The strength of this method is it's performance on data it has seen however it has very poor generalization abilities. \todo[inline]{non farti mai scrupoli a citare testi, le citazioni non sono mai troppe}
+The Gini impurity for a feature is then computed as an average of the gini coefficients of all the deriving nodes weighted by the number of samples in each of the nodes.  This method can be obviously generalized to cases in which features are continuous by thresholding the features choosing the value that best improves the separation of the deriving node, a way to choose possible thresholds is to take all the means computed with all adjacent measurements. It's important to note firstly that there is no restiction on using, along different branches, different tresholds for the same feature and, secondly, that the same featue can end up at different depths along diffenrent branches. The strength of this method is it's performance on data it has seen however it has very poor generalization abilities \cite{StatisticalLearning}. 
 
 Random Forests algorithms are born to overcome this problem. As the name suggests the idea is to build an ensemble of Decision Trees in which the features used in the nodes are chosen among random subsamples of all the available features, the final result is obtained as a majority vote over all trained trees. Each tree is also trained on a bootstapped dataset created from the original, this procedure might exacerbate some problems of the starting dataset by changing the relative frequency of classes seen by each tree and can be corrected by balancing the bootstrap procedure.
 
@@ -461,7 +469,7 @@ The starting dataset was a list of all the patients that, from 02/2020 to 05/202
 
 \begin{itemize}
 \item All patients that had undergone a CT exam which was retrievable via the PACS (Picture Archiving and Communication System) of \textit{Azienda ospedaliero-universitaria di Bologna - Policlinico Sant'Orsola-Malpighi}
-\item All patients that had a all of the clinical and laboratory features, listed in fig:\ref{fig:ClinicalFeatures}, suggested by Lidia Strigari\todo[inline]{questa nota sembra abbastanza strana\dots} \footnote{She is, as of the writing of this thesis, the head of the Medical Physics department in the S. Orsola hospital. These suggestions were given to her by clinical professionals.}
+\item All patients that had a all of the clinical and laboratory features, listed in fig:\ref{fig:ClinicalFeatures}, suggested by Lidia Strigari and medical professionals.
 \item Since all patient had at least 2 CT exams only the closest date to the hospital admission date was taken. When more exams were performed on the same date all of them were initially taken. At first only chest or abdomen CTs were taken regardless of the acquisition protocol used.
 \end{itemize}
 
@@ -470,7 +478,8 @@ The starting dataset was a list of all the patients that, from 02/2020 to 05/202
         \caption{Description of clinical label dataset, in sets of four columns there's the clinical feature, the total count of occurences, the percentage over the final dataset and the possible values the feature could take \todo[inline]{usare excel come immagine non è il massimo}\label{fig:ClinicalFeatures}}
 \end{figure}
 
-Most clinical features are pretty self-explanatory, for those that were obscure to me as an outsider and not otherwise explained in \ref{Clinical_Covid_Manifestations}, I'm going to provide a very simple explanation:\todo[inline]{non mi piace la forma, troppo personale}
+%Most clinical features are pretty self-explanatory, for those that were obscure to me as an outsider and not otherwise explained in \ref{Clinical_Covid_Manifestations}, I'm going to provide a very simple explanation:
+Most clinical features are pretty self-explanatory, a brief explanation will be provided for those that could appear obscure to an outsider, and that were not explained in \ref{Clinical_Covid_Manifestations}.\todo[inline]{non mi piace la forma, troppo personale. Corretta così va meglio?}
 
 \begin{enumerate}\label{clinical_features}
 \item DNR : Acronym for "Do Not Resuscitate", used to indicate the wish of the patient or their relatives that cardiac massage not be performed in case of cardiac arrest.
