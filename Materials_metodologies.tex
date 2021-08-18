@@ -529,15 +529,69 @@ When it comes to cross-validation procedure the choice was made to use a stratif
 The lasso model from training on the 9 folds is actually chosen as the model with the hyperparameters that give the best performance with another 10-fold crossvalidation. This has been obtained by using \textit{cross$\_$val$\_$predict} on a model obtained by including a \textit{LassoCV} step inside a \textit{pipeline} from scikit-learn library in python. The performance of the cross-validated predictions that, when built this way, is much more representative of the real-world performance of the model, has been evaluated using ROC curves and AUC.
 Different models have been compared with a Delong test\cite{Delong} for the significance of difference in the ROC curves.
 
-The second analysis method used was RandomForest. As said before in this case no preprocessing was needed nor has been done, however particular care was taken in handling the imbalances in the dataset by using SMOTE \cite{SMOTE} once again being careful to avoid leakage. The performance of this model was evaluated using confusion matrices which, at a glance, provide very much information on the situation of the data.
+The second analysis method used was RandomForest. As said before in this case no preprocessing was needed nor has been done, however particular care was taken in handling the imbalances in the dataset by using SMOTE \cite{SMOTE} once again being careful to avoid leakage. 
+The performance of this model was evaluated using confusion matrices which, at a glance, provide very much information on the situation of the data.
+To facilitates the comparison of the results of the Random Forests with those obtained using Lasso regularized regression ROC curves were also made.
+
+As a standalone method a Cox Proportional-Hazard model was used on the standard scaled variables remaining after the feature reduction performed through correlation thresholding. 
+The score obtained with this procedure was then divided using different percentiles and tested using the log-rank test on Kaplan-Meier curves relative to the groups built.
+In the case of this thesis the time variable was represented by the days of hospitalization computed using the dates of admission and discharge from the hospital provided by the hospital itself.
+The idea of resorting to Kaplan-Meier curves was also used with other single variables to see if they had any effect. \todo[inline]{Ad esempio la questione della divisione in ondate}
 
 Finally a few dimensionality reduction techniques, namely the unsupervised PCA\cite{PCA} and Umap \cite{UMAP} and the supervised PLS-DA\cite{PLSDA}, have been used to understand better the state of the data and further explain some of the obtained results.
+These peculiar analyses will be reported in the Appendix \todo[inline]{A seconda di come viene decisa la struttura finale questa frase va cambiata e aggiunta la reference al punto preciso}
 
 This concludes the discussion on the methodologies used and leads perfectly in the discussion of the results.
 
 
+\section{Survival Analysis}
+Survival analysis is a particular field that tries to determine the probability of a certain event happening before a certain time.
+As the name suggests one of it's main application is determining the risk of death due to a disease as time progresses from diagnosis, however it can be used to estimate time needed to recover after a surgical procedure, lifetime before breakdown of machines, time needed for criminals to commit new crimes after being released \ldots. 
 
+The main concepts and terminologies in this field are:
 
+\begin{enumerate}
+\item Event: This is the phenomenon under analysis, generally it could be death, remission from recovery, recovery \ldots .
+It is common to refer to the event as failure since usually the event is a negative event.
+\item Censoring: When colelcting data to develop a model that describes survival it may happen that the individual drops out of the study without incurring in the event under analysis.
+For example when looking at effectiveness of a drug the patient develops an adverse reaction to the drug and needs to stop using it, hence falling out of the study.
+
+In the context of this thesis all individuals that got sent home from the hospital are censored since their survival is known only up until the dropout and not after.
+Cases like this when the start of the followup is well known but dropout happens are called right-censored, because only the right side of the timeline is abruply interrupted.
+Cases can also be left-censored, e.g. a patients with unknown time of contraction of a disease, and interval-censored, e.g. when the contraction of the disease can be restricted to an interval as it may happen when a negative and positive test happen at successive times.
+
+Usually this variable is called \textbf{d} and is a binary variable where 1 indicates that the event occurred and 0 indicates all possible censoring causes.
+\item Time: This is to be intended as time, be it days, weeks, months or years, since the start of the followup to either the event or the censoring.
+It usually is indicated with \textbf{T}, is referred to as survival time and, being a random variable that indicates time, it cannot be negative.
+\item Survivor function \textbf{S(t)}: This is to be intended as the probability that the subject in the study survives a time t before incurring in the event.
+In theory this function is smooth from zero to infinity, it's strictly non-increasing, it starts at S(0)=1 and ends up at S($\infty$)=0.
+
+These assumptions are all resonable since at no point the survival probability can increase, since everybody is alive at the start of observing them and since nobody can live to infinity.
+However, when it comes to practice, these properties are not necessarily verified.
+Since no study can continue to infinity the last value need not be zero and since the timesteps at which it's possible to perform a checkup are discrete the curve is actually a step function.
+\item Hazard Function \textbf{h(t)}: This function is difficult to explain practically, citing \cite{SurvivalAnalysis} \textbf{"The hazard function h(t) gives the instantaneous potential per unit time for the event to occur, given that the individual has survived up to time t"}. The mathematical definition is:
+\begin{equation}
+h(t) = \lim\limits_{\Delta t \to 0} \frac{P(t\leq T < t + \Delta t | T\geq t)}{\Delta t}
+\end{equation}
+Dividing by a time interval the hazard function can also be intended as conditional failure rate, where the conditional refers to the "given that the individual has survived up to time t". Being a rate this quantity need not be bound in [0,1] but ranges in [0, $\infty$] and depends on the time unit used.
+ This will be interpreted as h(t) events per unit time.
+
+The hazard function is non-negative and has no upper bounds, since it can be related to the survival function
+\footnote{The hazard function can be computed as time derivative of the survival function divided by the survival function changed of sign. The survival function is the exponential of minus the integral in [0,t] of the hazard function. On this note, an exponential model is given by a constant hazard function. loosely speaking the Weibulls and LogNomal respectively come from increasing, decreasing and somewhat bell-shaped hazard functions.} 
+the possible shapes give different names to the final model. 
+These could be increasing or decreasing Weibull, exponential or lognormal survival models
+\end{enumerate}
+
+A further step in the analysis could be to try to measure the differences in survival between two groups, i.e. using a single variable expected to drive the differences in survival.
+The most basic example would be looking at the effectiveness of a drug by dividing in group A and B the patients given the actual medicine and the placebo respectively, however this could be done even for males vs females or, in the case of continuous variables, for patients with above or below threshold values
+\footnote{Generally, when no obvious threshold is available, the median of the variable is chosen.}.
+When the analysis is univariate in nature then the Kaplan-Meier survival curves are used in conjuction with the log-rank test, when the analysis is multivariate then the Cox Proportional-Hazard model is used. 
+The Cox model is very similar to linear and logistic regression.
+
+Explaining these methods is beyond the scopes of this thesis, all details can be found in \cite{SurvivalAnalysis}.
+Suffices to say that, as rule of thumb, two Kaplan-Meier curves that do not intersect at any point indicate good separation among the groups which can then be evaluated using the p-value from the log-rank test.
+When it comes to Cox models they can be used to create a new variable, much like the linear combination of variables in linear regression, which in turn can be used to identify groups in the patient cohort. This division in groups can be obtained using the median, or the percentiles if one desires more than two groups. 
+The division in the resulting groups can be used as proxy for the quality of the score built using the Cox model.
 
 
 

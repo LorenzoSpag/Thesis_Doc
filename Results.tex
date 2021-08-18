@@ -422,6 +422,7 @@ All & 0.66 $\pm$ 0.8 \\
 \end{table}
 
 Once again the curves are evidently not statistically different. This counterintuitive behaviour seems to be constant across the two implemented methods and also across different labels tried. An attempt to explain this phenomenon will be postponed to the end of the next subsection
+
 \subsection{ICU Admission}
 Even when using the admission in the ICU the performance remains pretty much the same, so the comments would still be the same as before
 
@@ -473,6 +474,10 @@ One could surmise that the analysis methods have been implemented in an incorrec
 \end{enumerate}
 
 It is very clear that the first three hypotheses are verified with a caveat, the performance of the radiomic pipeline hinges on the quality of the images and of the segmentation procedure performed on them. Since the images used in this thesis were, are and will be used by the hospital in routine processes it's close to impossible that all of them have problems, expecially because of the preliminary screening done before segmentation.
+A first possibility is that when trying to segment lungs affected by \textit{Sars-COVID19} the peculiar patterns developed make the task much harder then expected.
+In fact considering that the method used for this thesis relies on region growth and thresholding methods it's possible that the worst cases end up with unrepresentative segmentations.
 Another possibility is that the images are not really really representative of the situation of the patient. Since one of the prevailing properties of \textit{Sars-COVID19} is the speed with which the clinical picture of the patient can change it's possible that images taken at admission are not as informative of the final prognosis. This problem is, however, unavoidable in the setting of this thesis which has as aim the construction of a model that, exactly at admission, can discriminate between serious and easier cases.
 Another possibility is that there are two or more subgroups in the patient cohort and the performance on these is widely different, determiniing an average performance below the expectations.
 To diagnose if this is the case a few dimensionality reduction techniques have been used to visualize the data and to prepare for clustering in case of need, all of the results of these procedure will be presented in the followig section.
+
+\subsection{Survival Analysis}
