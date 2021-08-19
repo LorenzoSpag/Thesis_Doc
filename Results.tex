@@ -7,40 +7,40 @@ When it comes to lasso regression usually graphs are reported that show the conv
 
 \begin{figure}[htbp]
   		\includegraphics[width=1\textwidth]{Lasso_rad.png}
-        \caption{Example of graph representing the convergence of the coefficients in a lasso procedure. The final model is chosen by looking at the lowest value in mean squared error computed on the testing dataset. This graph is relative to only radiomic features with the model using death as label.\label{LassoParam}}
+        \caption{Example of graph representing the convergence of the coefficients in a lasso procedure. The final model is chosen by looking at the lowest value in mean squared error computed on the testing dataset. This graph is relative to only radiomic features with the model using \death as label.\label{LassoParam}}
 \end{figure}
 
 All of the graphs with respective captions will be, maybe, put in the final appendix.
-Finally it seems useful to report the following contingency table that gives an idea on how superimposed the labels on death and ICU admission are.
+Finally it seems useful to report the following contingency table that gives an idea on how superimposed the labels on death and \icu are.
 
 \begin{tabular}{l|rr}
 \toprule
-{} & \multicolumn{2}{l}{ICU Admission} \\
+{} & \multicolumn{2}{l}{\icu} \\
  &       0 &   1 \\
-Death &         &     \\
+\death&         &     \\
 \midrule
 0     &     311 &  47 \\
 1     &      48 &  30 \\
 \bottomrule
 \end{tabular}
 
-\subsection{Using death as label}
+\subsection{Using \death  as label}
 Starting to predict the death outcome of the patient different groups of features have been used, first of all only the radiomic features have been used. The ROC curve obtained with the radiomic features is the one in Figure \ref{RocDeathRad}. The curve in bold is an average curve obtained by aggregating the ten curves relative to each of the folds used in testing and the gray band represents a $\pm$ 1 standard deviation.
 
 \begin{figure}[htbp]
 	\centering
   		\includegraphics[scale=0.25]{ROC_CV_rad.png}
-        \caption{ROC curves obtained with crossvalidation procedure using the radiomic features alone. \label{RocDeathRad}}
+        \caption{ROC curves obtained with crossvalidation procedure using the radiomic features alone. In bold is the mean ROC with gray bands of width equal to the standard deviation. \label{RocDeathRad}}
 \end{figure}
 
 The model was built using the coefficients reported in \ref{tab:ParamRad} reaches a AUC = 0.76$\pm$0.09. The features inside the tabular, as well as those in the tabulars that follow, will have the coefficients in descending order by absolute valuer so that the top features are the most relevant within it's relative model.
 
 \begin{table}
-\caption{Coefficients used in the linear combination estima ted by a Lasso regularization relative to the radiomic features \label{tab:ParamRad}}
+\caption{Coefficients used in the linear combination estimated by a Lasso regularization relative to the radiomic features in modelling \death. All values are in descending order of absolute value\label{tab:ParamRad}}
 \centering 
 	\begin{tabular}{lr}
 		\toprule
-		{} &  lassocvL1 penalty Importance \\
+		Feature Name &   Importance \\
 		\midrule
 		Intercept                           &                      0.178899 \\
 		10th intensity percentile           &                     -0.125094 \\
@@ -64,11 +64,11 @@ The model was built using the coefficients reported in \ref{tab:ParamRad} reache
 Before commenting more in depth the performance of this model it seems appropriate to see at least the other models built with singular features groups, so, when it comes to the clinical features, the results reported in Figure\ref{fig:RocDeathCli} and Table\ref{tab:ParamCli} have been obtained. All the results will be put together for ease in Table \ref{tab:RecapDeath}.
 
 \begin{table}
-\caption{Coefficients used in the linear combination estimated by a Lasso regularization relative to the clinical features\label{tab:ParamCli}}
+\caption{Coefficients used in the linear combination estimated by a Lasso regularization relative to the clinical features in modelling \death. All values are in descending order of absolute value\label{tab:ParamCli}}
 \centering
 	\begin{tabular}{lr}
 		\toprule
-		{} &  lassocvL1 penalty Importance \\
+		Feature Name &   Importance \\
 		\midrule
 		Intercept          &                      0.178899 \\
 		Age (years)        &                      0.116771 \\
@@ -85,17 +85,17 @@ Before commenting more in depth the performance of this model it seems appropria
 \begin{figure}[htbp]
 	\centering
   		\includegraphics[scale=0.25]{ROC_CV_cli.png}
-        \caption{ROC curves obtained with crossvalidation procedure using the clinical features alone\label{fig:RocDeathCli}}
+        \caption{ROC curves obtained with crossvalidation procedure using the clinical features alone. In bold is the mean ROC with gray bands of width equal to the standard deviation.\label{fig:RocDeathCli}}
 \end{figure}
 
 And finally, considering the radiological features Figure\ref{fig:RocDeathRadiologiche} and Table \ref{tab:ParamRadiologiche} are obtained.
 
 \begin{table}
-	\caption{Coefficients used in the linear combination estimated by a Lasso regularization relative to the radiological features\label{tab:ParamRadiologiche}}
+	\caption{Coefficients used in the linear combination estimated by a Lasso regularization on a linear regression model of death, relative to the radiological features. Values are in descending order of absolute value. \label{tab:ParamRadiologiche}}
 		\centering
 			\begin{tabular}{lr}
 			\toprule
-			{} &  lassocvL1 penalty Importance \\
+			Feature Name &  Importance \\
 			\midrule
 			Intercept             &                      0.178899 \\
 			Ground-glass          &                     -0.043875 \\
@@ -112,7 +112,7 @@ And finally, considering the radiological features Figure\ref{fig:RocDeathRadiol
 \begin{figure}[htbp]
 	\centering
   		\includegraphics[scale=0.25]{ROC_CV_radiologiche.png}
-        \caption{ROC curves obtained with crossvalidation procedure using the radiolocical features alone\label{fig:RocDeathRadiologiche}}
+        \caption{ROC curves obtained with crossvalidation procedure using the radiolocical features alone. As before  in bold is the mean ROC with bands of width equal to the standard deviation.\label{fig:RocDeathRadiologiche}}
 \end{figure}
 
 The first thing to notice is that the radiological features, when considered alone, have close to null predictive power. This is reasonable for at least part of the features because there is no reason for acquisition parameter to actually influence the outcome of the patient.  When it comes to the radiologically determined quantities, such as GGO, Crazy paving, lung consolidation and bilaterlaity even if one would expect these to be relevant their distribution across the dataset is not condusive the good predictions. In fact 88\% of patients had GGO, 50\% of all patient had Lung consolidation, 77\% of all patients did not have Crazy paving and 92\% had bilateral involvment. When it comes to clinical features, categorys that performs better when considered singularly, nothing ground breaking has been obtained. Age, Respiratory rate and sex are the most relevant features and are all very much in concordance with what is expected. Finally radiomic features preform slightly worse than the clinical features. To see if the feature obtained are, at least, reasonable a quick explanation is needed. This will be done only for the top performing features:
@@ -128,11 +128,11 @@ The first thing to notice is that the radiological features, when considered alo
 To summarize, since all of the features are computed on the whole lung segmentation, it seems that the some information on the distribution of gray levels as well as some textural information inside the whole lung are important. It also seems that some information on the shape of the organ itself is also relevant. One would expect that when combining all of the available features, i.e. by building a model using the previous clinical, radiomic and radiological features, the performance should somewhat rise especially given the fact that clinical and radiomic features have almost the same performance. The combined results can be seen in Figure \ref{fig:RocDeathAll} and Table \ref{tab:ParamAll}.
 
 \begin{table}
-	\caption{Coefficients used in the linear combination estimated by a Lasso regularization relative to all available features features\label{tab:ParamAll}}
+	\caption{Coefficients used in the linear combination estimated by a Lasso regularization predicting death event relative to all available features features. Values are in descending order of absolute value\label{tab:ParamAll}}
 		\centering
 			\begin{tabular}{lr}
 			\toprule
-			{} &  lassocvL1 penalty Importance \\
+			Feature Name &  Importance \\
 			\midrule
 			Intercept                           &                      0.178899 \\
 			Age (years)                         &                      0.092963 \\
@@ -169,13 +169,13 @@ To summarize, since all of the features are computed on the whole lung segmentat
 \begin{figure}[htbp]
 	\centering
   		\includegraphics[scale=0.25]{ROC_CV_all.png}
-        \caption{ROC curves obtained with crossvalidation procedure using all the available features \label{fig:RocDeathAll}}
+        \caption{ROC curves obtained with crossvalidation procedure using all the available features. Model obtaine with Lasso regularization of a linear regression modelling death\label{fig:RocDeathAll}}
 \end{figure}
 
 In spite of what the expectations were the performance not only doesn't improve but it doesn't even change. To be sure of this claim a Delong test was used to compare pairwise the receiver operator curves and their respective AUCs. The null hypothesis of this test is that the two models are the same, hence a p-value smaller than 0.05 means that the curves and their aucs are statistically different. The results from this analysis can be seen in \ref{fig:delongDeath}
 
 \begin{table}
-\caption{Recap table with the performance of the various families of features \label{tab:RecapDeath}}
+\caption{Recap table with the performance of the various models predicting on different groups of features predicting \death \label{tab:RecapDeath}}
 \centering
 \begin{tabular}{l|r}
 \toprule
@@ -194,12 +194,12 @@ All & 0.82 $\pm$ 0.10 \\
 \centering
   	\subfloat[][Comparison clincal-radiomic]{\includegraphics[width=0.50\linewidth]{Semi_CLIvsRAD_death.png}\label{fig:delongDeathCliRad}}
         \subfloat[][Comparison clinical-all]{\includegraphics[width=0.50\linewidth]{Semi_CLIvsALL_death.png}\label{fig:delongDeathCliAll}}
-        \caption{Comparison for the curves that are not evidently different}\label{fig:delongDeath}
+        \caption{Cimparison between ROC curves for clinical vs radiomic curves (a) and clinical vs all (b). The p-values are obtained with a Delong Test }\label{fig:delongDeath}
 \end{figure}
 
 As one would have expected the models from radiomic and clinical features are different while the ones built using clinical and all features are not statistically different. Inspecting the coefficient of the parameters there are a few perplexing things to notice and a few reassuring ones. First of the reassuring facts is that the most relevant clinical features are still relevant in this combined model. Then, as one would expect, the radiological features retain some importance when combined with the others. However, when it comes to perplexing behaviours, the most concerning fact is that the radiomic features have mostly lost all relevance in the model which is surely unexpected. Some possible explanations will be given in the concluding remarks at the end of this  subsection. as well as in the final chapter of the thesis.
 
-\subsection{Using ICU Admission as label}
+\subsection{Using \icu as label}
 
 In trying to predic if the patient will be admitted in the Intensive Care Unit of the hospital the same procedure as before has been used. The ROC curves obtained with the varous features are reported in Figure \ref{fig:ICULasso}. Just like before the curve in bold is an average curve obtained by aggregating the ten curves relative to each of the folds used in testing and the gray band represents a $\pm$ 1 standard deviation. Following the blueprint of the previous subsection, all of the results will be presented and then  briefly discussed
 
@@ -211,15 +211,15 @@ In trying to predic if the patient will be admitted in the Intensive Care Unit o
 	\newline
   	\subfloat[][Radiological Features]{\includegraphics[width=0.50\linewidth]{ROC_CV_radiologiche_icu.png}\label{fig:ROCICUradiolocigal}}
         \subfloat[][All Features]{\includegraphics[width=0.50\linewidth]{ROC_CV_all_icu.png}\label{fig:ROCICUall}} 
-        \caption{Performances of all the models}\label{fig:ICULasso}
+        \caption{Performances of all the models represented using ROC curves. Each of these has in bold the mean ROC curve over the 10-fold originating from a stratified k-fold cross-validation procedure}\label{fig:ICULasso}
 \end{figure}
 
 \begin{table}
-\caption{Coefficients used in the linear combination estimated by a Lasso regularization relative to the radiomic features \label{tab:ParamRadICU}}
+\caption{Coefficients used in the linear combination estimated by a Lasso regularization of a model predicting \icu relative to the radiomic features. Values in descending order of modulus \label{tab:ParamRadICU}}
 \centering 
 	\begin{tabular}{lr}
 	\toprule
-	{} &  lassocvL1 penalty Importance \\
+	Feature Name &   Importance \\
 	\midrule
 	Intercept                           &                      0.176605 \\
 	Number of voxels of positive value  &                      0.160751 \\
@@ -241,11 +241,11 @@ In trying to predic if the patient will be admitted in the Intensive Care Unit o
 \end{table}
 
 \begin{table}
-\caption{Coefficients used in the linear combination estimated by a Lasso regularization relative to the clinical features\label{tab:ParamCli}}
+\caption{Coefficients used in the linear combination estimated by a Lasso regularization of a model predicting \icu relative to the clinical features. Values in descending order according to modulus\label{tab:ParamCli}}
 \centering
 	\begin{tabular}{lr}
 	\toprule
-	{} &  lassocvL1 penalty Importance \\
+	Feature Name &   Importance \\
 	\midrule
 	Intercept          &                      0.176606 \\
 	Respiratory Rate   &                      0.045510 \\
@@ -261,31 +261,31 @@ In trying to predic if the patient will be admitted in the Intensive Care Unit o
 
 
 \begin{table}
-	\caption{Coefficients used in the linear combination estimated by a Lasso regularization relative to the radiological features\label{tab:ParamRadiologiche}} 
+	\caption{Coefficients used in the linear combination estimated by a Lasso regularization of a model predicting \icu relative to the radiological features\label{tab:ParamRadiologiche}} 
 		\centering
 			\begin{tabular}{lr}
 			\toprule
-			{} &  lassocvL1 penalty Importance \\
+			Feature Name &   Importance \\
 			\midrule
 			Intercept             &                  1.766055e-01 \\
-			XRayTubeCurrent       &                  6.111319e-18 \\
-			Lung consolidation    &                  0.000000e+00 \\
-			Ground-glass          &                  0.000000e+00 \\
-			Crazy Paving          &                  0.000000e+00 \\
-			Bilateral Involvement &                  0.000000e+00 \\
-			SliceThickness        &                 -0.000000e+00 \\
-			KVP                   &                  0.000000e+00 \\
+			XRayTubeCurrent       &                  0 \\
+			Lung consolidation    &                  0\\
+			Ground-glass          &                  0\\
+			Crazy Paving          &                  0 \\
+			Bilateral Involvement &                  0 \\
+			SliceThickness        &                 0\\
+			KVP                   &                  0 \\
 			\bottomrule
 			\end{tabular}
 \end{table}
 
 
 \begin{table}
-	\caption{Coefficients used in the linear combination estimated by a Lasso regularization relative to all available features features\label{tab:ParamAll}}
+	\caption{Coefficients used in the linear combination estimated by a Lasso regularization of a model predicting \icu relative to all available features features. Values in ascending absolute value order\label{tab:ParamAll}}
 		\centering
 		\begin{tabular}{lr}
 		\toprule
-		{} &  lassocvL1 penalty Importance \\
+		Feature Name &   Importance \\
 		\midrule
 		Intercept                           &                      0.176605 \\
 		Number of voxels of positive value  &                      0.109947 \\
@@ -321,13 +321,13 @@ In trying to predic if the patient will be admitted in the Intensive Care Unit o
 Compared to before the performance is definitely worse. The radiological features have the same performance of a random variable, which is not that concerning given their expected impact on gravity of the clincial picture of the patient. Even if superfluous a Delong test was used to confirm that the hypothesis of the curves being equal could not be rejected. When it comes to the relevant features in each model the following can be deduced:
 
 \begin{itemize}
-\item For the clinical features all of them have a role in the predicition. The only suprising fact, even if it keeps a certain degree of plausibility, is that age is the less relevant out of the available features when it comes to ICU admission.
+\item For the clinical features all of them have a role in the predicition. The only suprising fact, even if it keeps a certain degree of plausibility, is that age is the less relevant out of the available features when it comes to \icu.
 \item None of the radiological features have virtually any impact
 \item The radiomic features still value intensity measurements and disorder in the image as primary origins of information. However it seems that shape of the lung now has more relevance in the whole model.
 \end{itemize}
 
 \begin{table}
-\caption{Recap table with the performance of the various families of features \label{tab:RecapICU}}
+\caption{Recap table with the performance of the various models built for different families of features when predicting \icu \label{tab:RecapICU}}
 \centering
 \begin{tabular}{l|r}
 \toprule
@@ -343,7 +343,7 @@ All & 0.70 $\pm$ 0.15 \\
 
 
 \section{Classification of patients using Random forests}
-When it comes to random forests the approach followed was similar, in the sense that the various combinations of features were tried, yet different, because the preprocessing step consisted in simply applying a standard scaler to the data. The performance of the models has been looked at using both confusion matrices and ROC curves, the last of which has the only objective of comparing RF classifiers to the perviously described Lasso regression. Once again, following the description scheme used in the section dedicated to Lasso, the results will be divided using the two labels ICU Admission and Death.
+When it comes to random forests the approach followed was similar, in the sense that the various combinations of features were tried, yet different, because the preprocessing step consisted in simply applying a standard scaler to the data. The performance of the models has been looked at using both confusion matrices and ROC curves, the last of which has the only objective of comparing RF classifiers to the perviously described Lasso regression. Once again, following the description scheme used in the section dedicated to Lasso, the results will be divided using the two labels \icu and Death.
 
 \subsection{Classifying the oucome death}
 For the sake of brevity all of the results will be reported and then discussed. Since RF classifiers use all of the availalble features it is very space consuming to report a table with all of the importances for the radiomic features as well as those used in model with all the features. These two will be found in the appendix \ref{sec:RFAdditional} while those relative to clinical and radiological features will be reported here in Table \ref{tab:RFimpo}.
@@ -355,7 +355,7 @@ For the sake of brevity all of the results will be reported and then discussed. 
 	\newline
   	\subfloat[][Radiological Features]{\includegraphics[width=0.50\linewidth]{Smote_Death_radiologiche.png}\label{fig:RFDeathRadiological}}
         \subfloat[][All Features]{\includegraphics[width=0.50\linewidth]{Smote_Death_all.png}\label{fig:RFDeathAll}} 
-        \caption{Performances of all the models}\label{fig:RFDeath}
+        \caption{Confusion matrices for Random Forest cross-validated predictions after training on Synthetically oversampled data to predict \death. All of the available feature families are the reported}\label{fig:RFDeath}
 \end{figure}
 
 Even without looking at the ROC curves it's plain to see that the data at hand is proving to be difficult for this model. Much like before radiological features alone are useless. In evaluating these confusion matrices it should be kept in mind that the data is heavily unbalanced, since only $\sim$15\% of the patient died or were admitted in the ICU. Even when using SMOTE in the training phase to correct this probelm it seems that the classifiers learns that it's optimal to guess that someone is alive. When it comes to the ROC curves Figure \ref{fig:RFDeathROC} and Table \ref{tab:RecapDeathRF} summarises the results
@@ -367,7 +367,7 @@ Even without looking at the ROC curves it's plain to see that the data at hand i
 	\newline
   	\subfloat[][Radiological Features]{\includegraphics[width=0.50\linewidth]{SmoteROC_CV_Death_radiologiche.png}\label{fig:RFDeathRadiologicalROC}}
         \subfloat[][All Features]{\includegraphics[width=0.50\linewidth]{SmoteROC_CV_Death_all.png}\label{fig:RFDeathAllROC}} 
-        \caption{Performances of all the models}\label{fig:RFDeathROC}
+        \caption{Cross-validated ROC curves built with Random forest classifier predictions of \death. Performances of allvariable families are reported }\label{fig:RFDeathROC}
 \end{figure}
 
 \begin{figure}[H]
@@ -423,7 +423,7 @@ All & 0.66 $\pm$ 0.8 \\
 
 Once again the curves are evidently not statistically different. This counterintuitive behaviour seems to be constant across the two implemented methods and also across different labels tried. An attempt to explain this phenomenon will be postponed to the end of the next subsection
 
-\subsection{Classifying the outcome ICU Admission}
+\subsection{Classifying the outcome \icu}
 Even when using the admission in the ICU the performance remains pretty much the same, so the comments would still be the same as before
 
 \begin{figure}[H]
@@ -433,7 +433,7 @@ Even when using the admission in the ICU the performance remains pretty much the
 	\newline
   	\subfloat[][Radiological Features]{\includegraphics[width=0.50\linewidth]{Smote_ICUAdmission_radiologiche.png}\label{fig:RFicuRadiological}}
         \subfloat[][All Features]{\includegraphics[width=0.50\linewidth]{Smote_ICUAdmission_all.png}\label{fig:RFicuAll}} 
-        \caption{Performances of all the models}\label{fig:RFicu}
+        \caption{Confusion matrices for Random Forest cross-validated predictions after training on Synthetically oversampled data predicting \icu. All of the available feature families are the reported}\label{fig:RFicu}
 \end{figure}
 
 
@@ -444,7 +444,7 @@ Even when using the admission in the ICU the performance remains pretty much the
 	\newline
   	\subfloat[][Radiological Features]{\includegraphics[width=0.50\linewidth]{SmoteROC_CV_ICUAdmission_radiologiche.png}\label{fig:RFicuRadiologicalROC}}
         \subfloat[][All Features]{\includegraphics[width=0.50\linewidth]{SmoteROC_CV_ICUAdmission_all.png}\label{fig:RFicuAllROC}} 
-        \caption{Performances of all the models}\label{fig:RFicuROC}
+        \caption{Cross-validated ROC curves built with Random forest classifier predictions of \death. Performances of allvariable families are reported}\label{fig:RFicuROC}
 \end{figure}
 
 
@@ -462,23 +462,6 @@ All & 0.64 $\pm$ 0.09\\
 \bottomrule
 \end{tabular}
 \end{table}
-
-It is very difficult to quantify what the expectations for each model were a priori, this transposes to difficulties in trying to diagnose problems in the models when considered singularly. However when combining all of the available features it's very strange that no improvement in performance can be achieved. This would mean that 8 clinical variables provide the exact same amount of information as the total $\sim$200 features most of which derived from images which, at least ideally, contain much more accurate information. 
-One could surmise that the analysis methods have been implemented in an incorrect way, yet when two methods implemented differently and separately obtain the same result it reinforces the idea that the problem is somewhere before the analysis. All of these analses started from the following hypotheses:
-
-\begin{enumerate}
-\item Clinical labels are informative of the final prognosis of the patient
-\item Radiological images contain a lot of useful information
-\item Radiomics can extract these information
-\item This information is informative of the prognosis of the patient
-\end{enumerate}
-
-It is very clear that the first three hypotheses are verified with a caveat, the performance of the radiomic pipeline hinges on the quality of the images and of the segmentation procedure performed on them. Since the images used in this thesis were, are and will be used by the hospital in routine processes it's close to impossible that all of them have problems, expecially because of the preliminary screening done before segmentation.
-A first possibility is that when trying to segment lungs affected by \textit{Sars-COVID19} the peculiar patterns developed make the task much harder then expected.
-In fact considering that the method used for this thesis relies on region growth and thresholding methods it's possible that the worst cases end up with unrepresentative segmentations.
-Another possibility is that the images are not really really representative of the situation of the patient. Since one of the prevailing properties of \textit{Sars-COVID19} is the speed with which the clinical picture of the patient can change it's possible that images taken at admission are not as informative of the final prognosis. This problem is, however, unavoidable in the setting of this thesis which has as aim the construction of a model that, exactly at admission, can discriminate between serious and easier cases.
-Another possibility is that there are two or more subgroups in the patient cohort and the performance on these is widely different, determiniing an average performance below the expectations.
-To diagnose if this is the case a few dimensionality reduction techniques have been used to visualize the data and to prepare for clustering in case of need, all of the results of these procedure will be presented in the followig section.
 
 \subsection{Using survival analysis}
 Following the preprocessing steps delineated before a Cox Proportional-Hazard produces the results presented in Table \ref{tab:CoxResult}
@@ -527,13 +510,12 @@ A score was built automatically using the predict method of the CoxPH fitter and
 To see if the prediction was representative of differences in the individuated populations first the Kaplan-Meier curves according to thirds in the score distribution were used and then the score was binarized using the 66$^{th}$ percentile in the score distribution as threshold.
 The results of this procedures are reported in Figure \ref{fig:KmCoxScore}
 
-
 \begin{figure}[H]
 \centering
   	\subfloat[][Population divided according to score tertiles]{\includegraphics[width=\linewidth]{KM_Cox_groups.png}\label{fig:coxthirds}}
 	\newline
         \subfloat[][Population divided in two groups 0-66$^{th}$ percentile and 66$^{th}$ to 100$^{th}$]{\includegraphics[width=\linewidth]{KM_Coxbin.png}\label{fig:coxbin}}
-        \caption{Kaplan-Meier curves for pupulations divided according to 33$^{rd}$ and 66$^{th}$ percentiles }\label{fig:KmCoxScore}
+        \caption{Kaplan-Meier curves for pupulations divided using either tertiles (a) or binarized using 66$^{th}$ percentile as threshold (b) . The prediction on the whole database is obtained with the aforementioned cross-validation procedure }\label{fig:KmCoxScore}
 \end{figure}
 
 It can be seen that the groups built in this ways can be used to drive some differences in survival, when binarizing the score obtained with Cox the curves also turn out to be significantly different.
@@ -543,12 +525,77 @@ The two groups were representatively called 1$^{st}$ and 2$^{nd}$ wave and the d
 
 \begin{figure}
 \includegraphics[width=\linewidth]{KM_ondate.png}
-\caption{Kaplan-Meyer curves for patient admitted before and after 20/07/2020 \label{fig:kmwaves}}
+\caption{Kaplan-Meyer curves for patient admitted before (red curve) and after (blue curve) 20/07/2020 \label{fig:kmwaves}}
 \end{figure}
 
 It can be seen that there is a statistical difference in survival between the patients admitted in the first wave vs those admitted in the second. 
+Furthermore this difference is quite perplexing as it seems to indicate that people in the second wave died more than people in the first wave, which seems counter-intuitive given that one would expect the experience from the previous wave to improve performance.
 The most reasonable explanation for this fact is the change in admission policy as time advanced.
 Probably in the first wave, when still little was known on \covid patients, more people were addmitted in less problematic condition whereas in the second wave, having understood better what were the most dangerous cases as well as in an attempt to admitt only those  strictly in need, most of the admitted patients were in more critical condition.
 
 It's also possible that this result that has been obtained could be a symptom of subtle differences in the two \covid manifestations, as if to indicate different variants.
 Further analysis in this direction could be a followup work of this thesis.
+
+\section{Summarizing the results and further analysis}
+\todo[inline]{Forse già qessto può andare bene come conclusione?}
+Having presented all of the results obtained in this thesis it has been seen that:
+
+\begin{itemize}
+\item The chosen preprocessing method followed by Lasso regularized regressions perform overall well when it comes to predicting either \death or \icu
+\item Random Forest classifiers are consistently worse than Lasso regularized regressions, probably mainly due to the unbalancedness of the dataset at hand.
+\item Cox proportional Hazard allows us to distinguish at least two groups with statistically different Survival curves.
+\item Combining clinical, radiomic and radiological information does not determine an improvement when compared to clinical features alone.
+This result is quite perplexing and it could have multiple causes
+\end{itemize}
+
+It is very difficult to quantify what the expectations for each model were a priori, this transposes to difficulties in trying to diagnose problems in the models when considered singularly. However when combining all of the available features it's very strange that no improvement in performance can be achieved. This would mean that 8 clinical variables provide the exact same amount of information as the total $\sim$200 features most of which derived from images which, at least ideally, contain much more accurate information. 
+One could surmise that the analysis methods have been implemented in an incorrect way, yet when two methods implemented differently and separately obtain the same result it reinforces the idea that the problem lies somewhere before the analysis.
+ All of these analses started from the following hypotheses:
+
+\begin{enumerate}
+\item Clinical labels are informative of the final prognosis of the patient
+\item Radiological images contain a lot of useful information
+\item Radiomics can extract these information
+\item This information is informative of the prognosis of the patient
+\end{enumerate}
+
+It is very clear that the first three hypotheses are verified with a caveat, the performance of the radiomic pipeline hinges on the quality of the images and of the segmentation procedure performed on them. Since the images used in this thesis were, are and will be used by the hospital in routine processes it's close to impossible that all of them have problems, expecially because of the preliminary screening done before segmentation.
+A first possibility is that when trying to segment lungs affected by \textit{Sars-COVID19} the peculiar patterns developed make the task much harder then expected.
+In fact considering that the method used for this thesis relies on region growth and thresholding methods it's possible that the worst cases end up with unrepresentative segmentations.
+Another possibility is that the images are not really really representative of the situation of the patient. Since one of the prevailing properties of \textit{Sars-COVID19} is the speed with which the clinical picture of the patient can change it's possible that images taken at admission are not as informative of the final prognosis. This problem is, however, unavoidable in the setting of this thesis which has as aim the construction of a model that, exactly at admission, can discriminate between serious and easier cases.
+Another possibility is that there are two or more subgroups in the patient cohort and the performance on these is widely different, determiniing an average performance below the expectations.
+To diagnose if this is the case a few dimensionality reduction techniques have been used to visualize the data and to prepare for clustering in case of need, all of the results of these procedure will be presented in the followig section.	\todo[inline]{A questo punto magari cito l'appendice con la parte di clustering quando sarà pronta}
+
+To give a qualitative idea of the situation regarding the segmentations $\sim$70 were looked at and evaluated as good, unsure or bad.\footnote{This was done on the first patients in alphabetical order which was considered to be equivalent to random since there is no reasonable motive for surnames to be correlated with segmentation quality.}
+Good segmentations are those in which an untrained professional could not see any problems, unsure are those in which there are small inaccuracies, such as lungs that connect in some points and the inclusion of the trachea. 
+Finally segmentation were classified as bad in cases with obvious errors, such as part of the intestine being labelled as lung, or damages in the lung being labelled as outside tissue.
+
+\begin{figure}[H]
+\centering
+  	\subfloat[][Example of segmentation classified as bad]{\includegraphics[width=\linewidth]{Bad_segm.png}\label{fig:badseg}}
+	\newline
+        \subfloat[][Example of segmentation classified as dubious ]{\includegraphics[width=\linewidth]{Dubiouos_segm.jpg}\label{fig:dubseg}}
+        \caption{Example of segmentations being classified as bad (a) and dubious (b). In the first case (a) there is a clear hole in the lung which cannot be correct, in the second (b) there are small portion of outside tissue being labelled as lung as well as the whole trachea.}\label{fig:ExampleSeg}
+\end{figure}
+
+The result of this qualitative analysis can be seen in Table \ref{tab:ContingencyTableSegm} in which the incidence of both \death and \icu labels is computed in all possible segmenation categories.
+
+\begin{table}
+\centering
+\caption{Contingency table with number of \death and \icu labels in all segmentation groups. \label{tab:ContingencyTableSegm}}
+\begin{tabular}{llrrr}
+\toprule
+  & {} & \multicolumn{3}{l}{Subject} \\
+  & Segmentation Status &     Bad & Good & Unsure \\
+ICU Admission & Death &         &      &        \\
+\midrule
+0 & 0 &       8 &   11 &     24 \\
+  & 1 &       5 &    0 &      6 \\
+1 & 0 &       2 &    0 &      2 \\
+  & 1 &       1 &    1 &      1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This table suggests that there is large difference of very severe individuals which end up being not perfectly segmented.
+It's possible, even if unlikely, that the sample of analysed semgentations is biased in some way however, given the numbers in Table \ref{tab:ContingencyTableSegm}, it's reasonable to fear that in the most important cases, which means those that correspond to 1 labels in \death or \icu, the values of the radiomic features used in this thesis were not the best possible. 

@@ -1,14 +1,19 @@
-\chapter{Concluding remarks}
+\chapter{Conclusion}
 
-\begin{tabular}{llrrr}
-\toprule
-  & {} & \multicolumn{3}{l}{Subject} \\
-  & Segmentation Status &     Bad & Good & Unsure \\
-ICU Admission & Death &         &      &        \\
-\midrule
-0 & 0 &       8 &   11 &     24 \\
-  & 1 &       5 &    0 &      6 \\
-1 & 0 &       2 &    0 &      2 \\
-  & 1 &       1 &    1 &      1 \\
-\bottomrule
-\end{tabular}
+In this thesis varoius methods were used in an attempt to predict the prognosis of \covid patients. 
+
+Regularized regression was used to predict clinical outcome using various families of variables to compare the information hidden in each of them and to evaluate if CT exams add any value to a small set of clinical variables.
+
+Random forest classifiers were used with the same aim. As a by-product these two methods can be compared to see which, given the same data, can extract the most information.
+
+Survival analysis was used, mostly by itself, to see if the data could be divided in smaller groups with different survival functions.
+
+In the first two lines developement it was found that, in the specific case of data available for this thesis, radiomic features added no information to the clinical variables.
+This was taken as a (grim) reminder that the quality of the segmenations is very relevant in determining the results obtained by radiomics analysis and that current commercial segmentation techniques based on thresholding and region growing are not yet ready to face the problem posed by \covid pneumonia lungs.
+Some directions in which future works could start from this thesis are:
+
+\begin{itemize}
+\item The implementation of a \covid specific segmentation method using the vast amount of available data
+\item Given the statistical difference found in the survival of patients in the first and second waves, defined here as before and after 20/07/2020, it might be very interesting to investigate the causes of this finding and to prospectively continue this analysis with the data from the third wave and eventual next ones that might occur.
+\item Eventualmente se esce roba dal clustering
+\end{itemize}
