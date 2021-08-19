@@ -6,9 +6,21 @@
 %Since the start of 2020 \textit{Sars-COVID19} has initiated a world-wide pandemic. In an attempt to slow down the fast and uncontrollable spread of this disease various prevention and diagnosis methods have been developed. In this work, out of all these various methods, the attention is going to be put on the possible developement diagnostic methods related to medical images, be they automatic or semi-automatic, to be intended either as Clinical Decision Support Systems (CDSS) or as a quick evaluation to completely avoid human analysis.
 %In this light this first introductory chapter is going to start from a basic theoretical overview of the necessary core concepts that will be needed throughout this whole work such as definition of an image and imaging methods, with particular attention to those used in the medical field. This will be followed by an introduction to Artificial Intelligence (AI) and some Machine Learning techniques. Finally some of the concepts from the two previous topics will be treated jointly under the discipline of radiomics, which will be defined and explored as necessary.
 
-Nowadays everybody knows of  \textit{Sars-COVID19} which, since the start of 2020, has made necessary a few world-wide quarantines forcing everybody in self-isolation. It is also well known that, among the main complications and features of this virus, symptoms gravity as well as the rate of deterioration of the conditions are some of the most relevant and problematic. In some cases asymptomatic or near to asymptomatic people may, in the span of a week, get to conditions that require hospital admission. This peculiarity is also what heavily complicates the triage process, since trying to predict with some degree of accuracy the prognosis of the patient at admission is a thoroughly complex task. In this thesis the aim will be to use data, specifically including data that cannot be easily interpreted by humans, to try various methods to predict a couple of clinical outcomes, namely the death of the patient or the admission in the Intensive Care Unit (ICU), while assessing their performance. These analyses will be carried out on a dataset of 434 patients with different variables associated to every person. A part of the variables, which will be called clinical and radiological, are defined by humans and are generally discrete in nature but mostly boolean. The most part of the available variables, however, will be image-derived following the approaches used in the field of radiomics. While the utility of clinical variables, such as age, obesity and history of smoking, is very straightforward it's interesting and helpful to understand the basis behind the utility of radiomic and radiological features.
+Nowadays everybody knows of  \textit{Sars-COVID19} which, since the start of 2020, has made necessary a few world-wide quarantines forcing everybody in self-isolation.
+It is also well known that, among the main complications and features of this virus, symptoms gravity as well as the rate of deterioration of the conditions are some of the most relevant and problematic.
+In some cases asymptomatic or near to asymptomatic people may, in the span of a week, get to conditions that require hospital admission.
+This peculiarity is also what heavily complicates the triage process, since trying to predict with some degree of accuracy the prognosis of the patient at admission is a thoroughly complex task.
 
-Generally speaking it's clear that images have the ability to convey a slew of useful images, this is expecially true in the medical field where digital images are used to inspect also the internal state of the patient giving far more detailed information than that obtainable by visual inspection at the hand of medical professionals. Among the ways in which \textit{Sars-COVID19} can manifest himself the one that is most relevant to the scopes of this thesis pneumonia and the complications that stem from it. Some of these complications, which are not specific of \textit{Sars-COVID19} but can happen in any pneumonia case, display very peculiar patterns when visualizing the lungs through CT exams.
+In this thesis the aim will be to use data, specifically including data that cannot be easily interpreted by humans, to try various methods to predict a couple of clinical outcomes, namely the death of the patient or the admission in the Intensive Care Unit (ICU), while assessing their performance.
+
+These analyses will be carried out on a dataset of 434 patients with different variables associated to every person.
+A part of the variables, which will be called clinical and radiological, are defined by humans and are generally discrete in nature but mostly boolean.
+The most part of the available variables, however, will be image-derived following the approaches used in the field of radiomics.
+While the utility of clinical variables, such as age, obesity and history of smoking, is very straightforward it's interesting and helpful to understand the basis behind the utility of radiomic and radiological features.
+
+Generally speaking it's clear that images have the ability to convey a slew of useful images, this is expecially true in the medical field where digital images are used to inspect also the internal state of the patient giving far more detailed information than that obtainable by visual inspection at the hand of medical professionals.
+Among the ways in which \textit{Sars-COVID19} can manifest himself the one that is most relevant to the scopes of this thesis pneumonia and the complications that stem from it.
+Some of these complications, which are not specific of \textit{Sars-COVID19} but can happen in any pneumonia case, display very peculiar patterns when visualizing the lungs through CT exams.
 
 These patterns are due to the pulmonary response to inflammation which may lead to thickening of the bronchial and alveolar structures up to pleural effusions and collapsed lungs. Without going too much in clinical detail what is of interest is how these condition manifest themselves in the CT exams:
 
@@ -31,7 +43,11 @@ These patterns are due to the pulmonary response to inflammation which may lead 
 	\item \textbf{Collapsed Lungs and Pleural Effusion}:\newline Both of these manifest themself as regions of the lungs that take the same coloring as that of tissue outside the lung. The main difference between the two is that collapsed lungs are somewhat rigid structures, they can occur in singular lobes of the lung and stay where they occur. Pleural effusions, however, are actually fluid being located in the lung instead of air. As such these lesions usually are located 'at the bottom' of the lung in which they happen and migrate to the lowest part of the lung according to the position of the patient.
 \end{enumerate}
 
-Having these manifestation it's clear that they are mainly textural and intensity-like changes in the normal appearance of the lungs. However, whereas these properties can be easily described in a qualitative and subjective way, it's rather complex to describe them in a quantitative and objective way. The field of radiomics, when coupled with digital images and preprocessing steps which must include image segmentation, is exactly what undertakes this daunting task. Radiomics comes from the the combination of radiology and the suffix \textit{-omics}, which is characteristic of high-throughput methods that aim to generate a large number of numbers, called biomarkers or features, as such it uses very precise and strict mathematical definitons to quantify in various ways either shape, textural or intensity based properties of the radiological image under analysis.
+Having these manifestation it's clear that they are mainly textural and intensity-like changes in the normal appearance of the lungs.
+However, whereas these properties can be easily described in a qualitative and subjective way, it's rather complex to describe them in a quantitative and objective way.
+
+The field of radiomics, when coupled with digital images and preprocessing steps which must include image segmentation, is exactly what undertakes this daunting task.
+Radiomics comes from the the combination of radiology and the suffix \textit{-omics}, which is characteristic of high-throughput methods that aim to generate a large number of numbers, called biomarkers or features, as such it uses very precise and strict mathematical definitons to quantify in various ways either shape, textural or intensity based properties of the radiological image under analysis.
 
 Given the large numerosity of the features produced by radiomics it's necessary to analyze these kinds of data with methods that rely on Machine Learning and their ability to address high-dimensional problems, be it in a supervised or unsupervised way, in a rather fast and accurate way.
 
@@ -41,13 +57,19 @@ Starting from these premises this thesis will be divided in a few chapters and s
 In this section the objective is to simply provide a set of basic definitions pertaining to images as well as a general introduction to the methods used to create said images. Firstly images are a means of representing in a visual way a physical object or set thereof, when talking about images it's common to refer specifically to digital images.
 
 \begin{definition}[Digital Image]
-A numerical representation of an object; more specifically an ordered array of values representing the amount of radiation emitted (or reflected) by the object itself. The values of the array are associated to the intensity of the radiation coming from the physical object; to represent the image these values need to be associated to a scale and then placed on a discrete 2D grid.
-To store these intensities the physical image is divided into regular rectangular spacings, each of which is called pixel\footnote{The term pixel seems to originate from a shortening of the expression Picture's (pics=pix) Element(el). The same hold for voxel which stands for Volume Element}, to form a 2D grid; inside every spacing is then stored a number (or set thereof) which measures the intensity of light, or color, coming from the physical space corresponding to that grid-spacing.
+A numerical representation of an object; more specifically an ordered array of values representing the amount of radiation emitted (or reflected) by the object itself.
+The values of the array are associated to the intensity of the radiation coming from the physical object; to represent the image these values need to be associated to a scale and then placed on a discrete 2D grid.
+To store these intensities the physical image is divided into regular rectangular spacings, each of which is called pixel
+\footnote{The term pixel seems to originate from a shortening of the expression Picture's (pics=pix) Element(el). The same hold for voxel which stands for Volume Element}
+, to form a 2D grid; inside every spacing is then stored a number (or set thereof) which measures the intensity of light, or color, coming from the physical space corresponding to that grid-spacing.
+
 The term digital refers to the discretization process that inherently happens in storage of the values, called pixel values, as well as in arranging them within the grid. It's possible to generalize from 2D images to 3D volumes, simply by stacking images of the same object obtained at different depths. In this context, the term pixel is substituted by voxel, however since they are used interchangeably in literature they will, from now on, be considered equivalent.
 \end{definition}
 
 Generally pixel values stored as integers p$\in$ [0,2$^{n}$-1] with p,n$\in$ $\mathbb{N}$  or as p$\in$[0,1] with p$\in$ $\mathbb{R}$, the type of value stored within each pixel changes the nature of the image itself.
-A single value is to be intended as the overall intensity of light coming from the part of the object contained corresponding to the gridspace and is used for a gray-scale representation, a set of three\footnote{The three values correspond each to the intensity of a single color, the most commonly used set of colors is the RGB-scale (Red, Green, Blue). Further information can be found by looking into Tristimulus theory\cite{Tristimulus}}  or four\footnote{Same as RGB but with four colors, the most common scale is CMYK (Cyan, Magenta, Yellow, blacK). This spectrum is mainly used in print.} values can be intended as a color image.
+
+A single value is to be intended as the overall intensity of light coming from the part of the object contained corresponding to the gridspace and is used for a gray-scale representation, a set of three\footnote{The three values correspond each to the intensity of a single color, the most commonly used set of colors is the RGB-scale (Red, Green, Blue).
+Further information can be found by looking into Tristimulus theory\cite{Tristimulus}}  or four\footnote{Same as RGB but with four colors, the most common scale is CMYK (Cyan, Magenta, Yellow, blacK). This spectrum is mainly used in print.} values can be intended as a color image.
 
 \begin{figure}[H]
      \centering
@@ -61,7 +83,8 @@ A single value is to be intended as the overall intensity of light coming from t
 There are a lot of possible scales for representation\footnote{Besides RGB and CMYK \ref{fig: RGB_cube} the most common color spaces are CIE (Commision Internationale d’Eclairage) and HSV fig:\ref{fig:HSV_cone} (Hue,Saturation and Value). Refer to \cite{Color_spaces} for further details}, which are sometimes called color-spaces, however the most noteworthy in the scope of this work is the Hounsfield unit (HU) scale.
 
 \begin{definition}[Hounsfield unit (HU)]
-A scale used specifically to describe radiodensity, frequently used in the context of CT (Computed Tomography) exams. The values are obtained as a transformation of the linear attenuation coefficient \ref{eq:Lin_att_coef_def} of the material being imaged and, since the scale is supposed to be used on humans, it's defined such that water has value zero and air has the most negative value -1000. For  a more in depth discussion refer to \cite{Hounsfield}
+A scale used specifically to describe radiodensity, frequently used in the context of CT (Computed Tomography) exams.
+The values are obtained as a transformation of the linear attenuation coefficient \ref{eq:Lin_att_coef_def} of the material being imaged and, since the scale is supposed to be used on humans, it's defined such that water has value zero and air has the most negative value -1000. For  a more in depth discussion refer to \cite{Hounsfield}
 \end{definition}
 
 \begin{equation}\label{eq:HU_def}
@@ -69,6 +92,7 @@ A scale used specifically to describe radiodensity, frequently used in the conte
 \end{equation}
 
 The utility of this scale is in it's definition, since the pixel value depends on the attenuation coefficient it's possible to individuate a set of ranges that identify, within good reason, the various  tissues in the human body: for example lungs are [-700, -600] while bone can be in the [500, 1900] range.
+
 A more in depth discussion of the topics relative to Hounsfield units is going to be carried out at a later point throughout this chapter, in the meantime it's necessary to clarify what are the most important characteristics of an image:
 
 \begin{itemize}
@@ -82,7 +106,13 @@ A more in depth discussion of the topics relative to Hounsfield units is going t
 \end{figure}
 
 \item Size: Refers to the number of pixel per side of the image, for example in CT-derived images the coronal slices are usually 512x512. These numbers depend on the acquisition process and instrument but in all cases these refer to the number of rows and columns in the sampling grid as well as in the matrix representing the image.
-\item Data-Format: How the pixel values are stored in the file of the image. The most commonly used formats are .PNG and .JPG however there are a lot of other formats. In the context of this work, which is going to be centered on medical images, the most interesting formats are going to be the nii.gz (Nifti) and the .dcm (DICOM). The first contains only the pixel value information hence it's a lighter format, it originates in the field of Neuroimaging\footnote{In fact Nifti stands for Neuroimaging Informatics Technology Initiative (NIfTI)}, it is used mainly in Magnetic resonance images of the brain but also for CT scans and, since it contains only  numeric information, it's the less memory consuming option out of the two. The second contains not only the image data but also some data on the patient, such as name and age, and details on how the exam was carried out, such as machine used and specifics of the acquisition routine. This format is heavier than the previous one and, for privacy purposes, is much more delicate to handle which is why anonymization of the data needs to be taken in consideration. For a thorough description of the DICOM standard refer to \cite{DICOM}.
+\item Data-Format: How the pixel values are stored in the file of the image. 
+
+The most commonly used formats are .PNG and .JPG however there are a lot of other formats. In the context of this work, which is going to be centered on medical images, the most interesting formats are going to be the nii.gz (Nifti) and the .dcm (DICOM).
+The first contains only the pixel value information hence it's a lighter format, it originates in the field of Neuroimaging\footnote{In fact Nifti stands for Neuroimaging Informatics Technology Initiative (NIfTI)}, it is used mainly in Magnetic resonance images of the brain but also for CT scans and, since it contains only  numeric information, it's the less memory consuming option out of the two. The second contains not only the image data but also some data on the patient, such as name and age, and details on how the exam was carried out, such as machine used and specifics of the acquisition routine. 
+This format is heavier than the previous one and, for privacy purposes, is much more delicate to handle which is why anonymization of the data needs to be taken in consideration. 
+
+For a thorough description of the DICOM standard refer to \cite{DICOM}.
 \end{itemize}
 
 The format in which the image is saved depends on the compression algorithm used to store the information within the file. These algorithms can be lossy, in which case some of the information is lost to reduce the memory needed for storage, or lossless which means that all the information is kept at the expense of memory space. The first set of methods is preferred for storage of natural images, these are cases in which details have no importance, whereas the second set of methods is used where minute details can make a considerable difference such as in the medical field\footnote{A detailed description of compression algorithms is beyond the scopes of this thesis, for this reason please refer to \cite{Img_Compression} for more information}.
@@ -126,7 +156,7 @@ Output Shape =\left[ \frac{W - K + P}{S}\right]+1
 		\end{enumerate}
 \end{enumerate}
 
-The aforementioned is surely not a comprehensive list of all that can be said on images however it should be enough for the scopes of this work.
+%The aforementioned is surely not a comprehensive list of all that can be said on images however it should be enough for the scopes of this work.
 
 \vspace{7mm} %7mm vertical space
 
@@ -143,7 +173,12 @@ This technique was used because it's the only one that can provide information o
 The last technique that is going to be mentioned is Computed Tomography however, given it's relevance inside this thesis work, it seems appropriate to describe it in a dedicated section.
 
 \subsection{X-ray imaging and Computed Tomography (CT)}
-It's well known that the term x-rays is used to characterize a family electromagnetic radiation defined by their high energy and penetrative properties. Radiation of this kind is created in various processes such as characteristic emission of atoms, also referred to as x-ray fluorescence, and Bremsstrahlung, braking radiation\footnote{From the German terms \textit{Bremsen} "to brake" and \textit{Strahlung} "radiation"}. The discovery that "A new kind of ray"\cite{Roentgen} with such properties existed was carried out by W.C.Roentgen in 1895, which allowed him to win the first Nobel prize in physics in the same year. Clearly the first imaging techniques that involved this radiation were much simpler than their modern counterpart, first of all they were planar and analog in nature, as well as not as refined in image quality. The first CT image was obtained in 1968 in Atkinson Morley's Hospital in Wimbledon. Tomography indicates a set of techniques\footnote{from the greek $\textit{Tomo}$ which means "to cut" and suffix -graphy to denote that it's a technique to produce images} that originate as an advancement of planar x-ray imaging; these techniques share most of the physical principles with planar imaging while overcoming some of it's major limitations, main of which being the lack of depth information.  X-ray imaging, both planar and tomographic, involves seeing how a beam of photons changes after traversing a target, the process amounts to a kind of average of all the effects occurred over the whole depth travelled.
+It's well known that the term x-rays is used to characterize a family electromagnetic radiation defined by their high energy and penetrative properties. Radiation of this kind is created in various processes such as characteristic emission of atoms, also referred to as x-ray fluorescence, and Bremsstrahlung, braking radiation\footnote{From the German terms \textit{Bremsen} "to brake" and \textit{Strahlung} "radiation"}. 
+
+The discovery that "A new kind of ray"\cite{Roentgen} with such properties existed was carried out by W.C.Roentgen in 1895, which allowed him to win the first Nobel prize in physics in the same year. 
+Clearly the first imaging techniques that involved this radiation were much simpler than their modern counterpart, first of all they were planar and analog in nature, as well as not as refined in image quality. The first CT image was obtained in 1968 in Atkinson Morley's Hospital in Wimbledon. 
+
+Tomography indicates a set of techniques\footnote{from the greek $\textit{Tomo}$ which means "to cut" and suffix -graphy to denote that it's a technique to produce images} that originate as an advancement of planar x-ray imaging; these techniques share most of the physical principles with planar imaging while overcoming some of it's major limitations, main of which being the lack of depth information.  X-ray imaging, both planar and tomographic, involves seeing how a beam of photons changes after traversing a target, the process amounts to a kind of average of all the effects occurred over the whole depth travelled.
 
 The way in which slices are obtained is called focal plane tomography and, as the name suggests, the basic idea is to focus in the image only the desired depth leaving the unwanted regions out of focus. This selective focusing can be obtained either by taking geometrical precautions while using analog detectors, such as screen-film cassettes, or by feeding the digital images to reconstruction algorithms to perform digitally the required operations\footnote{In the first case the process is referred to as \textit{Geometric Tomography} while in the second case as \textit{Digital Tomosynthesis}}.
 
@@ -213,7 +248,7 @@ At this point is where the differences between generations arise which, loosely 
         \end{minipage}
 \end{itemize}
 
-The machines used to obtain the images used in this thesis, all belonging to the Ospedale S. Orsola, were distributed as follows shown in \ref{fig:ct_dist}:
+The machines used to obtain the images used in this thesis, all belonging to the Ospedale S. Orsola, were distributed as shown in Figure \ref{fig:ct_dist}:
 
 
 \begin{figure}[H]
@@ -252,7 +287,10 @@ Where $\rho$ is material density, $N_A$ is Avogadro's number, A is the atomic we
         \caption{Photon cross-section in Pb\label{fig:Photon-Cross-sect}}
 \end{figure}
 
-Overall, given eq:\ref{Beer-Lambert}, it's clear to see that the attenuation behaviour of a monochromatic beam would be linear in semi-logarithmic scale hence the name for $\mu$ "\textit{Linear Attenuation Coefficient}". The first complication comes from the fact that, given their generation method, the x-rays are not monochromatic but rather polychromatic. This introduces a further complication which is the phenomenon of beam hardening: lower energy x-rays interact much more likely than those at higher energies which implies that as it crosses some material the mean energy of the whole beam increases. This behaviour is exploited still within the machine, filters are interposed between anode and patient to reduce the useless part of the spectrum as shown in fig: \ref{fig:Beam-filtering}:
+Overall, given eq:\ref{Beer-Lambert}, it's clear to see that the attenuation behaviour of a monochromatic beam would be linear in semi-logarithmic scale hence the name for $\mu$ "\textit{Linear Attenuation Coefficient}". 
+
+The first complication comes from the fact that, given their generation method, the x-rays are not monochromatic but rather polychromatic.
+ This introduces a further complication which is the phenomenon of beam hardening: lower energy x-rays interact much more likely than those at higher energies which implies that as it crosses some material the mean energy of the whole beam increases. This behaviour is exploited still within the machine, filters are interposed between anode and patient to reduce the useless part of the spectrum as shown in fig: \ref{fig:Beam-filtering}:
 
 \begin{figure}[H]
 \centering
@@ -273,12 +311,16 @@ C(p_1,p_2) = \frac{N_{\gamma ,p_2}-N_{\gamma ,p_1}}{N_{\gamma ,p_2}}
 
 This formula, that connects the beam to the image, together with eq: \ref{Beer-Lambert}, which connects the beam property to the patient's composition, make clear the processes by which the beam carries patient information. Another complication arises in the context of this last equation due to the phenomenon of scattering which reduces the contrast by changing the direction of the bean and introducing an element of noise. Anti-scattering grids are positioned right before the sensors to reduce this effect by allowing to reach the sensor to only the photons with the correct direction.
 
-The biological effects of radiation won't be treated in this thesis. Suffices to say that damage can be classified as primary, due to ionization events within the nucleus of the cell, or secondary, due to chemical changes in the cell environment. The energy deposited per unit mass is called dose and is measured in Gy(Gray) and, as said before, depends on exposure time, current and kVP of the tube. Most of contemporary machines for CT self-regulate exposure time during the acquisition automatically using Automatic Exposure Control(AEC). Having the dose it's possible to estimate the fraction of surviving cells and, to do so, various models are used. In the clinical practice it's common to find, still within the DICOM image metadata, the information regarding Dose delivered such as CTDI (Computed Tomography Dose Index) from which it's possible to obtain the DLP (Dose Length Product) taking into consideration the total length of irradiated body. For an introduction to one of these models, the Linear Quadratic (LQ) refer to \cite{LQ_model}.\newline
+The biological effects of radiation won't be treated in this thesis. Suffices to say that damage can be classified as primary, due to ionization events within the nucleus of the cell, or secondary, due to chemical changes in the cell environment. The energy deposited per unit mass is called dose and is measured in Gy(Gray) and, as said before, depends on exposure time, current and kVP of the tube. Most of contemporary machines for CT self-regulate exposure time during the acquisition automatically using Automatic Exposure Control(AEC). Having the dose it's possible to estimate the fraction of surviving cells and, to do so, various models are used. In the clinical practice it's common to find, still within the DICOM image metadata, the information regarding Dose delivered such as CTDI (Computed Tomography Dose Index) from which it's possible to obtain the DLP (Dose Length Product) taking into consideration the total length of irradiated body. For an introduction to one of these models, the Linear Quadratic (LQ) refer to \cite{LQ_model}.
 
 \section{Artificial Intelligence (AI) and Machine Learning(ML)}
 Having clarified the type of data that will be used in this work, and having seen the general procedure used to gather it, it becomes interesting to discuss what kind of techniques will be used to analyze it.
 
-Starting from the definition given by John McCarthy in \cite{AI_def} "[AI] is the science and engineering of making intelligent machines, especially intelligent computer programs. It is related to the similar task of using computers to understand human intelligence, but AI does not have to confine itself to methods that are biologically observable.". Machine Learning (ML) is a sub-branch of AI and contains all techniques that make the computer improve performances via experience in the form of exposure to data, practically speaking this finds it's application in classification problems, image/speech/pattern recognition, clustering, autoencoding and others. The general workflow of Machine Learning is the following: given a dataset, the objective is to define a model or function  which depends on some parameters which is able to manipulate the data in order to obtain as output something that can be evaluated via a predefined performance metric. The parameters of the model are then automatically adjusted in steps to minimize or maximize this performance metric until a stable point at which the model with the current parameters is considered finalized; one of the main problems in this procedure is being sure that the stable point found is global and not local. The whole procedure is carried out keeping in mind that the resulting model needs to be able to generalize it's performance on data that it has never seen before, for this reason usually ML is divided in a training phase and a testing phase. The training phase involves looking at the data and improving the performance of the model on a specific dataset\footnote{Usually in studies there is a single dataset which is split into a train-set and a test-set, in some cases if the model is good it can be validated prospectively, which means that it's performance is evaluated on data that did not yet exist at the time of birth of the model}, the testing phase involves using brand new data to evaluate the performance of the model obtained in the preceding phase. Machine Learning techniques can be further grouped into the following categories:
+Starting from the definition given by John McCarthy in \cite{AI_def} "[AI] is the science and engineering of making intelligent machines, especially intelligent computer programs. It is related to the similar task of using computers to understand human intelligence, but AI does not have to confine itself to methods that are biologically observable.". Machine Learning (ML) is a sub-branch of AI and contains all techniques that make the computer improve performances via experience in the form of exposure to data, practically speaking this finds it's application in classification problems, image/speech/pattern recognition, clustering, autoencoding and others.
+
+The general workflow of Machine Learning is the following: given a dataset, the objective is to define a model or function  which depends on some parameters which is able to manipulate the data in order to obtain as output something that can be evaluated via a predefined performance metric. The parameters of the model are then automatically adjusted in steps to minimize or maximize this performance metric until a stable point at which the model with the current parameters is considered finalized; one of the main problems in this procedure is being sure that the stable point found is global and not local. The whole procedure is carried out keeping in mind that the resulting model needs to be able to generalize it's performance on data that it has never seen before, for this reason usually ML is divided in a training phase and a testing phase. 
+
+The training phase involves looking at the data and improving the performance of the model on a specific dataset\footnote{Usually in studies there is a single dataset which is split into a train-set and a test-set, in some cases if the model is good it can be validated prospectively, which means that it's performance is evaluated on data that did not yet exist at the time of birth of the model}, the testing phase involves using brand new data to evaluate the performance of the model obtained in the preceding phase. Machine Learning techniques can be further grouped into the following categories:
 
 \begin{enumerate}
 \item Supervised Learning: In this type of ML the model is provided with the input data as well as the correct expected output, which is hence called \textit{label}. The objective of the model is to obtain an output as similar to the labels as possible, while also retaining the best possible generalization ability in predicting never seen before data. Some problems that benefit from the use of these techniques are regression and classification problems.
@@ -289,7 +331,10 @@ Starting from the definition given by John McCarthy in \cite{AI_def} "[AI] is th
 The following methods are those directly involved in this work.
 
 \subsection{Regression, Classification and Penalization}
-Regression and Classification are methods used to make predictions via supervised learning by understanding the input-output relation in continuous and discrete cases respectively. The most basic example of regression is linear regression which consists in finding the slope and intercept of a line passing through a set of points. A branch of classification thats similar to linear regression is logistic regression, this translates in finding out wether or not each point belongs to a certain category given it's properties and can be practically thought of, for a binary classification,as a fitting procedure such that the output can be either 0 for one category and 1 for the other, this is usually done using the logistic funtion, also called sigmoid, which compresses $\mathbb {R}$ in [0,L] as seen in  \ref{sigmoid}. L represents the maximum value desidered, $x_0$ is the midpoint and k is the steepness. Note that for multiple categories it would conceptually suffice to add sigmoids with different centers to obtain a step function in which each step corresponds to a category, in this case the procedure is usually called multinomial regression.
+Regression and Classification are methods used to make predictions via supervised learning by understanding the input-output relation in continuous and discrete cases respectively. 
+
+The most basic example of regression is linear regression which consists in finding the slope and intercept of a line passing through a set of points. A branch of classification thats similar to linear regression is logistic regression, this translates in finding out wether or not each point belongs to a certain category given it's properties and can be practically thought of, for a binary classification,as a fitting procedure such that the output can be either 0 for one category and 1 for the other, this is usually done using the logistic funtion, also called sigmoid, which compresses $\mathbb {R}$ in [0,L] as seen in  \ref{sigmoid}. L represents the maximum value desidered, $x_0$ is the midpoint and k is the steepness. 
+Note that for multiple categories it would conceptually suffice to add sigmoids with different centers to obtain a step function in which each step corresponds to a category, in this case the procedure is usually called multinomial regression.
 \begin{equation}
 \sigma_{(x)} = \frac{L}{1+e^{-k(x-x_0)}}
 \end{equation}
@@ -336,14 +381,28 @@ To this end some of the operations that can be done are:
 
 \begin{enumerate}
 \item Standard Scaling: This amounts to subtracting the mean of the distribution to the feature and dividing by the standard deviation so that the resulting distribution is somewhat centered around zero and has close to unitary standard deviation
-\item  Boxcox transform: When distributions are heavy-tailed, like a gamma distribution would be, this finds the best exponent to transform via a power-law the data. Since the exponent $\lambda \in$$\mathbb{R}$ the input data needs to be strictly positive and not constant.\todo[inline]{la spiegherei meglio}
+\item  Boxcox transform: When distributions are heavy-tailed, like a gamma distribution would be, this transform is used to find the optimal power-law that more closely turns the data in a normal distribution. More specifically the data is transformed according to:
+
+\begin{equation}
+Data_{Transformed}(\lambda) =
+\begin{cases}
+	\frac{data^{\lambda} -1}{\lambda} & if \lambda\neq0;\\
+	log(data) 					  & if \lambda=0;\\
+\end{cases}
+\end{equation}
+
+$\lambda$ is varied from -5 to 5, The best value is chosen so that the transformed data approximates a normal distribution as closely as possible
+Being that the exponent can be positive or negative this transform cannot handle distributions with negative values. 
+For more information refer to the \cite{boxcox} \todo[inline]{la spiegherei meglio. Lorenzo:Così va meglio?}
 \end{enumerate}
 
 Practical application of these procedures can be found in  cap:\ref{cap: Material_method}. These considerations conclude the theoretical background on regression, classification and penalization thereof.
 
 \subsection{Decision Trees and Random Forest}
 Apart from logistic and multinomial regression there are various other supervised classifiying methods such as Support Vector Machines (SVM), Neural Networks and Decision Trees. In this thesis, among the aforementioned algorithms, the chosen one was a particular evolution of DecisionTrees called RandomForest (RF).
+
 To provide some insight in the method it's necessary to first explain how decision trees work, specifying what problems they face and what are their strong points.
+
 Since it's a classification method let's consider the simple case of binary classification with categorical\footnote{Categorical is to be intended as features with discrete value, opposed to continuous variables which can potentially take any value in $\mathbb{R}$} features. The task of the decision tree is to approximate to the best of it's abilities the labels contained in the training set using all the features associated with each datapoint, this is done by building a graph-like structure in which the nodes represent the features and the links departing from it are the possible values the feature takes. This graph is built in a top-down approach by choosing at every step the feature that best separates the data in the label categories, this process is done along each branch unitl a node in which the separation of the preceding feature is better then that provided by all remaining features or all features have been considered. The first node is called root node, while the nodes that have no branches going out of them are called leaves, the graph represents a tree hence the name of the method. Note that at every node only the subset of data corresponding to all previous feature categories is used.
 At each node the separation between the two label categories $c_1, c_2$ due to the feature is commonly measured with Gini impurity coefficient, which is computed as:
 
@@ -387,7 +446,11 @@ Worth noting that this has been done using the library imblearn in python \cite{
 It's clear to see that in unbalanced case, like the one analysed in this thesis in which the label classes are 15$\%$-85$\%$, oversampling the data always determines an improvement in performance. However performing it in the wrong place it clearly makes a far too optimistic evaluation of the performance. This highlights the point that all preprocessing should be done with care when train-test splitting the data, specifically it's very important that the oversampling, as well as all other data handling, be performed after the train-test split of the data on the train data alone. It's clear to see that what's being observed is a leakage phenomenon, in which the testing data contiains information regarding the training data and viceversa. In practice, especially because the points are created as convex combination of existing data\footnote{Note that this would happen with any other over/under-sampling methods, such as random oversampling which randomly duplicates data points}, when the synthetically generated points end up in the testing they depend, at least partially, on the data used in the training procedure.
 
 \subsection{Dimensionality reduction and clustering}
-When dataset are composed of many features, namely more than three, it becomes difficult if not impossible to visualize the distribution of data. There are various techniques that can mitigate or solve this problem, they are grouped under the umbrella term of "Dimensionality reduction techniques" and they are generally based on ML learning methods. As such , following the same reasoning and definitions given in regard to ML, it's possible to introduce a sub-categorization of the whole family of techniques in supervised and unsupervised techniques. Dimensionality reduction, beyond providing useful insight in the general structure of the data, can also be used as a preprocessing step in some analysis pipelines. A first example could be to find more meaningful features before analyzing with methods such as Random Forests or Regression techniques, a second example could be using the reduced representation that keeps the most information possible to ease in clustering analysis by highlighting the differences in subgroups within the dataset. The most common dimensionality reduction techniques are:
+When dataset are composed of many features, namely more than three, it becomes difficult if not impossible to visualize the distribution of data. There are various techniques that can mitigate or solve this problem, they are grouped under the umbrella term of "Dimensionality reduction techniques" and they are generally based on ML learning methods. As such , following the same reasoning and definitions given in regard to ML, it's possible to introduce a sub-categorization of the whole family of techniques in supervised and unsupervised techniques. Dimensionality reduction, beyond providing useful insight in the general structure of the data, can also be used as a preprocessing step in some analysis pipelines.
+
+A first example could be to find more meaningful features before analyzing with methods such as Random Forests or Regression techniques, a second example could be using the reduced representation that keeps the most information possible to ease in clustering analysis by highlighting the differences in subgroups within the dataset. 
+
+The most common dimensionality reduction techniques are:
 
 \begin{enumerate}
 \item \textbf{Unsupervised methods}
@@ -477,7 +540,10 @@ The segmentation process generally produces a boolean mask which can be used to 
 
 In talking about the previous feature groups the concept of discretization of data which is already digital, and hence a discretized, has emerged. This is often a required step to make the computations of the matrices tractable and consists in further binning together the pixel values, which is commonly done in two main ways: either the number of bins is fixed or the width of the bins is fixed preceeding the discretization process.
 It should be evident that the results of the feature extraction procedure is heavily dependent on the choices made in all the steps that preceed it, main of which being the segmentation, the eventual re-discretization of the image leading to the algorithm used to compute the feature themselves. For this reason recently the International Biomarker Standardization Initiative (IBSI \cite{IBSI}) wrote a \textit{"reference manual"} which details in depth the definitons of the features, description of data-processing procedures as well as a set of guidelines for reporting results. This was done in an attempt to reduce as much as possible the variability and lack of reproducibility of radiomic studies.
-In the past the main attention in radiological research was focused on improving machine performances and evaluating acquisition sequence technologies, however the great developements in artificial intelligence and performance of computers have brought a lot of attention to the field. Various papers, such as \cite{Rad_review} and \cite{Rad_review_ger} have been written with the objective of presenting the general workflow. By design the topics in this thesis have been presented to resemble the general order of the pipeline, which can be summarised as:
+
+In the past the main attention in radiological research was focused on improving machine performances and evaluating acquisition sequence technologies, however the great developements in artificial intelligence and performance of computers have brought a lot of attention to the field. Various papers, such as \cite{Rad_review} and \cite{Rad_review_ger} have been written with the objective of presenting the general workflow. 
+
+By design the topics in this thesis have been presented to resemble the general order of the pipeline, which can be summarised as:
 
 \begin{itemize}
 \item Data acquisition
@@ -489,11 +555,10 @@ In the past the main attention in radiological research was focused on improving
 \end{itemize}
 
 Another interesting possibility offered by the biomarkers computed following radiomics is the ability to quatify the differences between successive exams of the same patient. This specific branch of radiomics is called Delta-radiomics, referencing to the time differential that become the main focus of the analysis.
-{\large NON SAPREI SE VA BENE COSI' O BISOGNA AGGIUNGERE ALTRI DETTAGLI}
 
 With this the theoretical background has been laid out and the thesis can finally proceed to practically and more specifically describing the data at hand as well as the specific techniques used to elaborate it.
 
-\section{Survival Analysis}
+\section{Survival Analysis}\label{sec:SurvivalAnalysisTheory}
 Survival analysis is a particular field that tries to determine the probability of a certain event happening before a certain time.
 As the name suggests one of it's main application is determining the risk of death due to a disease as time progresses from diagnosis, however it can be used to estimate time needed to recover after a surgical procedure, lifetime before breakdown of machines, time needed for criminals to commit new crimes after being released \ldots. 
 
@@ -537,7 +602,48 @@ The most basic example would be looking at the effectiveness of a drug by dividi
 When the analysis is univariate in nature then the Kaplan-Meier survival curves are used in conjuction with the log-rank test, when the analysis is multivariate then the Cox Proportional-Hazard model is used. 
 The Cox model is very similar to linear and logistic regression.
 
-Explaining these methods is beyond the scopes of this thesis, all details can be found in \cite{SurvivalAnalysis}.
-Suffices to say that, as rule of thumb, two Kaplan-Meier curves that do not intersect at any point indicate good separation among the groups which can then be evaluated using the p-value from the log-rank test.
-When it comes to Cox models they can be used to create a new variable, much like the linear combination of variables in linear regression, which in turn can be used to identify groups in the patient cohort. This division in groups can be obtained using the median, or the percentiles if one desires more than two groups. 
+\subsection{Kaplan-Meier(KM) curves and log-rank test}
+Kaplan-Meier curves can be built following a well defined procedure: 
+The data is separated in sets using the label of the groups that need to be used then the patients in each set are ordered in ascending order of permanence in the study, which is the time variable.
+At each failure time T$_f$ the conditional probability of surviving past T$_f$ given availability is computed as ratio of subjects left in the study right after T$_f$ divided by the number of availabe people at that same time
+\footnote{Effectively this corresponds to dividing thenumber of available minus dead individuals by the number available at each timestep}
+Note that this takes in account also the possible censoring by reducing the number of available people at times of event, these censoring event will be drawn on the curve using ticks at the corresponding time.
+The survival probability is computed at each event time as the product of the probability at the previous failure time with the one computed as explained before in at the time of the current event.
+
+Let's consider an imaginary study with 4 patients with one failing at week one, one dropping out at week 2, one failing at week 3 and one surviving after 4.
+The KM curve will start at 1, at week one it will drop at $\frac{3}{4}$ since 3 people will be alive out of 4 available, at week two no drop will happen but a tick will be put on the curve and, finally at week 3 it will drop at value $\frac{3}{4}*\frac{1}{2}$ since only one out of the two available will survive.
+
+As a rule of thumb, two Kaplan-Meier curves that do not intersect at any point indicate good separation among the groups, this can then be formally evaluated performing a log-rank test on the data used to build the curves.
+The null hypothesis of this specific test it that "\ldots there is no overall difference between the two survival curves" which can be tested with the log-rank test.
+This basically consist in performing a large-sample $\chi^2$ test that uses the ordered failure times for the entire dataset as expected values vs those observed in the subsets. 
+From this testing procedure a p-value can be obtained to reject the null hypothesis, for more in depth information refer to \cite{SurvivalAnalysis}. 
+
+\subsection{Cox Proportional-Hazard (CoxPH) model}
+As it was mentioned before the shape of the hazard curve, an hence of the survival curve, implies a specific shape for the model used to describe it.
+Some of the possible models are increasing Weibull, decreasing Weibull, Exponential and log-normal.
+All of these models are parametric because known the parameters the distribution of the outcome can be known, when it comes to Cox PH model the distribution cannot be known because part of the model, namely the baseline hazard, remains unestimated.
+
+Generally the data has an optimal parametric model that describes it and, if this information were known, it would make perfect sense to use said model.
+However this knowledge is not always obtainable, which give Cox PH model an occasion to shine.
+This model can be described as robust in the sense that the results that it gives will approximate those obtained by the correct model, without needing to know which of the model needs to be used. 
+For a more in depth description refer to \cite{SurvivalAnalysis}
+ 
+Cox PH models rely on the use of the formula in Equation \ref{eq:CoxPHform} to express the risk of a patient with a set of k characteristic variables \textbf{X} at time t.
+
+\begin{equation}\label{eq:CoxPHform}
+h(t,\textbf{X}) = h_0(t)e^{\sum_{i=1}^k \beta_i X_i}
+\end{equation}
+
+The quantity $h_0(t)$ is called baseline hazard and it hides one of the main hypotheses behind this method which is the \textit{Proportional Hazard} assumption.
+This assumption is that the baseline hazard $h_0(t)$ depends on time alone and not on all the other variables \textbf{X}, note also that the exponent is time-independent since the \textbf{X}s are supposed to be constant in time
+\footnote{Dropping the time independence of the \textbf{X}s is possible while still keeping the same shape, yet the model would then be called extended Cox model.}.
+
+The $\beta$ in the exponent represents the weights assigned to each variable and, very much like what happened in linear regression, these coefficients can be a proxy of importance in the model: coefficients close to zero signify no particular importance of the variable whereas the more the value is distant from zero the more important the variable can be considered.
+The reson why it's common practice to report the exponentiated cefficient for features is that 1-exp[$\beta$] represents the difference in likelyhood to die of individuals separated using the feature relative to $\beta$. 
+
+For example considering a binary feature {\scshape Age over 50} with exp[$\beta$]=1.6 would indicate that people over 50 are 60\% more likely to die when adjusting for all other variables.
+It is also common procedure to provide, for each coefficient, the 95\% confidence interval of the parameter and a p-value relative to the hypothesis that the parameter be equal to zero.
+
+Cox models provide a way to predict hazard for patients, this predict method can be used to evaluate the model built by identifying groups in the patient cohort using hazard quantiles 
 The division in the resulting groups can be used as proxy for the quality of the score built using the Cox model.
+
