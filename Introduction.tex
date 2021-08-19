@@ -25,7 +25,7 @@ Some of these complications, which are not specific of \textit{Sars-COVID19} but
 These patterns are due to the pulmonary response to inflammation which may lead to thickening of the bronchial and alveolar structures up to pleural effusions and collapsed lungs. Without going too much in clinical detail what is of interest is how these condition manifest themselves in the CT exams:
 
 \todo[inline]{li sposterei in capitoli successivi}
-\begin{enumerate}
+\begin{enumerate}\label{Clinical_Covid_Manifestations}
         \item \textbf{Ground Glass Opacity(GGO)}:\newline Small diffused changes in density of the lung structure cause a hazy look in the affected region. This complicates the individuation of pulmonary vessels.
 			\begin{figure}[htbp]
 				\centering
@@ -97,8 +97,8 @@ A more in depth discussion of the topics relative to Hounsfield units is going t
 
 \begin{itemize}
 \item Spatial Resolution: A measure of how many pixel are in the image or, equivalently, how small each pixel is; a larger resolution implies that smaller details can be seen better fig:\ref{fig:resolution_types}. Can be measured as the number of pixel measured over a distance of an inch ppi(Pixel Per Inch) or as number of line pairs that can be distinguished in a mm of image lp/mm (line pair per millimeter).
-\item Gray-level Resolution: The range of the pixel values, a classic example is an 8-bit resolution which yields 256 levels of gray. A better resolution allows a better distinction of colors within the image fig:\ref{fig:resolution_types}.
-    \todo[inline]{di solito si parla di color quantization}
+\item Cor quantization: The range of the pixel values, a classic example is an 8-bit resolution which yields 256 levels of gray. A better resolution allows a better distinction of colors within the image fig:\ref{fig:resolution_types}.
+   
 
 \begin{figure}[H]
   		\includegraphics[width=0.8\textwidth]{Img_resolution.png}
@@ -248,7 +248,7 @@ At this point is where the differences between generations arise which, loosely 
         \end{minipage}
 \end{itemize}
 
-The machines used to obtain the images used in this thesis, all belonging to the Ospedale S. Orsola, were distributed as shown in Figure \ref{fig:ct_dist}:
+The machines used to obtain the images used in this thesis, all belonging to \orsola, were distributed as shown in Figure \ref{fig:ct_dist}:
 
 
 \begin{figure}[H]
@@ -372,9 +372,27 @@ It's evident that to obtain a result from the previous operation it's necessary 
 \item Lasso: Adds $\frac{1}{b} * \Sigma^{n+1}_{j=1} |\theta_j|$, is called also $L^1$ regularization since it adds the $L^1$ norm of the parameter vector. This penalty can shrink parameters to exactly zero, getting rid of the useless variables within the model.
 \item ElasticNet: Adds $\lambda*[\frac{1-\alpha}{2}  * \Sigma^{n+1}_{j=1} \theta_j^2$ + $\alpha* \Sigma^{n+1}_{j=1} |\theta_j|]$, evidently this is a midway between  the Lasso and Ridge methods, where the balance is dictated by the value of $\alpha$.
 \end{enumerate}
-\todo[inline]{visto che usi la regolarizzazione in modo consistente spiegherei meglio i vantaggi dei vari approcci uno rispetto all'altro}
 
-Following regularization procedures, specifically Lasso regularization, as a byproduct of avoiding divergences a selection and ranking of the important features is obtained however it's still important to preprocess the data to simplify the job of the regularization.
+There are no clear overall advatages in the choice between Ridge and Lasso regularization, however there are substantial differences that can aid in the choice.
+
+Ridge regression shrinks the parameters but never exactly to zero hence it does not perform feature selection and when correlated features are used their coefficients will be similar, rather than shrunk to zero.
+Hence Ridge still simplifies the model but it doesn't reduce the number of features, this is ideal in cases in which one wants to keep all of the available features or when one expects that most predictors drive the response.
+
+Lasso regularization has the ability to shrink parameters exactly to zero and does so in cases in which variables are correlated with one anoter. However the choice on which feature to keep is random if the variables are highly correlated. 
+The advantages of Lasso, namely the feature selection it produces while also improving the prediction on the data, come at the cost of difficult to interpret results in some cases as well as a limit in the maximum number of feature that can survive the procedure.
+\footnote{Out of k features relative to m datapoints, with k\>m only m features can survive a Lasso regularization even if all k are relevant.}.
+This means that practivally one would choose Lasso regression in cases in which the expectation is that only a few variables drive the behaviour of the response.
+
+Elastic net, which is born as critique of the too data-dependent shrinkage of parameters, is a method that combines Lasso and Ridge.
+In this sense the model will still be simplified as it happened in Ridge and Lasso.
+The surviving parameters will be less then those estimated by Ridge and more than those obtained with a Lasso and the value of the coefficients will be smaller than those in Lasso but larger than those obtained in the case of Ridge.
+
+For more in depth information refer to \cite{StatisticalLearning}.
+
+\todo[inline]{visto che usi la regolarizzazione in modo consistente spiegherei meglio i vantaggi dei vari approcci uno rispetto all'altro
+			Lorenzo: Aggiunto un po' di discussione}
+
+Given these last considerations, as well as the number of features and their interpretability, the choice was made to use Lasso regression in order to keep as few variables as possible while still maintaing good predictive power.
 
 Since the whole foundation is the normality of the residuals it's important that the data behaves somewhat nicely in this regard. Changing the data to modify the residuals is not straightforward, a proxy for this procedure is to preprocess the data by manipulating the distribution of the features to make them as close to normal as possible.
 To this end some of the operations that can be done are:
@@ -565,7 +583,7 @@ As the name suggests one of it's main application is determining the risk of dea
 The main concepts and terminologies in this field are:
 
 \begin{enumerate}
-\item Event: This is the phenomenon under analysis, generally it could be death, remission from recovery, recovery \ldots .
+\item Event: This is the phenomenon under analysis, generally it could be death, remission from recovery, recovery and so on.
 It is common to refer to the event as failure since usually the event is a negative event.
 \item Censoring: When colelcting data to develop a model that describes survival it may happen that the individual drops out of the study without incurring in the event under analysis.
 For example when looking at effectiveness of a drug the patient develops an adverse reaction to the drug and needs to stop using it, hence falling out of the study.
