@@ -2,7 +2,7 @@
 In this chapter the result obtained with the methods explained in the previous chapters will be briefly presented to ease in the discussion in the final chapter. 
 
 \section{Feature selection through Lasso regularization and clinical outcomes prediction using regression}
-When it comes to lasso regression usually graphs are reported that show the convergence of the parameters to the final value. Since the real information of this process is the value to which the coefficients converge only these values will be presented in tables and the ROC curves, with respective AUCs, will b e provided. An example of the graph i'm talking about is the one visible in Figure \ref{LassoParam}.
+When it comes to lasso regression usually graphs are reported that show the convergence of the parameters to the final value. Since the real information of this process is the value to which the coefficients converge only these values will be presented in tables and the ROC curves, with respective AUCs, will be provided. An example of the aforementione graph is the one visible in Figure \ref{LassoParam}.
 
 
 \begin{figure}[htbp]
@@ -10,8 +10,7 @@ When it comes to lasso regression usually graphs are reported that show the conv
         \caption{Example of graph representing the convergence of the coefficients in a lasso procedure. The final model is chosen by looking at the lowest value in mean squared error computed on the testing dataset. This graph is relative to only radiomic features with the model using \death as label.\label{LassoParam}}
 \end{figure}
 
-All of the graphs with respective captions will be, maybe, put in the final appendix.
-Finally it seems useful to report the following contingency table that gives an idea on how superimposed the labels on death and \icu are.
+Finally it seems useful to report the following contingency table that gives an idea on how superimposed the labels on \death and \icu are.
 
 \begin{tabular}{l|rr}
 \toprule
@@ -24,7 +23,7 @@ Finally it seems useful to report the following contingency table that gives an 
 \bottomrule
 \end{tabular}
 
-\subsection{Using \death  as label}
+\subsection{Using \death as predicted outcome}
 Starting to predict the death outcome of the patient different groups of features have been used, first of all only the radiomic features have been used. The ROC curve obtained with the radiomic features is the one in Figure \ref{RocDeathRad}. The curve in bold is an average curve obtained by aggregating the ten curves relative to each of the folds used in testing and the gray band represents a $\pm$ 1 standard deviation.
 
 \begin{figure}[htbp]
@@ -33,7 +32,7 @@ Starting to predict the death outcome of the patient different groups of feature
         \caption{ROC curves obtained with crossvalidation procedure using the radiomic features alone. In bold is the mean ROC with gray bands of width equal to the standard deviation. \label{RocDeathRad}}
 \end{figure}
 
-The model was built using the coefficients reported in \ref{tab:ParamRad} reaches a AUC = 0.76$\pm$0.09. The features inside the tabular, as well as those in the tabulars that follow, will have the coefficients in descending order by absolute valuer so that the top features are the most relevant within it's relative model.
+The model that was built using the coefficients reported in \ref{tab:ParamRad} reaches a AUC = 0.76$\pm$0.09. The features inside the tabular, as well as those in the tabulars that follow, will have the coefficients in descending order by absolute value so that the top features are the most relevant within it's relative model.
 
 \begin{table}
 \caption{Coefficients used in the linear combination estimated by a Lasso regularization relative to the radiomic features in modelling \death. All values are in descending order of absolute value\label{tab:ParamRad}}
@@ -120,15 +119,15 @@ This is reasonable for at least part of the features because there is no reason 
  When it comes to the radiologically determined quantities, such as GGO, Crazy paving, lung consolidation and bilaterlaity even if one would expect these to be relevant their distribution across the dataset is not condusive the good predictions.
  In fact 88\% of patients had GGO, 50\% of all patient had Lung consolidation, 77\% of all patients did not have Crazy paving and 92\% had bilateral involvment.
 
- hen it comes to clinical features, categorys that performs better when considered singularly, nothing ground breaking has been obtained.
-Age, Respiratory rate and sex are the most relevant features and are all very much in concordance with what is expected. Finally radiomic features preform slightly worse than the clinical features. To see if the feature obtained are, at least, reasonable a quick explanation is needed. 
-This will be done only for the top performing features:
+When it comes to clinical features, categorys that performs better when considered singularly, nothing ground breaking has been obtained.
+Age, Respiratory rate and sex are the most relevant features and are all very much in concordance with what is expected. Finally radiomic features perform slightly worse than the clinical features. To see if the feature obtained are, at least, reasonable a quick explanation is needed. 
+This will be done only for the top performing features while deferring to \cite{IBSI} for the complete description:
 
 \begin{itemize}
-\item 10$^{th}$ intensity percentile and Intensity based interquartile range are both intensity based statistics. The first indic
-\item Complexity: A complex image is one that presents many rapid changes in intensity and is heavily non-uniform because it has a lot of primitive components 
-\item Cluster Prominence: GLCM feature which measures the symmetry and skewness of the matrix from which it derives. When this is high the image is not symmetric
-\item Area density aligned bounding box: This is a ratio of volume to surface
+\item 10$^{th}$ intensity percentile and Intensity based interquartile range are both intensity based statistics.
+\item Complexity: A complex image is one that presents many rapid changes in intensity and is heavily non-uniform because it has a lot of primitive components.
+\item Cluster Prominence: GLCM feature which measures the symmetry and skewness of the matrix from which it derives. When this is high the image is not symmetric-
+\item Area density aligned bounding box: This is a ratio of volume to surface.
 \item Entropy: Measures the average quantity of information needed to describe the image. In other words it quantifies randomness in the image, the more random the more info is needed to describe it.
 \end{itemize}
 
@@ -182,7 +181,9 @@ One would expect that when combining all of the available features, i.e. by buil
         \caption{ROC curves obtained with crossvalidation procedure using all the available features. Model obtaine with Lasso regularization of a linear regression modelling death\label{fig:RocDeathAll}}
 \end{figure}
 
-In spite of what the expectations were the performance not only doesn't improve but it doesn't even change. To be sure of this claim a Delong test was used to compare pairwise the receiver operator curves and their respective AUCs. The null hypothesis of this test is that the two models are the same, hence a p-value smaller than 0.05 means that the curves and their aucs are statistically different. The results from this analysis can be seen in \ref{fig:delongDeath}
+In spite of what the expectations were, the performance not only doesn't improve but it doesn't even change. To be sure of this claim a Delong test was used to compare pairwise the receiver operator curves and their respective AUCs. 
+
+The null hypothesis of this test is that the two models are the same, hence a p-value smaller than 0.05 means that the curves and their AUCs are statistically different. The results from this analysis can be seen in \ref{fig:delongDeath}
 
 \begin{table}
 \caption{Recap table with the performance of the various models predicting on different groups of features predicting \death \label{tab:RecapDeath}}
@@ -204,7 +205,7 @@ All & 0.82 $\pm$ 0.10 \\
 \centering
   	\subfloat[][Comparison clincal-radiomic]{\includegraphics[width=0.50\linewidth]{Semi_CLIvsRAD_death.png}\label{fig:delongDeathCliRad}}
         \subfloat[][Comparison clinical-all]{\includegraphics[width=0.50\linewidth]{Semi_CLIvsALL_death.png}\label{fig:delongDeathCliAll}}
-        \caption{Cimparison between ROC curves for clinical vs radiomic curves (a) and clinical vs all (b). The p-values are obtained with a Delong Test }\label{fig:delongDeath}
+        \caption{Comparison between ROC curves for clinical vs radiomic curves (a) and clinical vs all (b). The p-values are obtained with a Delong Test }\label{fig:delongDeath}
 \end{figure}
 
 As one would have expected the models from radiomic and clinical features are different while the ones built using clinical and all features are not statistically different.
@@ -213,9 +214,10 @@ Then, as one would expect, the radiological features retain some importance when
 
 Some possible explanations will be given in the concluding remarks at the end of this  subsection. as well as in the final chapter of the thesis.
 
-\subsection{Using \icu as label}
+\subsection{Using \icu as predicted outcome}
 
-In trying to predic if the patient will be admitted in the Intensive Care Unit of the hospital the same procedure as before has been used. The ROC curves obtained with the varous features are reported in Figure \ref{fig:ICULasso}. Just like before the curve in bold is an average curve obtained by aggregating the ten curves relative to each of the folds used in testing and the gray band represents a $\pm$ 1 standard deviation. Following the blueprint of the previous subsection, all of the results will be presented and then  briefly discussed
+In trying to predict if the patient will be admitted in the Intensive Care Unit of the hospital the same procedure as before has been used. The ROC curves obtained with the various features are reported in Figure \ref{fig:ICULasso}. Just like before the curve in bold is an average curve obtained by aggregating the ten curves relative to each of the folds used in testing and the gray band represents a $\pm$ 1 standard deviation.
+Following the blueprint of the previous subsection, all of the results will be presented and then briefly discussed
 
 
 \begin{figure}[H]
@@ -337,7 +339,7 @@ The radiological features have the same performance of a random variable, which 
 Even if superfluous a Delong test was used to confirm that the hypothesis of the curves being equal could not be rejected. When it comes to the relevant features in each model the following can be deduced:
 
 \begin{itemize}
-\item For the clinical features all of them have a role in the predicition. The only suprising fact, even if it keeps a certain degree of plausibility, is that age is the less relevant out of the available features when it comes to \icu.
+\item For the clinical features all of them have a role in the prediction. The only suprising fact, even if it keeps a certain degree of plausibility, is that age is the less relevant out of the available features when it comes to \icu.
 \item None of the radiological features have virtually any impact
 \item The radiomic features still value intensity measurements and disorder in the image as primary origins of information. However it seems that shape of the lung now has more relevance in the whole model.
 \end{itemize}
@@ -360,12 +362,12 @@ All & 0.70 $\pm$ 0.15 \\
 
 \section{Classification of patients using Random forests}
 When it comes to random forests the approach followed was similar, in the sense that the various combinations of features were tried, yet different, because the preprocessing step consisted in simply applying a standard scaler to the data.
-The performance of the models has been looked at using both confusion matrices and ROC curves, the last of which has the only objective of comparing RF classifiers to the perviously described Lasso regression. 
+The performance of the models has been looked at using both confusion matrices and ROC curves, the last of which has the only objective of comparing RF classifiers to the previously described Lasso regression. 
 
 Once again, following the description scheme used in the section dedicated to Lasso, the results will be divided using the two labels \icu and \death.
 
 \subsection{Classifying the oucome Death}
-For the sake of brevity all of the results will be reported and then discussed. Since RF classifiers use all of the availalble features it is very space consuming to report a table with all of the importances for the radiomic features as well as those used in model with all the features. These two will be found in the appendix \ref{sec:RFAdditional} while those relative to clinical and radiological features will be reported here in Table \ref{tab:RFimpo}.
+For the sake of brevity all of the results will be reported and then discussed. Since RF classifiers use all of the availalble features it is very space consuming to report a table with all of the importances for the radiomic features as well as those used in the models with all the features. These two will be found in the appendix \ref{sec:RFAdditional} while those relative to clinical and radiological features will be reported here in Table \ref{tab:RFimpo}.
 
 \begin{figure}[H]
 \centering
@@ -374,7 +376,7 @@ For the sake of brevity all of the results will be reported and then discussed. 
 	\newline
   	\subfloat[][Radiological Features]{\includegraphics[width=0.50\linewidth]{Smote_Death_radiologiche.png}\label{fig:RFDeathRadiological}}
         \subfloat[][All Features]{\includegraphics[width=0.50\linewidth]{Smote_Death_all.png}\label{fig:RFDeathAll}} 
-        \caption{Confusion matrices for Random Forest cross-validated predictions after training on Synthetically oversampled data to predict \death. All of the available feature families are the reported}\label{fig:RFDeath}
+        \caption{Confusion matrices for Random Forest cross-validated predictions after training on Synthetically oversampled data to predict \death. All of the available feature families are reported}\label{fig:RFDeath}
 \end{figure}
 
 Even without looking at the ROC curves it's plain to see that the data at hand is proving to be difficult for this model. Much like before radiological features alone are useless.
@@ -484,52 +486,103 @@ All & 0.64 $\pm$ 0.09\\
 \end{tabular}
 \end{table}
 
-\subsection{Using survival analysis}
-Following the preprocessing steps delineated before a Cox Proportional-Hazard produces the results presented in Table \ref{tab:CoxResult}.
+\section{Using survival analysis}
+Following the preprocessing steps delineated before,  a Cox Proportional-Hazard produces the results presented in Table \ref{tab:CoxResult}.
+%
+%\begin{table}
+%\centering
+%\caption{Results obtained with CoxPH fitter from lifelines library\label{tab:CoxResult}}
+%\begin{adjustbox}{width=0.7\paperheight, angle=90}
+%\begin{tabular}{|lrrrrrrrrrr|}
+%\toprule
+%{} &      coef &  exp(coef) &  se(coef) &  coef lower 95\% &  coef upper 95\% &  exp(coef) lower 95\% &  exp(coef) upper 95\% &         z &         p &  -log2(p) \\
+%covariate                               &           &            &           &                 &                 &                      &                      &           &           &           \\
+%\midrule
+%Lung consolidation                     			&  0.166411 &   1.181058 &  0.142506 &       -0.112895 &        0.445717 &             0.893244 &             1.561610 &  1.167749 &  0.242908 &  2.041517 \\
+%Ground-glass                            			&  0.100946 &   1.106217 &  0.134109 &       -0.161902 &        0.363794 &             0.850524 &             1.438778 &  0.752719 &  0.451619 &  1.146822 \\
+%Crazy Paving                             			&  0.064744 &   1.066886 &  0.140817 &       -0.211253 &        0.340740 &             0.809569 &             1.405988 &  0.459771 &  0.645680 &  0.631108 \\
+%Bilateral Involvement                  			& -0.026048 &   0.974288 &  0.121990 &       -0.265144 &        0.213048 &             0.767096 &             1.237444 & -0.213524 &  0.830918 &  0.267222 \\
+%SliceThickness                          			& -0.008439 &   0.991597 &  0.164518 &       -0.330888 &        0.314010 &             0.718286 &             1.368904 & -0.051293 &  0.959092 &  0.060259 \\
+%KVP                                        			&  0.376184 &   1.456715 &  0.139983 &        0.101821 &        0.650546 &             1.107185 &             1.916587 &  2.687344 &  0.007202 &  7.117333 \\
+%XRayTubeCurrent                     			& -0.272076 &   0.761796 &  0.178915 &       -0.622743 &        0.078591 &             0.536471 &             1.081762 & -1.520699 &  0.128335 &  2.962010 \\
+%Age (years)                              			& -0.016550 &   0.983587 &  0.160470 &       -0.331065 &        0.297966 &             0.718158 &             1.347116 & -0.103132 &  0.917858 &  0.123657 \\
+%Hypertension                            			&  0.292450 &   1.339705 &  0.160211 &       -0.021557 &        0.606457 &             0.978673 &             1.833922 &  1.825407 &  0.067940 &  3.879603 \\
+%History of smoking                    			& -0.083840 &   0.919578 &  0.139121 &       -0.356512 &        0.188832 &             0.700114 &             1.207838 & -0.602641 &  0.546747 &  0.871054 \\
+%Obesity                                    			&  0.066777 &   1.069057 &  0.170581 &       -0.267556 &        0.401110 &             0.765247 &             1.493482 &  0.391469 &  0.695451 &  0.523979 \\
+%Respiratory Rate                      			& -0.010716 &   0.989341 &  0.154003 &       -0.312557 &        0.291125 &             0.731574 &             1.337932 & -0.069583 &  0.944525 &  0.082338 \\
+%Sex\_bin                                 			& -0.366086 &   0.693443 &  0.172651 &       -0.704476 &       -0.027695 &             0.494367 &             0.972685 & -2.120377 &  0.033974 &  4.879413 \\
+%Febbre                                     		  	&  0.115458 &   1.122387 &  0.139878 &       -0.158698 &        0.389614 &             0.853254 &             1.476411 &  0.825418 &  0.409134 &  1.289354 \\
+%10th intensity percentile             			&  0.324188 &   1.382908 &  0.230611 &       -0.127801 &        0.776178 &             0.880028 &             2.173151 &  1.405779 &  0.159790 &  2.645753 \\
+%Area density - aligned bounding box     	& -0.169228 &   0.844316 &  0.185602 &       -0.533001 &        0.194544 &             0.586842 &             1.214758 & -0.911781 &  0.361884 &  1.466401 \\
+%Asphericity                             			& -0.470777 &   0.624517 &  0.174449 &       -0.812691 &       -0.128863 &             0.443662 &             0.879095 & -2.698646 &  0.006962 &  7.166236 \\
+%Cluster prominence                      		& -0.011242 &   0.988821 &  0.234222 &       -0.470309 &        0.447825 &             0.624809 &             1.564905 & -0.047996 &  0.961720 &  0.056312 \\
+%Complexity                              			&  0.214330 &   1.239032 &  0.248380 &       -0.272486 &        0.701147 &             0.761484 &             2.016063 &  0.862911 &  0.388186 &  1.365179 \\
+%Global intensity peak                   		&  0.138264 &   1.148279 &  0.165033 &       -0.185195 &        0.461723 &             0.830942 &             1.586806 &  0.837795 &  0.402146 &  1.314210 \\
+%Intensity range                        			& -0.196751 &   0.821395 &  0.281701 &       -0.748875 &        0.355372 &             0.472898 &             1.426711 & -0.698441 &  0.484901 &  1.044237 \\
+%Local intensity peak                    			&  0.132819 &   1.142044 &  0.150161 &       -0.161491 &        0.427129 &             0.850875 &             1.532851 &  0.884514 &  0.376419 &  1.409589 \\
+%Number of compartments (GMM)            	&  0.197884 &   1.218821 &  0.140554 &       -0.077597 &        0.473365 &             0.925338 &             1.605387 &  1.407887 &  0.159164 &  2.651410 \\
+%Number of voxels of positive value      		&  0.436757 &   1.547680 &  0.284518 &       -0.120887 &        0.994402 &             0.886134 &             2.703107 &  1.535079 &  0.124764 &  3.002721 \\
+%Fat.surface                             			& -0.425033 &   0.653748 &  0.208060 &       -0.832823 &       -0.017242 &             0.434820 &             0.982906 & -2.042835 &  0.041069 &  4.605815 \\
+%Normalised zone distance non-uniformity 	&  0.589917 &   1.803838 &  0.242437 &        0.114750 &        1.065084 &             1.121592 &             2.901082 &  2.433282 &  0.014963 &  6.062489 \\
+%\bottomrule
+%\end{tabular}
+%\end{adjustbox}
+%\end{table}
+%
 
 \begin{table}
 \centering
 \caption{Results obtained with CoxPH fitter from lifelines library\label{tab:CoxResult}}
-\begin{adjustbox}{width=0.7\paperheight, angle=90}
-\begin{tabular}{|lrrrrrrrrrr|}
+\begin{adjustbox}{width=\linewidth}
+\begin{tabular}{|lrrrrr|}
 \toprule
-{} &      coef &  exp(coef) &  se(coef) &  coef lower 95\% &  coef upper 95\% &  exp(coef) lower 95\% &  exp(coef) upper 95\% &         z &         p &  -log2(p) \\
-covariate                               &           &            &           &                 &                 &                      &                      &           &           &           \\
+{} &      coef &  exp(coef) &  se(coef) &           p &  -log2(p) \\
+covariate                               &           &            &           &                 &               \\
 \midrule
-Lung consolidation                      &  0.166411 &   1.181058 &  0.142506 &       -0.112895 &        0.445717 &             0.893244 &             1.561610 &  1.167749 &  0.242908 &  2.041517 \\
-Ground-glass                            &  0.100946 &   1.106217 &  0.134109 &       -0.161902 &        0.363794 &             0.850524 &             1.438778 &  0.752719 &  0.451619 &  1.146822 \\
-Crazy Paving                            &  0.064744 &   1.066886 &  0.140817 &       -0.211253 &        0.340740 &             0.809569 &             1.405988 &  0.459771 &  0.645680 &  0.631108 \\
-Bilateral Involvement                   & -0.026048 &   0.974288 &  0.121990 &       -0.265144 &        0.213048 &             0.767096 &             1.237444 & -0.213524 &  0.830918 &  0.267222 \\
-SliceThickness                          & -0.008439 &   0.991597 &  0.164518 &       -0.330888 &        0.314010 &             0.718286 &             1.368904 & -0.051293 &  0.959092 &  0.060259 \\
-KVP                                     &  0.376184 &   1.456715 &  0.139983 &        0.101821 &        0.650546 &             1.107185 &             1.916587 &  2.687344 &  0.007202 &  7.117333 \\
-XRayTubeCurrent                         & -0.272076 &   0.761796 &  0.178915 &       -0.622743 &        0.078591 &             0.536471 &             1.081762 & -1.520699 &  0.128335 &  2.962010 \\
-Age (years)                             & -0.016550 &   0.983587 &  0.160470 &       -0.331065 &        0.297966 &             0.718158 &             1.347116 & -0.103132 &  0.917858 &  0.123657 \\
-Hypertension                            &  0.292450 &   1.339705 &  0.160211 &       -0.021557 &        0.606457 &             0.978673 &             1.833922 &  1.825407 &  0.067940 &  3.879603 \\
-History of smoking                      & -0.083840 &   0.919578 &  0.139121 &       -0.356512 &        0.188832 &             0.700114 &             1.207838 & -0.602641 &  0.546747 &  0.871054 \\
-Obesity                                 &  0.066777 &   1.069057 &  0.170581 &       -0.267556 &        0.401110 &             0.765247 &             1.493482 &  0.391469 &  0.695451 &  0.523979 \\
-Respiratory Rate                        & -0.010716 &   0.989341 &  0.154003 &       -0.312557 &        0.291125 &             0.731574 &             1.337932 & -0.069583 &  0.944525 &  0.082338 \\
-Sex\_bin                                 & -0.366086 &   0.693443 &  0.172651 &       -0.704476 &       -0.027695 &             0.494367 &             0.972685 & -2.120377 &  0.033974 &  4.879413 \\
-Febbre                                  &  0.115458 &   1.122387 &  0.139878 &       -0.158698 &        0.389614 &             0.853254 &             1.476411 &  0.825418 &  0.409134 &  1.289354 \\
-10th intensity percentile               &  0.324188 &   1.382908 &  0.230611 &       -0.127801 &        0.776178 &             0.880028 &             2.173151 &  1.405779 &  0.159790 &  2.645753 \\
-Area density - aligned bounding box     & -0.169228 &   0.844316 &  0.185602 &       -0.533001 &        0.194544 &             0.586842 &             1.214758 & -0.911781 &  0.361884 &  1.466401 \\
-Asphericity                             & -0.470777 &   0.624517 &  0.174449 &       -0.812691 &       -0.128863 &             0.443662 &             0.879095 & -2.698646 &  0.006962 &  7.166236 \\
-Cluster prominence                      & -0.011242 &   0.988821 &  0.234222 &       -0.470309 &        0.447825 &             0.624809 &             1.564905 & -0.047996 &  0.961720 &  0.056312 \\
-Complexity                              &  0.214330 &   1.239032 &  0.248380 &       -0.272486 &        0.701147 &             0.761484 &             2.016063 &  0.862911 &  0.388186 &  1.365179 \\
-Global intensity peak                   &  0.138264 &   1.148279 &  0.165033 &       -0.185195 &        0.461723 &             0.830942 &             1.586806 &  0.837795 &  0.402146 &  1.314210 \\
-Intensity range                         & -0.196751 &   0.821395 &  0.281701 &       -0.748875 &        0.355372 &             0.472898 &             1.426711 & -0.698441 &  0.484901 &  1.044237 \\
-Local intensity peak                    &  0.132819 &   1.142044 &  0.150161 &       -0.161491 &        0.427129 &             0.850875 &             1.532851 &  0.884514 &  0.376419 &  1.409589 \\
-Number of compartments (GMM)            &  0.197884 &   1.218821 &  0.140554 &       -0.077597 &        0.473365 &             0.925338 &             1.605387 &  1.407887 &  0.159164 &  2.651410 \\
-Number of voxels of positive value      &  0.436757 &   1.547680 &  0.284518 &       -0.120887 &        0.994402 &             0.886134 &             2.703107 &  1.535079 &  0.124764 &  3.002721 \\
-Fat.surface                             & -0.425033 &   0.653748 &  0.208060 &       -0.832823 &       -0.017242 &             0.434820 &             0.982906 & -2.042835 &  0.041069 &  4.605815 \\
-Normalised zone distance non-uniformity &  0.589917 &   1.803838 &  0.242437 &        0.114750 &        1.065084 &             1.121592 &             2.901082 &  2.433282 &  0.014963 &  6.062489 \\
+Lung consolidation                     			&  0.166411 &   1.181058 &  0.142506 &        0.242908 &  2.041517 \\
+Ground-glass                            			&  0.100946 &   1.106217 &  0.134109 &        0.451619 &  1.146822 \\
+Crazy Paving                             			&  0.064744 &   1.066886 &  0.140817 &        0.645680 &  0.631108 \\
+Bilateral Involvement                  			& -0.026048 &   0.974288 &  0.121990 &        0.830918 &  0.267222 \\
+SliceThickness                          			& -0.008439 &   0.991597 &  0.164518 &        0.959092 &  0.060259 \\
+KVP                                        			&  0.376184 &   1.456715 &  0.139983 &        0.007202 &  7.117333 \\
+XRayTubeCurrent                     			& -0.272076 &   0.761796 &  0.178915 &        0.128335 &  2.962010 \\
+Age (years)                              			& -0.016550 &   0.983587 &  0.160470 &        0.917858 &  0.123657 \\
+Hypertension                            			&  0.292450 &   1.339705 &  0.160211 &        0.067940 &  3.879603 \\
+History of smoking                    			& -0.083840 &   0.919578 &  0.139121 &         0.546747 &  0.871054 \\
+Obesity                                    			&  0.066777 &   1.069057 &  0.170581 &         0.695451 &  0.523979 \\
+Respiratory Rate                      			& -0.010716 &   0.989341 &  0.154003 &         0.944525 &  0.082338 \\
+Sex\_bin                                 			& -0.366086 &   0.693443 &  0.172651 &         0.033974 &  4.879413 \\
+Febbre                                     		  	&  0.115458 &   1.122387 &  0.139878 &         0.409134 &  1.289354 \\
+10th intensity percentile             			&  0.324188 &   1.382908 &  0.230611 &        0.159790 &  2.645753 \\
+Area density - aligned bounding box     	& -0.169228 &   0.844316 &  0.185602 &        0.361884 &  1.466401 \\
+Asphericity                             			& -0.470777 &   0.624517 &  0.174449 &         0.006962 &  7.166236 \\
+Cluster prominence                      		& -0.011242 &   0.988821 &  0.234222 &        0.961720 &  0.056312 \\
+Complexity                              			&  0.214330 &   1.239032 &  0.248380 &         0.388186 &  1.365179 \\
+Global intensity peak                   		&  0.138264 &   1.148279 &  0.165033 &         0.402146 &  1.314210 \\
+Intensity range                        			& -0.196751 &   0.821395 &  0.281701 &        0.484901 &  1.044237 \\
+Local intensity peak                    			&  0.132819 &   1.142044 &  0.150161 &        0.376419 &  1.409589 \\
+Number of compartments (GMM)            	&  0.197884 &   1.218821 &  0.140554 &         0.159164 &  2.651410 \\
+Number of voxels of positive value      		&  0.436757 &   1.547680 &  0.284518 &         0.124764 &  3.002721 \\
+Fat.surface                             			& -0.425033 &   0.653748 &  0.208060 &        0.041069 &  4.605815 \\
+Normalised zone distance non-uniformity 	&  0.589917 &   1.803838 &  0.242437 &         0.014963 &  6.062489 \\
 \bottomrule
 \end{tabular}
 \end{adjustbox}
 \end{table}
 
+\begin{figure}
+\caption{Graph that represents the coefficient values estimated by the CoxPH model with their respective 95\% confidence intervals}
+\includegraphics[width=\textwidth]{Cox_coeffs.png}
+\end{figure}
+
 As explained in section \ref{sec:SurvivalAnalysisTheory} the relevalt columns are the coeff column, that expressed percentual difference of survival, and the p column, that indicate the significance of the first value.
 It turns out that, out of the reduced variables fed to the Cox model, the most relevant are: {\scshape Sex, Asphericity, FatSurface, Normalized zone distance non-uniformity and KVP}.
-{\scshape Zone distance non uniformity} measures distribution of zone counts over the different zone distances, it is low when the count relative to the zones are equally distributed along zone distances, {\scshape Asphericity} quantifies how much the segmented region deviates from a sphere.
+
+{\scshape Zone distance non uniformity} measures distribution of zone counts over the different zone distances, it is low when the count relative to the zones are equally distributed along zone distances
+
+{\scshape Asphericity} quantifies how much the segmented region deviates from a sphere.
+
+
 In this case{\scshape Sex} and {\scshape FatSurface} and {\scshape Normalized zone distance non-uniformity} can be reasonable variables to expect, however {\scshape KVP, Asphericity} seem quite strange.
 
 A score was built automatically using the predict method of the CoxPH fitter and assigned to each patient of the dataset using the previously described cross-validated prediction procedure.
@@ -541,13 +594,13 @@ The results of this procedures are reported in Figure \ref{fig:KmCoxScore}
   	\subfloat[][Population divided according to score tertiles]{\includegraphics[width=\linewidth]{KM_Cox_groups.png}\label{fig:coxthirds}}
 	\newline
         \subfloat[][Population divided in two groups 0-66$^{th}$ percentile and 66$^{th}$ to 100$^{th}$]{\includegraphics[width=\linewidth]{KM_Coxbin.png}\label{fig:coxbin}}
-        \caption{Kaplan-Meier curves for pupulations divided using either tertiles (a) or binarized using 66$^{th}$ percentile as threshold (b) . The prediction on the whole database is obtained with the aforementioned cross-validation procedure }\label{fig:KmCoxScore}
+        \caption{Kaplan-Meier curves for pupulations divided using either tertiles in the predicted hazard by the cox model (a) or binarized using 66$^{th}$ percentile as threshold (b) . The prediction on the whole database is obtained with the aforementioned cross-validation procedure }\label{fig:KmCoxScore}
 \end{figure}
 
 It can be seen that the groups built in this ways can be used to drive some differences in survival, when binarizing the score obtained with Cox the curves also turn out to be significantly different.
 
-Finally, to better understand the data as well as the situation in the hospital,  the population was divided in two subgroups according to the date of admission. 
-The two groups were representatively called 1$^{st}$ and 2$^{nd}$ wave and the division was drawn on the 20$^{th}$ of July 2020 and the results can be seen in Figure \ref{fig:kmwaves}.\todo[inline]{Non ricordo come mai avevamo fatto la distinzione in ondate}
+Finally, in order to see if there were differences in treatment or in survival between the two waves of admission, the population was divided in two subgroups according to the date of admission. 
+The two groups were representatively called 1$^{st}$ and 2$^{nd}$ wave and the division was drawn on the 20$^{th}$ of July 2020 and the results can be seen in Figure \ref{fig:kmwaves}.
 
 \begin{figure}
 \includegraphics[width=\linewidth]{KM_ondate.png}
@@ -562,8 +615,7 @@ Probably in the first wave, when still little was known on \covid patients, more
 It's also possible that this result that has been obtained could be a symptom of subtle differences in the two \covid manifestations, as if to indicate different variants.
 Further analysis in this direction could be a followup work of this thesis.
 
-\section{Summarizing the results and further analysis}
-\todo[inline]{Forse già qessto può andare bene come conclusione?}
+\chapter{Summarizing and discussing the results; possibilities for further developement}
 Having presented all of the results obtained in this thesis it has been seen that:
 
 \begin{itemize}
@@ -576,6 +628,7 @@ This result is quite perplexing and it could have multiple causes
 
 It is very difficult to quantify what the expectations for each model were a priori, this transposes to difficulties in trying to diagnose problems in the models when considered singularly. However when combining all of the available features it's very strange that no improvement in performance can be achieved.
 This would mean that 8 clinical variables provide the exact same amount of information as the total $\sim$200 features most of which derived from images which, at least ideally, contain much more accurate information. 
+
 One could surmise that the analysis methods have been implemented in an incorrect way, yet when two methods implemented differently and separately obtain the same result it reinforces the idea that the problem lies somewhere before the analysis.
  All of these analses started from the following hypotheses:
 
@@ -587,13 +640,17 @@ One could surmise that the analysis methods have been implemented in an incorrec
 \end{enumerate}
 
 It is very clear that the first three hypotheses are verified with a caveat, the performance of the radiomic pipeline hinges on the quality of the images and of the segmentation procedure performed on them. Since the images used in this thesis were, are and will be used by the hospital in routine processes it's close to impossible that all of them have problems, expecially because of the preliminary screening done before segmentation.
+
 A first possibility is that when trying to segment lungs affected by \textit{Sars-COVID19} the peculiar patterns developed make the task much harder then expected.
 In fact considering that the method used for this thesis relies on region growth and thresholding methods it's possible that the worst cases end up with unrepresentative segmentations.
-Another possibility is that the images are not really really representative of the situation of the patient. Since one of the prevailing properties of \textit{Sars-COVID19} is the speed with which the clinical picture of the patient can change it's possible that images taken at admission are not as informative of the final prognosis. This problem is, however, unavoidable in the setting of this thesis which has as aim the construction of a model that, exactly at admission, can discriminate between serious and easier cases.
+
+Another possibility is that the images are not really representative of the situation of the patient. Since one of the prevailing properties of \textit{Sars-COVID19} is the speed with which the clinical picture of the patient can change it's possible that images taken at admission are not as informative of the final prognosis. This problem is, however, unavoidable in the setting of this thesis which has as aim the construction of a model that, exactly at admission, can discriminate between serious and easier cases.
+
 Another possibility is that there are two or more subgroups in the patient cohort and the performance on these is widely different, determiniing an average performance below the expectations.
 To diagnose if this is the case a few dimensionality reduction techniques have been used to visualize the data and to prepare for clustering in case of need, all of the results of these procedure will be presented in the followig section.	\todo[inline]{A questo punto magari cito l'appendice con la parte di clustering quando sarà pronta}
 
 To give a qualitative idea of the situation regarding the segmentations $\sim$70 were looked at and evaluated as good, unsure or bad.\footnote{This was done on the first patients in alphabetical order which was considered to be equivalent to random since there is no reasonable motive for surnames to be correlated with segmentation quality.}
+
 Good segmentations are those in which an untrained professional could not see any problems, unsure are those in which there are small inaccuracies, such as lungs that connect in some points and the inclusion of the trachea. 
 Finally segmentation were classified as bad in cases with obvious errors, such as part of the intestine being labelled as lung, damages in the lung being labelled as outside tissue or holes in what is supposed to be lung.
 
@@ -602,10 +659,10 @@ Finally segmentation were classified as bad in cases with obvious errors, such a
   	\subfloat[][Example of segmentation classified as bad]{\includegraphics[width=\linewidth]{Bad_segm.png}\label{fig:badseg}}
 	\newline
         \subfloat[][Example of segmentation classified as dubious ]{\includegraphics[width=\linewidth]{Dubiouos_segm.jpg}\label{fig:dubseg}}
-        \caption{Example of segmentations being classified as bad (a) and dubious (b). In the first case (a) there is a clear hole in the lung which cannot be correct, in the second (b) there are small portion of outside tissue being labelled as lung as well as the whole trachea.}\label{fig:ExampleSeg}
+        \caption{Example of segmentations being classified as bad (a) and dubious (b). In the first case (a) there is a clear hole in the lung which cannot be exact, in the second (b) there are small portion of outside tissue being labelled as lung as well as the whole trachea.}\label{fig:ExampleSeg}
 \end{figure}
 
-The result of this qualitative analysis can be seen in Table \ref{tab:ContingencyTableSegm} in which the incidence of both \death and \icu labels is computed in all possible segmenation categories.
+The result of this qualitative analysis can be seen in Table \ref{tab:ContingencyTableSegm} in which the incidence of both \death and \icu labels is computed in all possible segmentation categories.
 
 \begin{table}
 \centering
@@ -625,9 +682,10 @@ ICU Admission & Death &         &      &        \\
 \end{table}
 
 This table suggests that there is large difference of very severe individuals which end up being not perfectly segmented.
-It's possible, even if unlikely, that the sample of analysed semgentations is biased in some way however, given the numbers in Table \ref{tab:ContingencyTableSegm}, it's reasonable to fear that in the most important cases, which means those that correspond to 1 labels in \death or \icu, the values of the radiomic features used in this thesis were not the best possible. 
+It's possible, even if unlikely, that the sample of analysed segmentations is biased in some way however, given the numbers in Table \ref{tab:ContingencyTableSegm}, it's reasonable to fear that in the most important cases, which means those that correspond to 1 labels in \death or \icu, the values of the radiomic features used in this thesis were not the best possible. 
 
 Another thing that can be noted is that in all models that included radiomics feature there are, among the important variables, features that quantify volumetric or shape information regarding the lung.
+
 A priori it's very difficult to imagine how lung size by itself could determine the prognosis of the patient.
 However it's possible that most of the severe cases, corresponding to the most difficult segmentation to perform, end up being associated to lung shapes that are significanlty different from almost healthy patients.
 In this light it's possible that the model is using these shape information, which is naturally unrepresentative of reality, to infer the gravity of the situation and is finding something simply because the information is the most unrealistic in the most severe cases.

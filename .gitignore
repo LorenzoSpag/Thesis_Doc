@@ -1,4 +1,5 @@
 Introduction.aux
+Introduction.log
 Appendix.aux
 Conclusions.aux
 Materials_metodologies.aux
@@ -13,3 +14,4 @@ main.out
 main.synctex.gz
 main.tdo
 main.toc
+main.pdf
