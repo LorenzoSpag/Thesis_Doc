@@ -602,7 +602,11 @@ The segmentation process generally produces a boolean mask which can be used to 
 \subsection{Radiomics}
  When the images are medical in nature and when referring to high-throughput quantitative analysis the task of finding these features fall in the realm of radiomics, which uses mathematical tools to describe properties of the images that would otherwise be unquantifiable to the human eye.
 
-The features that can be computed from images are of various types, some of them can be understood somewhat easily through intuition since they are close to what humans generally use to describe images, others are much more complex in definition and quantify more difficulty percieved properties of the image. Features can be then roughly classified in different families:
+The features that can be computed from images are of various types, some of them can be understood somewhat easily through intuition since they are close to what humans generally use to describe images, others are much more complex in definition and quantify more difficulty percieved properties of the image. 
+
+All of the features used in this work have been rigorously defined and described in \cite{IBSI} which, being born as a reference manual, covers the founding concepts of radiomics in an attempt to standardize the procedures of the field.
+
+Generally speaking features can be then roughly classified in different families:
 
 \begin{enumerate}
 \item Morphological features: These features describe only the shape of the region of interest, as such they are independent of the pixel values inside the region and hence, to be computed, require only a boolean mask of the segmented region. 

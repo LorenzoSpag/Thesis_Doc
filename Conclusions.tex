@@ -10,10 +10,16 @@ Survival analysis was used, mostly by itself, to see if the data could be divide
 
 In the first two lines of developement it was found that, in the specific case of data available for this thesis, radiomic features added no information to the clinical variables.
 This was taken as a (grim) reminder that the quality of the segmentations is very relevant in determining the results obtained by radiomics analysis and that current commercial segmentation techniques based on thresholding and region growing are not yet ready to face the problem posed by \covid pneumonia lungs.
-Some directions in which future works could start from this thesis are:
+
+However the results obtained can be looked at from another perspective.
+The method developed, which also shows potential for improvement, has shown performances on par with those obtained using clinical variables.
+This means that, especially in times of system overload due to increased accesses during a pandemic, this system could be integrated in PACS systems of the hospital so bring to attention some of the patients in worst condition.
+This, especially thanks to the objectivity of radiomics, the user-independence and, most of all, to the semi-automatic nature of the pipeline could be done on a large scale to aid in hospitals that don't have the facilities , or lack the personnel, to analyze in detail all cases.
+Finally some directions in which future works could start from this thesis are:
 
 \begin{itemize}
-\item The implementation of a \covid specific segmentation method using the vast amount of available data
+\item The implementation of a \covid specific segmentation method using the vast amount of available data, similar to what has been done in \cite{Biondi}.
+\item It would be interesting to test the pipeline, as well as the deriving models, on manually segmented CT scans to compare the results and performances.
 \item Given the statistical difference found in the survival of patients in the first and second waves, defined here as before and after 20/07/2020, it might be very interesting to investigate the causes of this finding and to prospectively continue this analysis with the data from the third wave and eventual next ones that might occur.
 \item Eventualmente se esce roba dal clustering
 \end{itemize}

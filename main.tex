@@ -75,7 +75,7 @@
 \newcommand{\covid}{\textit{Sars-COVID19} } %comando covid
 \newcommand{\death}{{\scshape Death} } %comando Morte
 \newcommand{\icu}{{\scshape ICU Admission} } %comando ICU
-\newcommand{\orsola}{\textit{Azienda ospedaliero-universitaria di Bologna - Policlinico Sant'Orsola-Malpighi} }
+\newcommand{\orsola}{\textit{IRCSS Azienda ospedaliero-universitaria di Bologna - Policlinico Sant'Orsola-Malpighi} }
 %--------------------------------------------------------------------------------------
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
@@ -84,7 +84,8 @@
 \newtheorem*{remark}{Remark}
 
 \graphicspath{ {./imgs/} }
-%\setlength\parskip{1\baselineskip} % meglio separare con l'indentazione, non con lo spazio interlinea
+
+
 %------------------------------------------------------------------------------------
 \geometry{
 	paper=a4paper, % Change to letterpaper for US letter
@@ -102,59 +103,129 @@
 %------------------------------------------------------------------------------------
 
 
+%\begin{document}
+%\title{THESIS TITLE}
+%\author{Lorenzo Spagnoli}
+%\date{19th May 2021}
+%
+%%----------------------------- Frontispiece
+%\newgeometry{margin=0.8in}
+%\begin{titlepage}
+%    \begin{center}
+%        \vspace*{0.2cm}
+%        {\fontsize{19pt}{20pt}\selectfont \textbf{Alma Mater Studiorum $\cdot$ University of Bologna}\par}
+%
+%        \par\noindent\rule{\textwidth}{.5pt}
+%        \rule[.5\baselineskip]{\textwidth}{1.5pt}
+%        \vspace{0.8cm}
+%
+%        \normalfont
+%
+%        Department of Physics and Astronomy
+%
+%        Master Degree in Physics
+%
+%        \Large
+%        \vspace{5cm}
+%        {\fontsize{22.5pt}{22.5}\textcolor{MyDarkRed}{\textbf{THESIS TITLE}}}
+%
+%
+%        \vspace{4.5cm}
+%        \begin{minipage}[t]{0.64\textwidth}
+%        \begin{flushleft}
+%        {\fontsize{16pt}{16pt}\textbf{Supervisor:} \\ \textbf{\textcolor{MyDarkRed}{Prof. Enrico Giampieri}}} \\
+%        {\fontsize{16pt}{16pt}\textbf{Co-Supervisor:} \\ \textbf{\textcolor{MyDarkRed}{Dott.sa Lidia Strigari}}}
+%        \end{flushleft}
+%        \end{minipage}
+%        \begin{minipage}[t]{0.34\textwidth}
+%        \begin{flushright} \Large
+%        \textbf{Submitted by:} \\
+%        \textbf{\textcolor{MyDarkRed}{Lorenzo Spagnoli}} \\
+%        \end{flushright}
+%        \end{minipage}\\
+%
+%        \vfill
+%        \vspace{0.3cm}
+%        \small
+%
+%        Academic Year {\textcolor{MyDarkRed} {2020-2021}}
+%    \end{center}
+%\end{titlepage}
+%\restoregeometry
+%\vspace*{5cm}
+%\begin{flushright}
+%  {\parbox{4.2cm}{\textit{Dedication...}}}
+%\end{flushright}
+
+\textwidth=450pt\oddsidemargin=0pt
 \begin{document}
-\title{THESIS TITLE}
-\author{Lorenzo Spagnoli}
-\date{19th May 2021}
-
-%----------------------------- Frontispiece
-\newgeometry{margin=0.8in}
 \begin{titlepage}
-    \begin{center}
-        \vspace*{0.2cm}
-        {\fontsize{19pt}{20pt}\selectfont \textbf{Alma Mater Studiorum $\cdot$ University of Bologna}\par}
+%
+%
+% ONCE YOU ARE FINISHED WITH YOUR CHANGES MODIFY "RED" WITH "BLACK" IN ALL \textcolor COMMENTS
+%
+%
+\begin{center}
+{{\Large{\textsc{Alma Mater Studiorum $\cdot$ University of  Bologna}}}} 
+\rule[0.1cm]{15.8cm}{0.1mm}
+\rule[0.5cm]{15.8cm}{0.6mm}
+\\\vspace{3mm}
+{\small{\bf School of Science \\
+Department of Physics and Astronomy\\
+Master Degree in Physics}}
+\end{center}
 
-        \par\noindent\rule{\textwidth}{.5pt}
-        \rule[.5\baselineskip]{\textwidth}{1.5pt}
-        \vspace{0.8cm}
+\vspace{23mm}
 
-        \normalfont
+\begin{center}\textcolor{red}{
+%
+% INSERT THE TITLE OF YOUR THESIS
+%
+{\LARGE{\bf THESIS TITLE}}\\
+}\end{center}
 
-        Department of Physics and Astronomy
+\vspace{50mm} \par \noindent
 
-        Master Degree in Physics
+\begin{minipage}[t]{0.47\textwidth}
+%
+% INSERT THE NAME OF THE SUPERVISOR WITH ITS TITLE (DR. OR PROF.)
+%
+{\large{\bf Supervisor: \vspace{2mm}\\\textcolor{black}{
+Prof. Enrico Giampieri}\\\\
+%
+% INSERT THE NAME OF THE CO-SUPERVISOR WITH ITS TITLE (DR. OR PROF.)
+%
+% IF THERE ARE NO CO-SUPERVISORS REMOVE THE FOLLOWING 5 LINES
+%
+\textcolor{black}{
+\bf Co-supervisor: (optional)
+\vspace{2mm}
+Dr. Lidia Strigari\\\\}}}
+\end{minipage}
+%
+\hfill
+%
+\begin{minipage}[t]{0.47\textwidth}\raggedleft \textcolor{black}{
+{\large{\bf Submitted by:
+\vspace{2mm}\\
+%
+% INSERT THE NAME OF THE GRADUAND
+%
+\textcolor{black}{
+Lorenzo Spagnoli}}}
+}
+\end{minipage}
 
-        \Large
-        \vspace{5cm}
-        {\fontsize{22.5pt}{22.5}\textcolor{MyDarkRed}{\textbf{THESIS TITLE}}}
+\vspace{40mm}
 
+\begin{center}
+%
+% INSERT THE ACADEMIC YEAR
+%
+Academic Year \textcolor{black}{ 2020/2021}
+\end{center}
 
-        \vspace{4.5cm}
-        \begin{minipage}[t]{0.64\textwidth}
-        \begin{flushleft}
-        {\fontsize{16pt}{16pt}\textbf{Supervisor:} \\ \textbf{\textcolor{MyDarkRed}{Prof. Enrico Giampieri}}} \\
-        {\fontsize{16pt}{16pt}\textbf{Co-Supervisor:} \\ \textbf{\textcolor{MyDarkRed}{Dott.sa Lidia Strigari}}}
-        \end{flushleft}
-        \end{minipage}
-        \begin{minipage}[t]{0.34\textwidth}
-        \begin{flushright} \Large
-        \textbf{Submitted by:} \\
-        \textbf{\textcolor{MyDarkRed}{Lorenzo Spagnoli}} \\
-        \end{flushright}
-        \end{minipage}\\
-
-        \vfill
-        \vspace{0.3cm}
-        \small
-
-        Academic Year {\textcolor{MyDarkRed} {2020-2021}}
-    \end{center}
 \end{titlepage}
-\restoregeometry
-\vspace*{5cm}
-\begin{flushright}
-  {\parbox{4.2cm}{\textit{Dedication...}}}
-\end{flushright}
 
 \thispagestyle{empty}
 %\newpage
@@ -178,7 +249,9 @@ Following a first introductiory chapter in the second chapter a basic theoretica
 The third is going to be a report of the results and finally some conclusions will be derived from the previously presented results.
 It will be concluded that the segmentation and feature extraction step is of pivotal importance in driving the performance of the predictions.
 In fact, in this thesis, it seems that the information from the images adds no significant predictive power to that derived from the clinical data.
-This can be taken as a symptom that the more complex \covid cases are still too difficult to be segmented automatically, or semi-automatically by untrained personnel, which will lead to counter-intuitive results further down the analysis pipeline.
+This can be interpreted in two ways: first it can be taken as a symptom that the more complex \covid cases are still too difficult to be segmented automatically, or semi-automatically by untrained personnel, which will lead to counter-intuitive results further down the analysis pipeline.
+Secondly it can be taken to show that the performance of clinical variables can be reached by radiomic features alone in a semi-automatic pipeline, which could aid in reducing the workload imposed on medical professionals in case of pandemic.
+
 
 \end{abstract}
 %-------------------------------------INDEX

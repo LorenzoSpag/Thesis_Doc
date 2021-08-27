@@ -1,29 +1,100 @@
 \chapter{Materials and methodologies}\label{cap: Material_method}
 In this section there's going to be an explanation of the dataset as well as instruments and methodologies used to analyze it's properties, as such the first step is going to be an in depth discussion of the data available and a general overview of the final use. The following step is going to be a description of the preliminary work done to the data itself and to the results of this preliminary analysis in order to select the important features. The final step of this chapter is going to be an explanation of the methods used to derive the final results and to evaluate them.
 
+Worth noting that the data has been collected and used with the approvation of the ethical commettee.
+
 
 \section{Data and objective}
 \label{chap:freefree}
 The objective of this thesis will be to compare how different methods perform in predicting clinical outcomes in covid patients, while also determining if different kind of input data imply different performances of the same methods.
 %The main focus is going to be on clinical images, i.e. lung CTs, used in conjunction with clinical and laboratory labels which are obtainable as soon as the patient is admitted in the hospital facilities. All clinical images are going to be analysed through the lens of radiomics while all clinical labels are provided as is by clinical professionals.
-All images are non segmented, as such all of them have been semi-automatically segmented via a new software being tested in the medical physics department called \textit{Sophia Radiomics}  which seems to be built around region growth algorithm mixed with thresholding. 
+All images are non segmented, as such all of them have been semi-automatically segmented via a new software being tested in the medical physics department called \textit{Sophia Radiomics} \cite{Sophiarad} which seems to be built around region growth algorithm mixed with thresholding. 
 
-Statistical analysis are going to be performed mainly in python using libraries such as scikit-learn, pandas, numpy, scipy while the graphical part of the analysis is done with either seaborn or matplotlib.
+Statistical analyses have been performed in python using libraries such as scikit-learn \cite{sklearn} and imblearn
+\footnote{This library is born to handle cases of imbalanced learning and offers functions and objects compatible with the API offered by scikit-learn.} \cite{imblearn}, pandas \cite{pandas}, numpy \cite{numpy}, scipy \cite{scipy}, statsmodels\cite{statsmodels}.
 
-The starting dataset was a list of all the patients that, from 02/2020 to 05/2021, were hospitalized as COVID-19 positive inside the facilities of \textit{Azienda ospedaliero-universitaria di Bologna - Policlinico Sant'Orsola-Malpighi}. 
+Lifelines \cite{lifelines} has been used for survival analysis and combined to scikit-learn by coding wrappers that made compatible the functions from lifelines with the API of scikit-learn.
+
+Finally all of the management of the graphs obtained as part of the analysis has been performed with either seaborn\cite{seaborn} or matplotlib\cite{matplotlib}.
+
+
+The starting dataset was a list of all the patients that, from 02/2020 to 05/2021, were hospitalized as COVID-19 positive inside the facilities of \orsola. 
 
 As far as exclusion criteria go the main deciding factors, except unavailability of the feature related to the patient, were visibly damaged and lower quality images, for example images with cropped lungs. The first set of selection criteria were:
 
 \begin{itemize}
-\item All patients that had undergone a CT exam which was retrievable via the PACS (Picture Archiving and Communication System) of \textit{Azienda ospedaliero-universitaria di Bologna - Policlinico Sant'Orsola-Malpighi}
-\item All patients that had a all of the clinical and laboratory features, listed in fig:\ref{fig:ClinicalFeatures}, suggested by medical professionals.
+\item All patients that had undergone a CT exam which was retrievable via the PACS (Picture Archiving and Communication System) of \orsola
+\item All patients that had a all of the clinical and laboratory features, listed in fig:\ref{tab:ClinicalFeatures}, which have been found informative of the outcome during the clinical practice.
 \item Since all patient had at least 2 CT exams only the closest date to the hospital admission date was taken. When more exams were performed on the same date all of them were initially taken. At first only chest or abdomen CTs were taken regardless of the acquisition protocol used.
 \end{itemize}
 
-\begin{figure}[H]
-  		\includegraphics[width=1\textwidth]{Clinical_Feature_Description.png}
-        \caption{Description of clinical label dataset, in sets of four columns there's the clinical feature, the total count of occurences, the percentage over the final dataset and the possible values the feature could take \todo[inline]{usare excel come immagine non è il massimo}\label{fig:ClinicalFeatures}}
-\end{figure}
+In tables \ref{tab:ClinicalFeatures},\ref{tab:RadiologicalFeatures} and  \ref{tab:ClinicalLabels} are reported all of the variables available for all patients with some information on their distribution.
+These have been divided in: Clinical features used for the models Table \ref{tab:ClinicalFeatures}, variables determined by radiologist by examining the CT scan of the patient, called Radiological fetures Table \ref{tab:RadiologicalFeatures}.
+Finally in Table \ref{tab:ClinicalLabels} are contained all the variables that represent the outcome of the illness and not a property of the patient at admission which is why these won't be used in building the predictive models.
+
+\begin{table}[htbp]
+\caption{Clinical variables used in the analysis. These are all very self-explanatory \label{tab:ClinicalFeatures}}
+\centering
+\begin{tabular}{lrrrrrr}
+\toprule
+Variable name &  count &       mean &        std &   min &   median &   max \\
+\midrule
+Age (years)        &  436 &  67.45 &  15.08 &  21 &  68.50 &  99 \\
+Respiratory Rate   &  436 &  21.24 &   6.80 &  10 &  20 &  98 \\
+\hline
+&&&&&&\\
+Variable name &  total &  unique &  top &  top count & & \\ 
+\hline
+Hypertension       &    436 &       2 &    1 &   241 \\
+History of smoking &    436 &       2 &    0 &   347 \\
+Obesity            &    436 &       2 &    0 &   363 \\
+Sex            &    436 &       2 &    Male &   286 \\
+Fever             &    436 &       2 &    1 &   251 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\begin{table}[htbp]
+\caption{Radiological features, boolean expression of the findings of radiologists upon close examination of the CT scan of the patient. 1 indicated that the damage was found, 0 otherwise \label{tab:RadiologicalFeatures}}
+\centering
+\begin{tabular}{lrrrr}
+\toprule
+Variable name &  count &  unique &  top &  freq \\
+\midrule
+Lung consolidation    &    436 &       2 &    1 &   225 \\
+Ground-glass          &    436 &       2 &    1 &   382 \\
+Crazy Paving          &    436 &       2 &    0 &   336 \\
+Bilateral Involvement &    436 &       2 &    1 &   403 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\caption{Clinical variables that indicate the treatment used for the patient, these cannot be used in building the model because they mostly represent outcomes and not "a priori" knowledge available on the patient \label{tab:ClinicalLabels}}
+\centering
+\begin{tabular}{lrrrr}
+\toprule
+Variable name &  count &  unique &  top &  top count \\
+\midrule
+DNR                              &    436 &       2 &    0 &   413 \\
+ICU Admission                    &    436 &       2 &    0 &   359 \\
+Sub-intesive care unit admission &    436 &       2 &    0 &   336 \\
+Death                            &    436 &       2 &    0 &   358 \\
+O2-therapy                       &    436 &       2 &    1 &   370 \\
+cPAP                             &    436 &       2 &    0 &   367 \\
+Bilateral Involvement            &    436 &       2 &    1 &   403 \\
+Respiratory Failure              &    436 &       2 &    0 &   231 \\
+NIV                              &    436 &       2 &    0 &   371 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+%\begin{figure}[H]
+%  		\includegraphics[width=1\textwidth]{Clinical_Feature_Description.png}
+%        \caption{Description of clinical label dataset, in sets of four columns there's the clinical feature, the total count of occurences, the percentage over the final dataset and the possible values the feature could take \todo[inline]{usare excel come immagine non è il massimo}\label{fig:ClinicalFeatures}}
+%\end{figure}
 
 %Most clinical features are pretty self-explanatory, for those that were obscure to me as an outsider and not otherwise explained in \ref{Clinical_Covid_Manifestations}, I'm going to provide a very simple explanation:
 Most clinical features are pretty self-explanatory, a brief explanation will be provided for those that could appear obscure to an outsider, and that were not explained in \ref{Clinical_Covid_Manifestations}.
@@ -42,28 +113,52 @@ These scores differ in how much they add for each condition and the set of sympt
 		\item CURB65: \textbf{C}onfusion, blood \textbf{U}rea Nitrogen or Urea level, \textbf{R}espiratory Rate, \textbf{B}lood pressure, age over \textbf{65} years. This score is specific for pneumonia severity \cite{CURB65}
 		\item SOFA:  \textbf{S}equential  \textbf{O}rgan  \textbf{F}ailure  \textbf{A}ssessment score. Considers various quantities from all systems to assess the overall state of the patient, PaO$_2$/FiO$_2$\footnote{Very unrefined yet widely used indicator for lung disfunction} for respiratory system, Glasgow Coma scale\footnote{GCS for short, proposed in 1974 by Graham Teasdale and Bryan Jennet. Evaluates what kind of stymulus is necessary to obtain motor and verbal reactions in the patient as well as what's necessary for the patient to open their eyes} for nervous, mean pressure for cardiovascular, Bilirubin levels for liver, platelets for coagulation and creatine for kidneys \cite{SOFA}
 		\item qSOFA:  \textbf{q}uick SOFA. Only considers pressure, high respiratory rate and the low values in the Glasgow scale.
+			\begin{table}[htbp]
+			\caption{All the available clinical scores, generally computed adding 1 or 0 by looking if values of laboratory exams are above or below a certain threshold \label{tab:ClinicalScores}}
+\centering
+			\begin{tabular}{lrrrr}
+			\toprule
+			Variable name &  count &  unique &  top &  top count \\
+			\midrule
+			qSOFA               &    436 &       4 &    0 &   225 \\
+			SOFA score          &    436 &       9 &    2 &   143 \\
+			CURB65              &    436 &       5 &    1 &   143 \\
+			MEWS score          &    436 &       8 &    1 &   143 \\
+			MulBSTA score total &    436 &      17 &    9 &   110 \\
+			\bottomrule
+			\end{tabular}
+			\end{table}
 	\end{enumerate}
 \end{enumerate}
 
-\begin{figure}
-\includegraphics[width=\textwidth]{Data_flowchart.png}
+Finally it's also useful to see a distribution of the days of permanence in the Hospital, abbreviated {\scshape dOS} for \textbf{d}ays \textbf{O}f \textbf{H}ospitalzation, which can be seen in Figure \ref{fig:dOSDistr}.
+
+\begin{figure}[htbp]
+\includegraphics[width=\textwidth]{Hospitalization_days_distribution.png}
+\caption{Distribution of the days of hospitalization for the patients included in the study.\label{fig:dOSDistr}}
+\end{figure}
+
+\begin{figure}[htbp]
+\includegraphics[width=\textwidth, height = 20cm]{Data_flowchart.png}
 \caption{Flowchart of the patient selection procedure \label{fig:dataSelFlowchart}}
 \end{figure}
 
-This procedure produced a starting cohort of $\sim$700 patients which, having all various images available, created a huge set of $\sim$2200 CT scans. Since this analysis is focused on radiomics there is an evident need for as much consistency as possible in the images analysed. For this reason all CTs taken with medium of contrast were excluded, since they would have brightnesses not indicative of the disease, and for every patient only images with thin slice reconstruction were considered. 
+This procedure, summarized and represented in Figure \ref{fig:dataSelFlowchart}, produced a starting cohort of $\sim$700 patients which, having all various images available, created a huge set of $\sim$2200 CT scans. Since this analysis is focused on radiomics there is an evident need for as much consistency as possible in the images analysed. For this reason all CTs taken with medium of contrast were excluded, since they would have brightnesses not indicative of the disease, and for every patient only images with thin slice reconstruction were considered. 
 
 More specifically only images with slice thickness of 1 o 1.25 mm
 \footnote{This meant that only exams called 'Parenchima' or  'HRCT' were included. Throughout the internship 'parenchima' has always appeared in contrast with 'mediastino'. These two keywords are used in the phase of reconstruction of the raw data to identify reconstructions with specific properties. Parenchima is used for finer reconstruction of lung specifically, the requiring professional uses these images to look for small nodules with very high contrast and, to do so, the reconstruction allows some noise to achieve the best resolution possible. Mediastino is used in the lung, as well as other regions, to look for bigger lesions but with low contrast. As such the 'mediastino' reconstruction compromises a worse spatial resolution for a better display of contrast, visually speaking the first images are more coarse and noisy while the second are smoother. It should be noted that even with the same identifier, be it HRCT parenchima or others, the machines on which the exams were made were different and had different proprietary convolutional kernels used for reconstruction.} 
 along the z-axis were taken into consideration, which meant excluding all the 1.5,2,2.5 and 5 mm slice thicknesses.
 
-All images were segmented using a tool provided by \orsola.
-\todo[inline]{Per dott.ssa Strigari: Metto il nome del programma? Va citato in qualche modo particolare?}
+All images were segmented using SOPHiA DDM for radiomics \cite{Sophiarad} which is a tool provided by \orsola.
+This tool was chosen as one of the most IBSI-compliant available softwares, obtained as result in \cite{IBSI-Compliance}.
 
-Overall this left the final study cohort to be composed of 434 patients, all descriptions and analyses are related to this cohort.
+Overall this left the final study cohort to be composed of 436 patients, all descriptions and analyses are related to this cohort.
 
 The same software used for segmentation allowed the extraction of the radiomic features form the segmented volumes, even if it did not allow the extraction of the segmentation masks nor any changes in the segmentation parameters. For this reason all the image analysis in this thesis is reliant on said software which has been treated as a black-box.
 
-So, having segmented all the images and extracted all the features supported in the software, the next step is the definition of the actual analysis pipeline. The whole dataset was comprised of $\sim$200 features, which were divided in three subgroups as follows:
+So, having segmented all the images and extracted all the features supported in the software, the next step is the definition of the actual analysis pipeline. The whole dataset was comprised of $\sim$200 features, their distribution has been presented in Tables\ref{tab:ClinicalFeatures},\ref{tab:RadiologicalFeatures} and \ref{tab:ClinicalLabels}.
+
+From now on all of the features used for model construction will be considered divided in three subgroups as follows:
 
 \begin{enumerate}
 \item Clinical: All these features are derived from the admission procedure in the hospital.
