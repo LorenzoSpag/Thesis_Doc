@@ -397,7 +397,7 @@ NUMBER = {12},
 ARTICLE-NUMBER = {5438},
 URL = {https://www.mdpi.com/2076-3417/11/12/5438},
 ISSN = {2076-3417},
-ABSTRACT = {Background: COVID assessment can be performed using the recently developed individual risk score (prediction of severe respiratory failure in hospitalized patients with SARS-COV2 infection, PREDI-CO score) based on High Resolution Computed Tomography. In this study, we evaluated the possibility of automatizing this estimation using semi-supervised AI-based Radiomics, leveraging the possibility of performing non-supervised segmentation of ground-glass areas. Methods: We collected 92 from patients treated in the IRCCS Sant’Orsola-Malpighi Policlinic and public databases; each lung was segmented using a pre-trained AI method; ground-glass opacity was identified using a novel, non-supervised approach; radiomic measurements were collected and used to predict clinically relevant scores, with particular focus on mortality and the PREDI-CO score. We compared the prediction obtained through different machine learning approaches. Results: All the methods obtained a well-balanced accuracy (70%) on the PREDI-CO score but did not obtain satisfying results on other clinical characteristics due to unbalance between the classes. Conclusions: Semi-supervised segmentation, implemented using a combination of non-supervised segmentation and feature extraction, seems to be a viable approach for patient stratification and could be leveraged to train more complex models. This would be useful in a high-demand situation similar to the current pandemic to support gold-standard segmentation for AI training.},
+ABSTRACT = {Background: COVID assessment can be performed using the recently developed individual risk score (prediction of severe respiratory failure in hospitalized patients with SARS-COV2 infection, PREDI-CO score) based on High Resolution Computed Tomography. In this study, we evaluated the possibility of automatizing this estimation using semi-supervised AI-based Radiomics, leveraging the possibility of performing non-supervised segmentation of ground-glass areas. Methods: We collected 92 from patients treated in the IRCCS Sant’Orsola-Malpighi Policlinic and public databases; each lung was segmented using a pre-trained AI method; ground-glass opacity was identified using a novel, non-supervised approach; radiomic measurements were collected and used to predict clinically relevant scores, with particular focus on mortality and the PREDI-CO score. We compared the prediction obtained through different machine learning approaches. Results: All the methods obtained a well-balanced accuracy (70\%) on the PREDI-CO score but did not obtain satisfying results on other clinical characteristics due to unbalance between the classes. Conclusions: Semi-supervised segmentation, implemented using a combination of non-supervised segmentation and feature extraction, seems to be a viable approach for patient stratification and could be leveraged to train more complex models. This would be useful in a high-demand situation similar to the current pandemic to support gold-standard segmentation for AI training.},
 DOI = {10.3390/app11125438}
 }
 
@@ -540,4 +540,185 @@ DOI = {10.3390/app11125438}
   number={40},
   pages={1317},
   year={2019}
+}
+
+@article{Lasso,
+  title={Regression shrinkage and selection via the lasso},
+  author={Tibshirani, Robert},
+  journal={Journal of the Royal Statistical Society: Series B (Methodological)},
+  volume={58},
+  number={1},
+  pages={267--288},
+  year={1996},
+  publisher={Wiley Online Library}
+}
+
+@article{Ridge,
+ ISSN = {00401706},
+ URL = {http://www.jstor.org/stable/1271436},
+ abstract = {In multiple regression it is shown that parameter estimates based on minimum residual sum of squares have a high probability of being unsatisfactory, if not incorrect, if the prediction vectors are not orthogonal. Proposed is an estimation procedure based on adding small positive quantities to the diagonal of X′X. Introduced is the ridge trace, a method for showing in two dimensions the effects of nonorthogonality. It is then shown how to augment X′X to obtain biased estimates with smaller mean square error.},
+ author = {Arthur E. Hoerl and Robert W. Kennard},
+ journal = {Technometrics},
+ number = {1},
+ pages = {80--86},
+ publisher = {[Taylor & Francis, Ltd., American Statistical Association, American Society for Quality]},
+ title = {Ridge Regression: Biased Estimation for Nonorthogonal Problems},
+ volume = {42},
+ year = {2000}
+}
+
+@article{elasticNet,
+    author = {Hui Zou and Trevor Hastie},
+    title = {Regularization and variable selection via the Elastic Net},
+    journal = {Journal of the Royal Statistical Society, Series B},
+    year = {2005},
+    volume = {67},
+    pages = {301--320}
+}
+
+@article{SVM,
+  title={Support-vector networks},
+  author={Cortes, Corinna and Vapnik, Vladimir},
+  journal={Machine learning},
+  volume={20},
+  number={3},
+  pages={273--297},
+  year={1995},
+  publisher={Springer}
+}
+
+@article{ANN,
+  title={A logical calculus of the ideas immanent in nervous activity},
+  author={McCulloch, Warren S and Pitts, Walter},
+  journal={The bulletin of mathematical biophysics},
+  volume={5},
+  number={4},
+  pages={115--133},
+  year={1943},
+  publisher={Springer}
+}
+
+@article{DecisionTree,
+  title={Top 10 algorithms in data mining},
+  author={Wu, Xindong and Kumar, Vipin and Quinlan, J Ross and Ghosh, Joydeep and Yang, Qiang and Motoda, Hiroshi and McLachlan, Geoffrey J and Ng, Angus and Liu, Bing and Philip, S Yu and others},
+  journal={Knowledge and information systems},
+  volume={14},
+  number={1},
+  pages={1--37},
+  year={2008},
+  publisher={Springer}
+}
+
+@inproceedings{RandomForest,
+  title={Random decision forests},
+  author={Ho, Tin Kam},
+  booktitle={Proceedings of 3rd international conference on document analysis and recognition},
+  volume={1},
+  pages={278--282},
+  year={1995},
+  organization={IEEE}
+}
+
+@article{t-SNE,
+  added-at = {2015-06-19T12:07:15.000+0200},
+  author = {van der Maaten, Laurens and Hinton, Geoffrey},
+  biburl = {https://www.bibsonomy.org/bibtex/28b9aebb404ad4a4c6a436ea413550b30/lopusz_kdd},
+  interhash = {370ba8b9e1909b61880a6f47c93bcd49},
+  intrahash = {8b9aebb404ad4a4c6a436ea413550b30},
+  journal = {Journal of Machine Learning Research},
+  keywords = {dimensionality_reduction tSNE visualization},
+  pages = {2579--2605},
+  timestamp = {2015-08-19T15:19:11.000+0200},
+  title = {Visualizing Data using {t-SNE} },
+  url = {http://www.jmlr.org/papers/v9/vandermaaten08a.html},
+  volume = 9,
+  year = 2008
+}
+
+
+@article{radscore,
+author = {Qiu, Jiajun and Peng, Shaoliang and Yin, Jin and Wang, Junren and Jiang, Jingwen and Li, Zhenlin and Song, Huan and Zhang, Wei},
+year = {2021},
+month = {01},
+pages = {},
+title = {A Radiomics Signature to Quantitatively Analyze COVID-19-Infected Pulmonary Lesions},
+volume = {13},
+journal = {Interdisciplinary Sciences: Computational Life Sciences},
+doi = {10.1007/s12539-020-00410-7}
+}
+
+@article{discrimInfluenza,
+author = {Huang, Yilong and Zhang, Zhenguang and Liu, Siyun and Li, Xiang and Yang, Yunhui and Ma, Jiyao and Li, Zhipeng and Zhou, Jialong and Jiang, Yuanming and He, Bo},
+year = {2021},
+month = {02},
+pages = {},
+title = {CT-based radiomics combined with signs: a valuable tool to help radiologist discriminate COVID-19 and influenza pneumonia},
+volume = {21},
+journal = {BMC Medical Imaging},
+doi = {10.1186/s12880-021-00564-w}
+}
+@article{severity,
+author = {Xie, Zongyu and Sun, Haitao and Wang, Jian and Xu, He and Li, Shuhua and Zhao, Cancan and Gao, Yuqing and Wang, Xiaolei and Zhao, Tongtong and Duan, Shaofeng and Hu, Chunhong and Ao, Weiqun},
+year = {2021},
+month = {06},
+pages = {},
+title = {A novel CT-based radiomics in the distinction of severity of coronavirus disease 2019 (COVID-19) pneumonia},
+volume = {21},
+journal = {BMC Infectious Diseases},
+doi = {10.1186/s12879-021-06331-0}
+}
+
+@article{MLcovid,
+author = {Yue, Hongmei and Yu, Qian and Liu, Chuan and Huang, Yifei and Jiang, Zicheng and Shao, Chuxiao and Zhang, Hongguang and Ma, Baoyi and Wang, Yuan-Cheng and Xie, Guanghang and Zhang, Haijun and Li, Xiaoguo and Kang, Ning and Meng, Xiangpan and Huang, Shan and Xu, Dan and Lei, Junqiang and Huang, Huihong and Yang, Jie and Qi, Xiaolong},
+year = {2020},
+month = {07},
+pages = {859-859},
+title = {Machine learning-based CT radiomics method for predicting hospital stay in patients with pneumonia associated with SARS-CoV-2 infection: a multicenter study},
+volume = {8},
+journal = {Annals of Translational Medicine},
+doi = {10.21037/atm-20-3026}
+}
+
+@article{MLprognostic,
+author = {Shiri, Isaac and Sorouri, Majid and Geramifar, Parham and Nazari, Mostafa and Abdollahi, Mohammad and Salimi, Yazdan and Khosravi, Bardia and Askari, Dariush and Aghaghazvini, Leila and Hajianfar, Ghasem and Kasaeian, Amir and Abdollahi, Hamid and Arabi, Hossein and Rahmim, Arman and Radmard, Amir and Zaidi, Habib},
+year = {2021},
+month = {03},
+pages = {104304},
+title = {Machine Learning-based Prognostic Modeling using Clinical Data and Quantitative Radiomic Features from Chest CT Images in COVID-19 Patients},
+volume = {132},
+journal = {Computers in Biology and Medicine},
+doi = {10.1016/j.compbiomed.2021.104304}
+}
+
+@article{severityassessment,
+author = {Tang, Zhenyu and Zhao, Wei and Xie, Xingzhi and Zhong, Zheng and Shi, Feng and Liu, Jun},
+year = {2020},
+month = {10},
+pages = {},
+title = {Severity assessment of COVID-19 using CT image features and laboratory indices},
+volume = {66},
+journal = {Physics in medicine and biology},
+doi = {10.1088/1361-6560/abbf9e}
+}
+
+@article{covidscreening,
+author = {Rezaeijo, Seyed and Abedi-Firouzjah, Razzagh and Ghorvei, Mohammadreza and Sarnameh, Samad},
+year = {2021},
+month = {02},
+pages = {1-15},
+title = {Screening of COVID-19 based on the extracted radiomics features from chest CT images},
+volume = {29},
+journal = {Journal of X-Ray Science and Technology},
+doi = {10.3233/XST-200831}
+}
+
+@article{accuratediagnosis,
+author = {Liu, Huanhuan and Ren, Hua and Wu, Zengbin and Xu, He and Zhang, Shuhai and Li, Jinning and Hou, Liang and Chi, Runmin and Zheng, Hui and Chen, Yanhong and Duan, Shaofeng and Li, Huimin and Xie, Zongyu and Wang, Dengbin},
+year = {2021},
+month = {01},
+pages = {},
+title = {CT radiomics facilitates more accurate diagnosis of COVID-19 pneumonia: compared with CO-RADS},
+volume = {19},
+journal = {Journal of Translational Medicine},
+doi = {10.1186/s12967-020-02692-3}
 }
