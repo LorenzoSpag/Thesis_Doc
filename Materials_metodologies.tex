@@ -226,10 +226,90 @@ The idea of resorting to Kaplan-Meier curves was also used with other single var
 Finally a few dimensionality reduction techniques, namely the unsupervised PCA\cite{PCA} and Umap \cite{UMAP} and the supervised PLS-DA\cite{PLSDA}, have been used to understand better the state of the data and further explain some of the obtained results.
 These peculiar analyses will be reported in the Appendix.
 
-This concludes the discussion on the methodologies used and leads perfectly in the discussion of the results.
+\subsection{Synthetic Minority Oversampling TEchnique (SMOTE)}
+In the context of this thesis it will become necessary to take care of balancing the input dataset, to do so one could randomly oversample, by duplicating instances in the minority class, or undersample, by removing instances within the majority class. The choice that was made was to use Synthetic Minority Oversampling TEchnique (SMOTE)\cite{SMOTE} to rebalance the dataset.
+
+This technique considers a user-defined number of nearest neighbours of randomly chosen points in the minority class and populates the feature space by generating samples on the lines that connect the chosen sample with a random neighbour\footnote{This procedure is formally called convex combination, which is a peculiar linear combination of vector in which the coefficients sum to one. Particularly all convex combination of two points lay on the line that connects them, and for three point lay within the triangle that has them as vertices}.
 
 
+\begin{figure}[H]
+		\centering
+  		\includegraphics[width=0.8\textwidth]{SMOTE.png}
+        \caption{Example of SMOTE with 5 nearest neighbours}
+\end{figure}
 
+Worth noting that this has been done using the library imblearn in python \cite{imblearn}. To preview some of the data, looking at the performance of a vanilla random forest implementation with all preset parameters, the effect of the position of oversamplling is the following.
+
+
+\begin{figure}[H]
+\centering
+  	\subfloat[][without smote]{\includegraphics[width=0.50\linewidth]{RF_Death.png}\label{fig:smoteless}}
+        \subfloat[][SMOTE-before train-test split]{\includegraphics[width=0.503\linewidth]{RF_Smote_Death.png}\label{fig:smote_before}}
+\centering \newline
+	\subfloat[SMOTE after train-test split]{\includegraphics[width=0.50\linewidth]{Death_Smote.png}\label{fig:smote_after}}
+    \caption{Confusion matrix used to evaluate performance done using datasets with various combinations of SMOTE position}\label{fig:smote_after}
+\end{figure}
+
+It's clear to see that in unbalanced case, like the one analysed in this thesis in which the label classes are 15$\%$-85$\%$, oversampling the data always determines an improvement in performance. However performing it in the wrong place it makes a far too optimistic evaluation of the performance and also adds false datapoints even in the testing phase. 
+
+This highlights the point that all preprocessing should be done with care when train-test splitting the data, specifically it's very important that the oversampling, as well as all other data handling, be performed after the train-test split of the data on the train data alone. 
+
+What's being observed is a leakage phenomenon, which consists in the testing data containing information regarding the training data and viceversa. In practice, especially because the points are created as convex combination of existing data\footnote{Note that this would happen with any other over/under-sampling methods, such as random oversampling which randomly duplicates data points}, when the synthetically generated points end up in the testing they depend, at least partially, on the data used in the training procedure.
+
+
+\subsection{Kaplan-Meier(KM) curves and log-rank test}
+Kaplan-Meier curves can be built following a well defined procedure: 
+
+The data is separated in sets using the label of the groups that need to be used then the patients in each set are ordered in ascending order of permanence in the study, which is the time variable.
+
+At each failure time T$_f$ the conditional probability of surviving past T$_f$ given availability is computed as ratio of subjects left in the study right after T$_f$ divided by the number of availabe people at that same time
+\footnote{Effectively this corresponds to dividing thenumber of available minus dead individuals by the number available at each timestep}
+Note that this takes in account also the possible censoring by reducing the number of available people at times of event, these censoring event will be drawn on the curve using ticks at the corresponding time.
+The survival probability is computed at each event time as the product of the probability at the previous failure time with the one computed as explained before at the time of the current event.
+
+Let's consider an imaginary study with 4 patients with one failing at week one, one dropping out at week 2, one failing at week 3 and one surviving after 4.
+
+The KM curve will start at 1, at week one it will drop at $\frac{3}{4}$ since 3 people will be alive out of 4 available, at week two no drop will happen but a tick will be put on the curve and, finally at week 3 it will drop at value $\frac{3}{4}*\frac{1}{2}$ since only one out of the two available will survive.
+
+As a rule of thumb, two Kaplan-Meier curves that do not intersect at any point indicate good separation among the groups, this can then be formally evaluated performing a log-rank test on the data used to build the curves.
+
+The null hypothesis of this specific test is that there is no overall difference between the two survival curves \cite{SurvivalAnsalysis} which can be tested with the log-rank test.
+This basically consist in performing a large-sample $\chi^2$ test that uses the ordered failure times for the entire dataset as expected values vs those observed in the subsets. 
+From this testing procedure a p-value can be obtained to reject the null hypothesis, for more in depth information refer to \cite{SurvivalAnalysis}. 
+
+\subsection{Cox Proportional-Hazard (CoxPH) model}
+As it was mentioned before the shape of the hazard curve, an hence of the survival curve, implies a specific shape for the model used to describe it.
+Some of the possible models are increasing Weibull, decreasing Weibull, Exponential and log-normal.
+All of these models are parametric because known the parameters the distribution of the outcome can be known. 
+
+When it comes to Cox PH model the distribution cannot be known because part of the model, namely the baseline hazard, remains unestimated.
+
+Generally the data has an optimal parametric model that describes it and, if this information were known, it would make perfect sense to use said function.
+However this knowledge is not always obtainable, which give Cox PH model an occasion to shine.
+Cox Proprotional Hazard models can be described as robust in the sense that the results that it gives will approximate those obtained by the correct model, without needing to know which of the model needs to be used \cite{SurvivalAnalysis}.
+ 
+Cox PH models rely on the use of the formula in Equation \ref{eq:CoxPHform} to express the risk of a patient with a set of k characteristic variables \textbf{X} at time t.
+
+\begin{equation}\label{eq:CoxPHform}
+h(t,\textbf{X}) = h_0(t)e^{\sum_{i=1}^k \beta_i X_i}
+\end{equation}
+
+The quantity $h_0(t)$ is called baseline hazard and it hides one of the main hypotheses behind this method which is the \textit{Proportional Hazard} assumption.
+This assumption is that the baseline hazard $h_0(t)$ depends on time alone and not on all the other variables \textbf{X}, note also that the exponent is time-independent since the \textbf{X}s are supposed to be constant in time
+\footnote{Dropping the time independence of the \textbf{X}s is possible while still keeping the same shape, yet the model would then be called \textit{extended Cox model}.}.
+
+The $\beta$ in the exponent represents the weights assigned to each variable and, very much like what happened in linear regression, these coefficients can be intended as a proxy of importance in the model: coefficients close to zero signify no particular importance of the variable whereas the more the value is distant from zero the more relevant the variable can be considered.
+The reason why it's common practice to report the exponentiated cefficient for features is that 1-exp[$\beta$] represents the difference in likelyhood to die of individuals separated using the feature relative to $\beta$. 
+
+For example, considering a binary feature {\scshape Age over 50} with exp[$\beta$]=1.6, the exponential of the parameter would indicate that people over 50 are 60\% more likely to die when adjusting for all other variables.
+It is also common procedure to provide, for each coefficient, the 95\% confidence interval of the parameter and a p-value relative to the hypothesis that the parameter be equal to zero.
+
+Cox models provide a way to predict hazard for patients, this predict method can be used to evaluate the model built by identifying groups in the patient cohort using hazard quantiles 
+The division in the resulting groups can be used as proxy for the quality of the score built using the Cox model.
+
+Finally, much like the previously presented regression techniques, it's possible to penalize the regression done with the Cox model.
+
+In this thesis the Cox model was preceeded by the same feature reduction that was used before the Lasso regularized regression, however no regularization was used.
 
 
 
