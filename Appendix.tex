@@ -432,7 +432,7 @@ For these analyses the data was always fed into a standard scaler before applyin
 \end{figure}
 
 
-Also, before proceding, the hyperparameter space for umap was explored since it's the method that allows the most control over rather intuitive parameters.
+Also, before proceeding, the hyperparameter space for umap was explored since it's the method that allows the most control over rather intuitive parameters.
 Changing the value of the minimum distance of points in the final space from 0 to 0.99 changes how the structure is projected, while changing the number of neighbours changes how much the local or global structure of the data influences the final projection.
  Some of the combinations of these parameters can be seen in Figure \ref{fig:hyperparam_umap}
 
@@ -525,7 +525,7 @@ However, by looking at the same embedding labelled with death and ICU admission 
 \end{figure}
 
 It's clear to see that, when predicting on death, the PLS-DA algorithm doesn't find any behaviour relevant for ICU admission.
-It's also clear that there is at least a pattern of points labeled as dead being towards the right of the image, this can be easily explained by looking at how the ages are distributed in the first plot of fig: \ref{PLSDA-Clinical}. 
+It's also clear that there is at least a pattern of points labelled as dead being towards the right of the image, this can be easily explained by looking at how the ages are distributed in the first plot of fig: \ref{PLSDA-Clinical}. 
 From this it's possible to deduce that older individuals tend to die more and that hypertension does not seem to be relevant when considering death as a clinical outcome.
 If necessary the PLS-DA algorithm allows also to see the weights given to the features in predicting the label. At least for the clinical dataset, which has a reasonable number of features, it's interesting to report it ordering the coefficients by descending absolute value: 
 
@@ -572,10 +572,22 @@ Looking at how the points scatter by coloring them according to the two interest
           \caption{PLS-DA predicting on death(bottom) coloured with death and ICU admission(top) on clinical features\label{fig:PLSDA-ICU}}
 \end{figure}
 
-Finally, introducing the radiomic features in the analysis the usual effect of reducing separation can be seen can be seen in the figure below:
+Finally, introducing the radiomic features in the analysis the usual effect of reducing separation can be seen in the figure below:
 
 \begin{figure}[H]
   		\includegraphics[width=\textwidth]{PLSDA_all_ICU.png}
           \caption{PLS-DA predicting on death coloured with death(bottom) and ICU admission(top) on all available features\label{fig:PLSDA-ICU-all}}
 \end{figure}
  
+In conclusion various dimensionality reduction techniques have been used while looking for meaningful groups in the patient cohort, trying to understand if successive steps in the data analysis required specific care. Starting from a dataset with 7 clinical features, 179 radiomic features and 8 radiological features using PCA, Umap and PLS-DA the data was reduced to the top three, or two, most informative combinations of features found by each method.
+
+Using PCA it became evident that there were no peculiar combination of features that explained most of the variance, and that this held for all of the feature categories and their combinations. 
+
+Using UMAP it became clear that the data has a peculiar distribution and relationship in the whole feature space, however it seems that this structure is not correlated with the clinical outcomes of interest, main of which being the labels for ICU Admission and Death. 
+
+Finally using PLS-DA it was found that there is an obvious correlation between age and death, which is not surprising. It was also found that the algorithm, while trying to predict death, perfectly separates patients affected by hypertension from those without it. This is not  a result because hypertension is one of the variables available in the clinical dataset, yet it might indicate that some combination of the other features can be expected to correlate with this single one. While using either death and ICU Admission as labels no clear separation of data can be found.
+
+The most relevant concept to note, however, is that introducing radiomic features does not improve the separation in the data.
+This is relevant because it can be taken as symptom of minor imperfections in the radiomic features.
+
+More specifically since the segmentation was based on thresholding and region growing methods, this can indicate that in the case of COVID-19 damage, which may heavily alter the gray levels in the lung, these methods have room for improvement.

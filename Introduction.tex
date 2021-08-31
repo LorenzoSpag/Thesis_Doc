@@ -3,7 +3,7 @@
 \setcounter{page}{1}
 \pagenumbering{arabic}
 
-%Since the start of 2020 \textit{Sars-COVID19} has initiated a world-wide pandemic. In an attempt to slow down the fast and uncontrollable spread of this disease various prevention and diagnosis methods have been developed. In this work, out of all these various methods, the attention is going to be put on the possible developement diagnostic methods related to medical images, be they automatic or semi-automatic, to be intended either as Clinical Decision Support Systems (CDSS) or as a quick evaluation to completely avoid human analysis.
+%Since the start of 2020 \textit{Sars-COVID19} has initiated a world-wide pandemic. In an attempt to slow down the fast and uncontrollable spread of this disease various prevention and diagnosis methods have been developed. In this work, out of all these various methods, the attention is going to be put on the possible development diagnostic methods related to medical images, be they automatic or semi-automatic, to be intended either as Clinical Decision Support Systems (CDSS) or as a quick evaluation to completely avoid human analysis.
 %In this light this first introductory chapter is going to start from a basic theoretical overview of the necessary core concepts that will be needed throughout this whole work such as definition of an image and imaging methods, with particular attention to those used in the medical field. This will be followed by an introduction to Artificial Intelligence (AI) and some Machine Learning techniques. Finally some of the concepts from the two previous topics will be treated jointly under the discipline of radiomics, which will be defined and explored as necessary.
 
 Nowadays everybody knows of  \textit{Sars-COVID19} which, since the start of 2020, has made necessary a few world-wide quarantines forcing everybody in self-isolation.
@@ -20,12 +20,12 @@ The most part of the available variables, however, have been derived from images
 
 While the utility of clinical variables, such as age, obesity and history of smoking, is very straightforward it's interesting and helpful to understand the basis behind the utility of radiomic and radiological features.
 
-Images have the ability to convey a slew of useful images, this is expecially true in the medical field where digital images are used to inspect also the internal state of the patient giving far more detailed information than that obtainable by visual inspection at the hand of medical professionals.
+Images have the ability to convey a slew of useful information, this is especially true in the medical field where digital images are used to inspect also the internal state of the patient giving far more detailed information than that obtainable by visual inspection at the hand of medical professionals.
 
 Among the ways in which \textit{Sars-COVID19} can manifest itself the one that is most relevant to the scopes of this thesis is pneumonia and the complications that stem from it.
 Some of these complications, which are not specific of \textit{Sars-COVID19} but can happen in any pneumonia case, display very peculiar patterns when visualizing the lungs through CT exams.
 
-These patterns are due to the pulmonary response to inflammation which may lead to thickening of the bronchial and alveolar structures up to pleural effusions and collapsed lungs. Without going too much in clinical detail what is of interest is how these condition manifest themselves in the CT exams:
+These patterns are due to the pulmonary response to inflammation which may lead to thickening of the bronchial and alveolar structures up to pleural effusions and collapsed lungs. Without going too much in clinical detail what is of interest is how these conditions manifest themselves in the CT exams:
 
 \begin{enumerate}\label{Clinical_Covid_Manifestations}
         \item \textbf{Ground Glass Opacity(GGO)}:\newline Small diffused changes in density of the lung structure cause a hazy look in the affected region. This complicates the individuation of pulmonary vessels.
@@ -34,7 +34,7 @@ These patterns are due to the pulmonary response to inflammation which may lead 
 				\includegraphics[width=0.66\linewidth]{GGO.jpg}
 				\caption{Example of GGO\label{GGOImage}}
 			\end{figure}
-        \item \textbf{Lung Consolidations}:\newline Heavier damage reflects in whiter spots in the lung as the surface more closely resembles outside tissue instead of normal air. The consolidation refer to presence of fluid, cells or tissue in the alveolar spaces
+        \item \textbf{Lung Consolidations}:\newline Heavier damage reflects in whiter spots in the lung as the surface more closely resembles outside tissue instead of normal air. The consolidation refers to presence of fluid, cells or tissue in the alveolar spaces
 			\begin{figure}[htbp]
 				\centering
 				\includegraphics[width=0.66\linewidth]{Consolidations.jpg}
@@ -47,7 +47,7 @@ These patterns are due to the pulmonary response to inflammation which may lead 
 				\subfloat[][]{\includegraphics[width=0.33\linewidth]{PleuralEffusion.png}}
 				\caption{Differences between a collapsed lung (a) and pleural effusion(b)}
 			\end{figure}
-	\item \textbf{Collapsed Lungs and Pleural Effusion}:\newline Both of these manifest themself as regions of the lungs that take the same coloring as that of tissue outside the lung. The main difference between the two is that collapsed lungs are somewhat rigid structures, they can occur in singular lobes of the lung and stay where they occur. Pleural effusions, however, are actually fluid being located in the lung instead of air. As such these lesions usually are located 'at the bottom' of the lung in which they happen and migrate to the lowest part of the lung according to the position of the patient.
+	\item \textbf{Collapsed Lungs and Pleural Effusion}:\newline Both of these manifest themselves as regions of the lungs that take the same coloring as that of tissue outside the lung. The main difference between the two is that collapsed lungs are somewhat rigid structures, they can occur in singular lobes of the lung and stay where they occur. Pleural effusions, however, are actually fluid being located in the lung instead of air. As such these lesions usually are located 'at the bottom' of the lung in which they happen and migrate to the lowest part of the lung according to the position of the patient.
 \end{enumerate}
 
 These manifestation are mainly textural and intensity-like changes in the normal appearance of the lungs.
@@ -59,7 +59,7 @@ Radiomics comes from the the combination of radiology and the suffix \textit{-om
 
 Given the large numerosity of the features produced by radiomics it's necessary to analyze these kinds of data with methods that rely on Machine Learning and their ability to address high-dimensional problems, be it in a supervised or unsupervised way.
 
-Starting from these premises this thesis has been divided in a few chapters and sections. The first step will be taken by providing the general theoretical background regarding the aforementioned topics and techniques, this will be followed by a desscription of the data in use as well as a presentation of the analysis methods and resources used. Finally the results of the methods described will be presented and from them a set of concluding remarks will be set forth.
+Starting from these premises this thesis has been divided in a few chapters and sections. The first step will be taken by providing the general theoretical background regarding the aforementioned topics and techniques, this will be followed by a description of the data in use as well as a presentation of the analysis methods and resources used. Finally the results of the methods described will be presented and from them a set of concluding remarks will be set forth.
 
 \section{Digital Images and Image Processing}
 In this section the objective is to simply provide a set of basic definitions pertaining to images as well as a general introduction to the methods used to create said images. Firstly images are a means of representing in a visual way a physical object or set thereof, when talking about them it's common to refer specifically to digital images.
@@ -135,17 +135,17 @@ Assuming they are being meaningfully used \footnote{For example adding/subtracti
 \begin{enumerate}
 \item Geometric Transformations: These are transformations that involve the following steps:
 		\begin{enumerate}
-		\item Affine transformations: Transformations that can can be performed via matrix multiplication such as rotations, scaling, reflections and translations. This step basically involves computing where each original pixel will fall in the transformed image
+		\item Affine transformations: Transformations that can be performed via matrix multiplication such as rotations, scaling, reflections and translations. This step basically involves computing where each original pixel will fall in the transformed image
 		\item Interpolation: Since the coordinates of the transformed pixel might not fall exactly on the grid it might become necessary to compute a kind of average contribution of the pixel around the destination coordinate to find a most believable value. Examples of such methods are linear, nearest neighbour and bicubic.
 		\end{enumerate}
 \item Gray-level (GL) Transformations: Involve operating on the value stored within the pixel, these can be further subdivided as:
 		\begin{enumerate}
-		\item Point-wise: The output value at specific coordinates depends only on the output value at those same specific coordinates. Some examples are window-level operations, thresholding, negatives and non-linear operations such as gamma correction which is used in display correction. Taken p as input pixel value and q as output and given a number $\gamma \in \mathbb{R}$, gamma corrections are defined as:
+		\item Point-wise: The output value at specific coordinates depends only on the input value at those same specific coordinates. Some examples are window-level operations, thresholding, negatives and non-linear operations such as gamma correction which is used in display correction. Taken p as input pixel value and q as output and given a number $\gamma \in \mathbb{R}$, gamma corrections are defined as:
 		\begin{equation}
 		q = p^{\gamma}
 		\end{equation}
     \item Local: The output value at specific coordinates depends on a combination of the original values in a neighbourhood around that same coordinates. Some examples are all filtering operation such as edge enhancement, dilation and erosion. These filtering methods are based on performing convolutions in which the output value at each pixel is given by the sum of pixel-wise multiplication between the starting matrix and a smaller (usually 3x3 or 5x5) matrix called kernel. The output image is obtained by moving the kernel along the starting matrix following a predefined stride for example a (2,2) stride will move the kernel 2 pixels to the right and 2 down.
-When moving near the borders the behavour is defined by the padding of the image, most common choice for padding is zero padding, in which the image is considered to have only zeros outside of it, or no padding at all. 
+When moving near the borders the behaviour is defined by the padding of the image, most common choice for padding is zero padding, in which the image is considered to have only zeros outside of it, or no padding at all. 
 Stride \textbf{S}, kernel shape \textbf{K}
 \footnote{This formula works for square kernels, images and strides so a kernel MxM will have K=M.}
  and padding \textbf{P} determine the shape of the output matrix given the input dimension \textbf{W} via the following formula:
@@ -159,9 +159,9 @@ Output Shape =\left[ \frac{W - K + P}{S}\right]+1
 \end{enumerate}
 
 \section{Medical Images}
-Having seen what constitutes and image and what can be done with one it becomes interesting to explore how images are obtained. The following discussion is going to introduce briefly some of the most widely used methods to obtain medical images, getting more in depth only on the modality used to obtain all the images that will be analyzed in this thesis which is Computed Tomography.
+Having seen what constitutes an image and what can be done with one it becomes interesting to explore how images are obtained. The following discussion is going to introduce briefly some of the most widely used methods to obtain medical images, getting more in depth only on the modality used to obtain all the images that will be analyzed in this thesis which is Computed Tomography.
 
-This technique was used because it's the only one that can provide information on the internal structure of an organ which is very low in density and that has parts that are deep in the patients body. Since no metabolic process of interest is in play PET is not advisable, Ultra Sounds are used for superficial soft tissue which is not the case of the lungs and MRI, despite it's clear advantege in avoiding ionizing radiation, still has close to no acquisition protocol dedicated to lungs.
+This technique was used because it's the only one that can provide information on the internal structure of an organ which is very low in density and that has parts that are deep in the patients body. Since no metabolic process of interest is in play PET is not advisable, Ultra Sounds are used for superficial soft tissue which is not the case of the lungs and MRI, despite it's clear advantage in avoiding ionizing radiation, still has close to no acquisition protocol dedicated to lungs.
 
 \begin{enumerate}
 \item Magnetic Resonance Imaging (MRI): This technique is based on the phenomenon of Nuclear Magnetic Resonance(NMR) which is what happens when diamagnetic atoms are placed inside a very strong uniform magnetic field are subject to a Radio Frequency (RF) stimulus. These atoms absorb and re-emit the RF and supposing this behaviour can somehow be encoded with a positional dependence then it's possible to locate the resonant atoms given the response frequency measured. Suffices to say that this encoding is possible however the setup is very complex and the possible images obtainable with this method are very different and can emphasize very different tissue/material properties. Nothing more will be said on the topic since no data obtained with this methodology will be used. More details can be found in \cite{MRI}
@@ -171,7 +171,7 @@ The main advantages such as low cost, portability and harmlessness come at the e
 
 \item Positron Emission Tomography (PET): In this case the images are obtained thanks to the phenomenon of annihilation of particle-antiparticle, specifically of electron-positron pairs.	
 
-The positrons come from the $\beta ^+$ decay of a radio-nucleide bound to a macromolecule, which is preferentially absorbed by the site of interest \footnote{Most commonly Fluoro-DeoxyGlucose FDG which is a glucose molecule labelled with a $^{18}$F atom responsible of the $\beta ^+$ decay. In general these radio-pharmaceuticals are obtained with particle accelerators near, or inside, the hospital that uses them. They are characterized by the activity measured as decay/s $\doteqdot$ Bq (read Becquerel) and half-life $\doteqdot$ T$_{\frac{1}{2}}$ which is how long it takes for half of the active atoms to decay}. Once the annihilation happens a pair of (almost) co-linear photons having (almost) the same energy of 511 keV is emitted, the detection of this pair is what allows the reconstruction of the image representing the pharmaceutical distribution within the body. The exam is primarily used in oncology given the greater energy consumption, hence nutrients absorption, of cancerous tissue and secondly this technique can be combined with CT scans to obtain a more detailed representation of the internal environment of the patient
+The positrons come from the $\beta ^+$ decay of a radio-nuclide bound to a macromolecule, which is preferentially absorbed by the site of interest \footnote{Most commonly Fluoro-DeoxyGlucose FDG which is a glucose molecule labelled with a $^{18}$F atom responsible of the $\beta ^+$ decay. In general these radio-pharmaceuticals are obtained with particle accelerators near, or inside, the hospital that uses them. They are characterized by the activity measured as decay/s $\doteqdot$ Bq (read Becquerel) and half-life $\doteqdot$ T$_{\frac{1}{2}}$ which is how long it takes for half of the active atoms to decay}. Once the annihilation happens a pair of (almost) co-linear photons having (almost) the same energy of 511 keV is emitted, the detection of this pair is what allows the reconstruction of the image representing the pharmaceutical distribution within the body. The exam is primarily used in oncology given the greater energy consumption, hence nutrients absorption, of cancerous tissue and secondly this technique can be combined with CT scans to obtain a more detailed representation of the internal environment of the patient
 \end{enumerate}
 
 The last technique that is going to be mentioned is Computed Tomography however, given it's relevance inside this thesis work, it seems appropriate to describe it in a dedicated section.
@@ -188,7 +188,7 @@ The way in which slices are obtained is called focal plane tomography and, as th
 
 In both planar and tomographic setting the rough description of the data acquisition process can be summarized as follows: 
 
-First x-rays are somehorew generated by the machine, the quality of these x-rays is optimized with the use of filters then focused and positioned such that they mostly hit the region that needs imaging. The beam then exits the machine and starts interacting with the imaged object\footnote{In this work it's always going to be a patient, however this process is general and is also used in industry to investigate object construction}, this process causes an attenuation in the beam which depends on the materials composing the object itself. Having then travelled across the whole object it interacts with a sensor, be it film, semiconductor or other, which stores the data that will then constitute the final image. In a digital setting this final step has to be performed following a (tomographic) reconstruction algorithm which given a set of 2D projections returns a single 3D image.
+First x-rays are somehow generated by the machine, the quality of these x-rays is optimized with the use of filters then focused and positioned such that they mostly hit the region that needs imaging. The beam then exits the machine and starts interacting with the imaged object\footnote{In this work it's always going to be a patient, however this process is general and is also used in industry to investigate object construction}, this process causes an attenuation in the beam which depends on the materials composing the object itself. Having then travelled across the whole object it interacts with a sensor, be it film, semiconductor or other, which stores the data that will then constitute the final image. In a digital setting this final step has to be performed following a (tomographic) reconstruction algorithm which given a set of 2D projections returns a single 3D image.
 
 In this light the interesting processes are how the radiation is created and shaped before hitting the patient and how said radiation then interacts with the matter of both the patient's body and the sensor beyond it. To explore these topics it's necessary to see:
 
@@ -242,17 +242,19 @@ At this point is where the differences between generations arise which, loosely 
 \item $5^{th}$ generation-Stationary Stationary Geometry: The x-ray tube is now a large circle that is completely around the patient. This is only used in cardiac tomography for more information refer to \cite{Cardiac-CT}
 \item $6^{th}$ generation-Spiral CT: Supposing the patient is laying parallel to the axis of rotation, all previous generations acquired, along the height of the patient, a single slice at a time. In this generation as the tube rotates around the patients the bed on which they're laying moves along the rotation axis so that the acquisition is continuous and not start-and-stop. This further reduces the acquisition time while significantly complicating the mathematical aspect of the reconstruction. 
 
-It's necessary to add another important parameter which is the pitch of the detector\footnote{Once again the important parameters, such as this, can be accessed in the DICOM file resulting from the exam.}. This quantifies how much the bed moves along the axis at each turn the tube makes around the patient. Pitches smaller than one indicate oversampling at the cost of longer acquisition times, pitches greater than one indicate shorter acquisition times at the expense of a sparser depth resolution. \newline
-\begin{minipage}{\linewidth}
-            \centering
-            \includegraphics[width=6cm]{CT_gen2.png}
-            \captionof{figure}{$7^{th} generation setup$}
-        \end{minipage}
-\item $7^{th}$ generation-MultiSlice: Up to this seventh generation height-wise slice acquisition was of a singular plane, be it continuous or in a start and stop motion. In this final generation mutliple slices are acquired. Considering cilindrical coordinates with z along the axis of the machine the multiple slice acquisition is obtained by pairing a fanning out along $\theta$ and one along z of both sensor arrays and beam. This technique returns to a start and stop technology in which only $\sim 50\%$ of the total scan time is used for acquisition
+It's necessary to add another important parameter which is the pitch of the detector\footnote{Once again the important parameters, such as this, can be accessed in the DICOM file resulting from the exam.}. This quantifies how much the bed moves along the axis at each turn the tube makes around the patient. Pitches smaller than one indicate oversampling at the cost of longer acquisition times, pitches greater than one indicate shorter acquisition times at the expense of a sparser depth resolution.
+
 \begin{minipage}{\linewidth}
             \centering
             \includegraphics[width=6cm]{CT_gen3.png}
-            \captionof{figure}{$7^{th} generation setup$}
+            \captionof{figure}{$6^{th}$ generation setup}
+        \end{minipage}
+\item $7^{th}$ generation-MultiSlice: Up to this seventh generation height-wise slice acquisition was of a singular plane, be it continuous or in a start and stop motion. In this final generation multiple slices are acquired. Considering cilindrical coordinates with z along the axis of the machine the multiple slice acquisition is obtained by pairing a fanning out along $\theta$ and one along z of both sensor arrays and beam. This technique returns to a start and stop technology in which only $\sim 50\%$ of the total scan time is used for acquisition
+
+\begin{minipage}{\linewidth}
+            \centering
+            \includegraphics[width=6cm]{CT_gen2.png}
+            \captionof{figure}{$7^{th}$ generation setup}
         \end{minipage}
 \end{itemize}
 
@@ -274,7 +276,9 @@ The machines used to obtain the images used in this thesis, all belonging to \or
 \subsection{Radiation-matter interaction: Attenuation in body and measurement}
 Having seen the apparatus for data collection the remaining task is to see how the information regarding the body composition can be actually conveyed by photons.
 
-Let's first consider how a monochromatic beam of x-rays would interact with an object while passing through it. All materials can be characterized by a quantity called attenuation coefficient $\mu$ which quantifies how waves are attenuated traversing them, this energy dependent quantity is used in the Beer-Lambert law which allows computation of the surviving number of photons, given their starting number $N_0$ and $\mu$:
+Let's first consider how a monochromatic beam of x-rays would interact with an object while passing through it. All materials can be characterized by a quantity called attenuation coefficient $\mu$ which quantifies how waves are attenuated traversing them.
+
+This energy dependent quantity is used in the Beer-Lambert law which allows computation of the surviving number of photons after traversing a certain depth x, given their starting number $N_0$ and $\mu$:
 
 \begin{equation}
 N(x) = N_0e^{-\mu(E)*x}
@@ -298,7 +302,10 @@ Where $\rho$ is material density, $N_A$ is Avogadro's number, A is the atomic we
 Overall, given eq:\ref{Beer-Lambert}, the attenuation behaviour of a monochromatic beam is expected to be linear in shape when plotted in semi-logarithmic scale hence the name for $\mu$ "\textit{Linear Attenuation Coefficient}". 
 
 The first complication comes from the fact that, given their generation method, the x-rays are not monochromatic but rather polychromatic.
-This introduces a further complication which is the phenomenon of beam hardening: lower energy x-rays interact much more likely than those at higher energies which implies that as it crosses some material the mean energy of the whole beam increases. This behaviour is exploited still within the machine, filters are interposed between anode and patient to reduce the useless part of the spectrum as shown in Figure \ref{fig:Beam-filtering}:
+
+This introduces a further complication which is the phenomenon of beam hardening: lower energy x-rays interact much more likely than those at higher energies which implies that as it crosses some material the mean energy of the whole beam increases. 
+
+This behaviour is exploited still within the machine: filters are interposed between anode and patient to reduce the useless part of the spectrum as shown in Figure \ref{fig:Beam-filtering}:
 
 \begin{figure}[H]
 \centering
@@ -308,7 +315,7 @@ This introduces a further complication which is the phenomenon of beam hardening
         \subfloat[Polychromatic beam attenuation]{
   		\includegraphics[scale=0.4]{Nonlin_attenuation.png}
         \label{fig:non_lin_attenuation}}
-        \caption{Polychromatic beam behaviour. The attenuation behaviour of a polychromatic beam displays, as shown in (b), a slight curvature which is in constrast to a purely linear behaviour in case of a monochromatic beam}\label{fig:polychrom_behaviour}
+        \caption{Polychromatic beam behaviour. The attenuation behaviour of a polychromatic beam displays, as shown in (b), a slight curvature which is in contrast to a purely linear behaviour in case of a monochromatic beam}\label{fig:polychrom_behaviour}
 \end{figure}
 
 Another effect of the beam being polychromatic is that the graphical behaviour of the curve describing the attenuation, instead of being linear, gets bent as shown in Figure \ref{fig:non_lin_attenuation}. Since the image brightness is related to the number of photons that get on the sensor it's still possible to define the contrast between two pixel $p_1, p_2$ as:
@@ -341,8 +348,8 @@ The training phase involves looking at the data and improving the performance of
 
 \begin{enumerate}
 \item Supervised Learning: In this type of ML the model is provided with the input data as well as the correct expected output, which is hence called \textit{label}. The objective of the model is to obtain an output as similar to the labels as possible, while also retaining the best possible generalization ability in predicting never seen before data. Some problems that benefit from the use of these techniques are regression and classification problems.
-\item Unsupervised Learning: As the name suggests this category of models trains on the data alone, without having the labels available by minimizing some metric defined from the data. For example clustering techniques try to find a set of groups in the data such that the difference within each group is minimal while the difference among groups is maximal, ideally producing dense groups, called clusters, that are each well separated from all the others. Other techniques in this family are Principal Component Analysis (PCA) and autoencoding but the general objective is to infer some kind of structure within the data and the relation between data points.
-\item Reinforcement Learning:  This kind of ML is well suited for data which has a clear sequential structure in which the requiered task is to develop good long term planning. Broadly speaking the general set-up is that given a set of (state$_{t}$, action, reward, state$_{t+1}$) these techniques try to maximize the cumulative reward\footnote{i.e. the sum of the rewards obtained at all previous time steps}. The main applications of these techniques are in Autonomous driving and learning how to play games
+\item Unsupervised Learning: As the name suggests this category of models trains on the data alone, i.e. without having the labels available, by minimizing some metric defined from the data. For example clustering techniques try to find a set of groups in the data such that the difference within each group is minimal while the difference among groups is maximal, ideally producing dense groups, called clusters, that are each well separated from all the others. Other techniques in this family are Principal Component Analysis (PCA) and autoencoding but the general objective is to infer some kind of structure within the data and the relation between data points.
+\item Reinforcement Learning:  This kind of ML is well suited for data which has a clear sequential structure in which the required task is to develop good long term planning. Broadly speaking the general set-up is that given a set of (state$_{t}$, action, reward, state$_{t+1}$) these techniques try to maximize the cumulative reward\footnote{i.e. the sum of the rewards obtained at all previous time steps}. The main applications of these techniques are in Autonomous driving and learning how to play games
 \end{enumerate}
 
 The following methods are those directly involved in this work.
@@ -350,9 +357,9 @@ The following methods are those directly involved in this work.
 \subsection{Regression, Classification and Penalization}
 Regression and Classification are methods used to make predictions via supervised learning by understanding the input-output relation in continuous and discrete cases respectively. 
 
-The most basic example of regression is linear regression which consists in finding the slope and intercept of a line passing through a set of points. A branch of classification thats similar to linear regression is logistic regression which consist of looking at data and predicting it's belonging to one category within a set of possible categories, in the case of two classes this corresponds to having a 0-1 boolean output.
+The most basic example of regression is linear regression which consists in finding the slope and intercept of a line passing through a set of points. A branch of classification that is similar to linear regression is logistic regression which consist of looking at data and predicting it's belonging to one category within a set of possible categories, in the case of two classes this corresponds to having a 0-1 boolean output.
 
-More specifically logistic regression translates in finding out wether or not each point belongs to a certain category given it's properties and can be practically thought of, for a binary classification,as a fitting procedure such that the output can be either 0 for one category and 1 for the other, this is usually done using the logistic funtion, also called sigmoid, which compresses $\mathbb {R}$ in [0,L] as seen in  \ref{sigmoid}. L represents the maximum value desidered, $x_0$ is the midpoint and k is the steepness.
+More specifically logistic regression translates in finding out whether or not each point belongs to a certain category given it's properties and can be practically thought of, for a binary classification,as a fitting procedure such that the output can be either 0 for one category and 1 for the other, this is usually done using the logistic function, also called sigmoid, which compresses $\mathbb {R}$ in [0,L] as seen in  \ref{sigmoid}. L represents the maximum value desired, $x_0$ is the midpoint and k is the steepness.
 
 \begin{equation}
 \sigma_{(x)} = \frac{L}{1+e^{-k(x-x_0)}}
@@ -402,15 +409,15 @@ In practical terms the shape of the penalty determines how much and how fast the
 \item ElasticNet: Adds $\lambda*[\frac{1-\alpha}{2}  * \Sigma^{n+1}_{j=1} \theta_j^2$ + $\alpha* \Sigma^{n+1}_{j=1} |\theta_j|]$, evidently this is a midway between  the Lasso and Ridge methods, where the balance is dictated by the value of $\alpha$.
 \end{enumerate}
 
-There are no clear overall advatages in the choice between Ridge and Lasso regularization, however there are substantial differences that can aid in the choice.
+There are no clear overall advantages in the choice between Ridge and Lasso regularization, however there are substantial differences that can aid in the choice.
 
 Ridge regression shrinks the parameters but never exactly to zero hence it does not perform feature selection and when correlated features are used their coefficients will be similar, rather than shrunk to zero.
 Hence Ridge still simplifies the model but it doesn't reduce the number of features, this is ideal in cases in which one wants to keep all of the available features or when one expects that most predictors drive the response.
 
 Lasso regularization has the ability to shrink parameters exactly to zero and does so in cases in which variables are correlated with one another. However the choice on which feature to keep is random if the variables are highly correlated. 
-The advantages of Lasso, namely the feature selection it produces while also improving the prediction on the data, come at the cost of difficult to interpret results in some cases as well as a limit in the maximum number of feature that can survive the procedure.
+The advantages of Lasso, namely the feature selection it produces while also improving the prediction on the data, come at the cost of difficult to interpret results in some cases as well as a limit in the maximum number of feature that can survive the procedure
 \footnote{Out of k features relative to m datapoints, with k\>m only m features can survive a Lasso regularization even if all k are relevant.}.
-This means that practivally one would choose Lasso regression in cases in which the expectation is that only a few variables drive the behaviour of the response.
+This means that practically one would choose Lasso regression in cases in which the expectation is that only a few variables drive the behaviour of the response.
 
 Elastic net \cite{ElasticNet}, which was born from a critique and improvement upon Lasso regularization, is a method that combines Lasso and Ridge.
 In this sense the model will still be simplified as it happened in Ridge and Lasso.
@@ -421,7 +428,7 @@ For more in depth information and contextualization of all three refer to \cite{
 Given these last considerations, as well as the number of features and their interpretability, the choice was made to use Lasso regression in order to keep as few variables as possible while still maintaining good predictive power.
 
 In regression the whole foundation is the normality of the residuals it's important that the data behaves somewhat nicely in this regard.
-It has also been found empirically that regression procedures have problems dealing with asymetric distributions in the data as well as with outliers in the dataset. 
+It has also been found empirically that regression procedures have problems dealing with asymmetric distributions in the data as well as with outliers in the dataset. 
 
 Changing the data to modify the residuals is not straightforward, however it's possible to change and improve the shape of the distribution at hand to make them as close to normal as possible.
 To this end some of the operations that can be done are:
@@ -465,13 +472,13 @@ At each node the separation between the two label categories $c_1, c_2$ due to t
 	\end{split}
 \end{equation}
 
-The Gini impurity for a feature is then computed as an average of the gini coefficients of all the deriving nodes weighted by the number of samples in each of the nodes. 
+The Gini impurity for a feature is then computed as an average of the Gini coefficients of all the deriving nodes weighted by the number of samples in each of the nodes. 
 
-This method can be obviously generalized to cases in which features are continuous by thresholding the features choosing the value that best improves the separation of the deriving node, a way to choose possible thresholds is to take all the means computed with all adjacent measurements. It's important to note firstly that there is no restriction on using, along different branches, different thresholds for the same feature and, secondly, that the same featue can end up at different depths along diffenrent branches. 
+This method can be obviously generalized to cases in which features are continuous by thresholding the features choosing the value that best improves the separation of the deriving node, a way to choose possible thresholds is to take all the means computed with all adjacent measurements. It's important to note firstly that there is no restriction on using, along different branches, different thresholds for the same feature and, secondly, that the same feature can end up at different depths along different branches. 
 
 The strength of this method is it's performance on data it has seen however it has very poor generalization abilities \cite{StatisticalLearning}. 
 
-Random Forests algorithms are born to overcome this problem. As the name suggests the idea is to build an ensemble of Decision Trees in which the features used in the nodes are chosen among random subsamples of all the available features, the final result is obtained as a majority vote over all trained trees. Each tree is also trained on a bootstapped dataset created from the original, this procedure might exacerbate some problems of the starting dataset by changing the relative frequency of classes seen by each tree and can be corrected by balancing the bootstrap procedure.
+Random Forests algorithms are born to overcome this problem. As the name suggests the idea is to build an ensemble of Decision Trees in which the features used in the nodes are chosen among random subsamples of all the available features, the final result is obtained as a majority vote over all trained trees. Each tree is also trained on a bootstrapped dataset created from the original, this procedure might exacerbate some problems of the starting dataset by changing the relative frequency of classes seen by each tree and can be corrected by balancing the bootstrap procedure.
 
 This method vastly improves the performance and robustness of the final prediction while retaining the simplicity and ease of interpretation of the decision trees, naturally there are methods, such as AdaBoost, to deploy and precautions, such as having balanced dataset, to take to further improve the performance of RF classifiers.
 
@@ -488,7 +495,7 @@ The most common dimensionality reduction techniques are:
 \item \textbf{Unsupervised methods}
 	\begin{itemize}
 		\item Principal Component Analysis (PCA):\cite{PCA} Linearly combines the pre-existing features to obtain new ones and orders them by decreasing ability to explain total variance of data. The first principal component is the combination of features that most explains the variance in the original dataset. Given it's nature it focuses on the global characteristics of the dataset.
-		\item t-distributed Stochastic Neighbor Embedding (t-SNE) \cite{t-sne}: Keeps a mixture of local and global information by using a distance metric in the full high dimensional space and trying to reproduce the distances measured in the lower dimensional space which can be 2- or 3-dimensional.
+		\item t-distributed Stochastic Neighbour Embedding (t-SNE) \cite{t-sne}: Keeps a mixture of local and global information by using a distance metric in the full high dimensional space and trying to reproduce the distances measured in the lower dimensional space which can be 2- or 3-dimensional.
 
 Let's define similarity between two points as the value taken by a normal distribution in a point away from the centre, corresponding to the first point of interest, the same distance as the two points taken in consideration. 
 
@@ -506,7 +513,7 @@ Fixing the first point the similarities with all other points can be computed an
 	\begin{itemize}
 		\item Uniform Manifold Approximation and Projection (UMAP): Builds a network using a variable distance definition on the manifold on which the data is distributed then uses cross-entropy as a metric to reproduce a network with the same structure in the space with lower dimension. 
 
-This technique maintains very local information on the data and allows complete freedom of choice in the final embedding space as well as the definition of distance metrics in the feature space\footnote{Actually to keep the speed in performance the distance function needs to be Numba-jet compilable}, it's also implemented to work an a generic pandas dataframe in python so it can take in input a vast range of datatypes. The math behind this method is much beyond the scopes of this thesis, as such refer to \cite{UMAP} for more in depth information.
+This technique maintains very local information on the data and allows complete freedom of choice in the final embedding space as well as the definition of distance metrics in the feature space\footnote{Actually to keep the speed in performance the distance function needs to be Numba-jet compilable}, it's also implemented to work on a generic pandas dataframe in python so it can take in input a vast range of datatypes. The math behind this method is much beyond the scopes of this thesis, as such refer to \cite{UMAP} for more in depth information.
 	\end{itemize}
 \end{enumerate}
 
@@ -516,28 +523,30 @@ These upsides become particularly relevant in the field of clustering, where the
 
 \begin{enumerate}
 \item Centroid based techniques: A user defined number of points is randomly located in the data space, datapoints are then assigned to groups according to their distance from the closest center. The main technique in this category is k-means clustering, and some, if not most, other techniques include it as step in the processing pipeline\footnote{An example of such techniques is: affinity propagation}. The main problems are firstly that these techniques require prior knowledge, or at the very least a good intuition, on the number of clusters in the dataset  while also assuming that the clusters are distributed in spherical gaussian distribution, which is not always the case.
-\item Hierarchical clustering: The idea is to find the hierarchical structure in the data using a bottom-up or a top-down approach, as such this category further subdivides in agglomerative and divisive methods. In the first each point starts by itself and then points are agglomerated using a similarity or distance metric, this build a dendrogram in which the k$^{th}$ level roughly corresponds to a k-centrouid clustering. In the latter the idea is to start with a unique category and then divide it in subgroups.
+\item Hierarchical clustering: The idea is to find the hierarchical structure in the data using a bottom-up or a top-down approach, as such this category further subdivides in agglomerative and divisive methods. In the first each point starts by itself and then points are agglomerated using a similarity or distance metric, this build a dendrogram in which the k$^{th}$ level roughly corresponds to a k-centroid clustering. In the latter the idea is to start with a unique category and then divide it in subgroups.
 \item Density based techniques: These methods use data density to define the groups by looking for regions with larger and lower density as clusters and separations.
 \end{enumerate}
 
 In order to evaluate the performance of these methods it's necessary to define metrics that evaluate uniformity within clusters and separation among them, the choice in the definition of metric should be taken in careful consideration since the different task may imply very different optimal metrics or, put differently, the optimal technique for the task at hand may very well depend on the metric used.
 
-It's worth mentioning that when working in two, or at most three, dimensions humans are generally good at preforming clustering yet it's nearly impossible to do in more dimensions. Computers, on the other hand, require more careful planning even in low dimension because the generally good human intuition on the definition of cluster is not so easily translated in instruction to a machine but are much more performing in higher dimensions. So to obtain good results with clustering techniques it necessary to work with care, expecially with a good understanding of the dataset in use and it's overall structure.
+It's worth mentioning that when working in two, or at most three, dimensions humans are generally good at preforming clustering yet it's nearly impossible to do in more dimensions. 
+
+Computers, on the other hand, require more careful planning even in low dimension because the generally good human intuition on the definition of cluster is not so easily translated in instruction to a machine yet, once tuned, can perform even in higher dimensions. So to obtain good results with clustering techniques it necessary to work with care, especially with a good understanding of the dataset in use and it's overall structure.
 
 In the context of this thesis, supposing the data suggested a clear cut distinction of two populations in the dataset, as could be male-females or under- vs  normal- vs over-weight individuals, then it might become necessary to analyse these groups as different  cohorts in order to more accurately predict their clinical outcome.
 
 
 \section{Combining radiological images  with AI: Image segmentation and Radiomics}
-Having seen the kind of data that has been of interest throughout this thesis, and having a set of techniques used to describe and make predicition on the data at hand, the final step in this theoretical background will be to combine these two notion in describing first how images can be treated in general terms and then, more specifically, how medical images can be analysed to exploit as much as possible the vast range of information they contain.
+Having seen the kind of data that has been of interest throughout this thesis, and having a set of techniques used to describe and make prediction on the data at hand, the final step in this theoretical background will be to combine these two notion in describing first how images can be treated in general terms and then, more specifically, how medical images can be analysed to exploit as much as possible the vast range of information they contain.
 
-Image analysis seems, at first glance, very intuitive since for humans it's very easy to infer qualitative information from images. However upon closer inspection this matter becomes clearly non trivial due to the subjectivity involved in the process as well as in the intuition behind it. More specifically, in the context of this thesis, the same image of damaged lungs contains very different informations to the eyes of trained professional versus those of an ordinary person as well as to the eyes of different professionals.
+Image analysis seems, at first glance, very intuitive since for humans it's very easy to infer qualitative information from images. However upon closer inspection this matter becomes clearly non trivial due to the subjectivity involved in the process as well as in the intuition behind it. More specifically, in the context of this thesis, the same image of damaged lungs contains very different information to the eyes of trained professional versus those of an ordinary person as well as to the eyes of different professionals.
 
-The first big obstacle in this task is the definition of region of interest: not all people will identify the same boundary in a damaged organ, sometimes the process of defining a boundary between organ and tissue may need to account for the final objective it has to achieve. If the objective is to evaluate texture of a damaged lung then the lesion needs to be included whereas in other cases these regions may only be unwanted noise. Generally speaking finding regions of interest in an image is a process called image segmmentation.
+The first big obstacle in this task is the definition of region of interest: not all people will identify the same boundary in a damaged organ, sometimes the process of defining a boundary between organ and tissue may need to account for the final objective it has to achieve. If the objective is to evaluate texture of a damaged lung then the lesion needs to be included whereas in other cases these regions may only be unwanted noise. Generally speaking finding regions of interest in an image is a process called image segmentation.
 
-The next step would be to quantify the characteristics of the region identified, as such finding ways to derive objective information from images is of paramount importance, expecially when this information can aid in describing the health of a patient. It should also be clear that medical images are a kind of high dimensional data. As such, as it's fashion with fields that occupy themselves with big biological data, the field that studies driving quantitative information out of radiological images contains the suffx \textit{-omics} and is called radiomics.
+The next step would be to quantify the characteristics of the region identified, as such finding ways to derive objective information from images is of paramount importance, especially when this information can aid in describing the health of a patient. It should also be clear that medical images are a kind of high dimensional data. As such, as it's fashion with fields that occupy themselves with big biological data, the field that studies driving quantitative information out of radiological images contains the suffix \textit{-omics} and is called radiomics.
 
 \subsection{Image Segmentation}
-Generally speaking image segmentation is a procedure in which an image is divided in smaller sets of pixels, such that all pixel inside a certain set have some common property and such that there are no overlaps between sets. These sets can then be used for further analysis which could mean foreground-backgroud distinction, edge detection as well as object detection, computer vision and pattern recognition. 
+Generally speaking image segmentation is a procedure in which an image is divided in smaller sets of pixels, such that all pixel inside a certain set have some common property and such that there are no overlaps between sets. These sets can then be used for further analysis which could mean foreground-background distinction, edge detection as well as object detection, computer vision and pattern recognition. 
 
 Image segmentation can be classified as:
 
@@ -557,9 +566,9 @@ In the medical field the difficulty comes from the fact that different exams hav
 Automatic image segmentation can be performed in various ways:
 
 \begin{enumerate}
-\item Artificial Neural Network (ANN): These techniques belong to a sub-field in ML called Deep Learning, they involve building network structures with more layers in which each node is a processing unit that takes a combination of the input data and gives an output according to a certain activation function. These structures are called Neural Networks because they resemble and are modeled after the workings of neuron-dendrite structures while the deep in deep learning refers to the fact that various layers composed of various neurons are stacked one after the other to complete the structure. Learning is obtained by changing how each neuron combines the inputs it recieves. In the case of images these structures are called Convolutional Neural Networks because the first layers, which are intended to extract the latent features or structures in the images, perform convolution operation in which the parameters are the pixel values of convolutional kernels
+\item Artificial Neural Network (ANN): These techniques belong to a sub-field in ML called Deep Learning, they involve building network structures with more layers in which each node is a processing unit that takes a combination of the input data and gives an output according to a certain activation function. These structures are called Neural Networks because they resemble and are modelled after the workings of neuron-dendrite structures while the deep in deep learning refers to the fact that various layers composed of various neurons are stacked one after the other to complete the structure. Learning is obtained by changing how each neuron combines the inputs it receives. In the case of images these structures are called Convolutional Neural Networks because the first layers, which are intended to extract the latent features or structures in the images, perform convolution operation in which the parameters are the pixel values of convolutional kernels
 
-\item Thresholding: These techinques involve using the histogram of the image to identify two or more groups of pixel values that correspond to specific parts/objects within the image. An obvious case would be a bi-modal distribution in which the two sets can be clearly identified but there are no requirements on the histogram shape.  In the case of CT this has a very simple and clear interpretation since HU depend on tissue type it's reasonable to expect that some tissues can be differentiated with good approximation by pixel value alone
+\item Thresholding: These techniques involve using the histogram of the image to identify two or more groups of pixel values that correspond to specific parts/objects within the image. An obvious case would be a bi-modal distribution in which the two sets can be clearly identified but there are no requirements on the histogram shape.  In the case of CT this has a very simple and clear interpretation since HU depend on tissue type it's reasonable to expect that some tissues can be differentiated with good approximation by pixel value alone
 
 \item Deformable models and Region Growing: Both these technique involve setting a starting seed within the image, in the first case the seed is a closed surface which is deformed by forces bound to the region of interest, such as the desired edge.
 
@@ -578,9 +587,9 @@ The segmentation process generally produces a boolean mask which can be used to 
 \subsection{Radiomics}
  When the images are medical in nature and when referring to high-throughput quantitative analysis the task of finding these features fall in the realm of radiomics, which uses mathematical tools to describe properties of the images that would otherwise be unquantifiable to the human eye.
 
-The features that can be computed from images are of various types, some of them can be understood somewhat easily through intuition since they are close to what humans generally use to describe images, others are much more complex in definition and quantify more difficulty percieved properties of the image. 
+The features that can be computed from images are of various types, some of them can be understood somewhat easily through intuition since they are close to what humans generally use to describe images, others are much more complex in definition and quantify more difficulty perceived properties of the image. 
 
-Another interesting possibility offered by the biomarkers computed following radiomics is the ability to quatify the differences between successive exams of the same patient. This specific branch of radiomics is called Delta-radiomics, referencing to the time differential that becomes the main focus of the analysis.
+Another interesting possibility offered by the biomarkers computed following radiomics is the ability to quantify the differences between successive exams of the same patient. This specific branch of radiomics is called Delta-radiomics, referencing to the time differential that becomes the main focus of the analysis.
 
 All of the features used in this work have been rigorously defined and described in \cite{IBSI} which, being born as a reference manual, covers the founding concepts of radiomics in an attempt to standardize the procedures of the field.
 
@@ -598,7 +607,7 @@ Generally these describe more texture-like properties of the image and, to do so
 
 These matrices have very precise definition, as such only the general idea behind them will be reported here redirecting to \cite{IBSI} for a more strict and in detail description. The matrices from which the features are computed also give name to the smaller categories in this family, these categories are:
 	\begin{itemize}
-		\item Gray Level Co-occurence Matrix (GLCM) features: This matrix expresses how combination of pixel values are distributed in a 2D or 3D region by considering connected all neighbouring pixel in a certain direction with respects to the one in consideration.
+		\item Gray Level Co-occurrence Matrix (GLCM) features: This matrix expresses how combination of pixel values are distributed in a 2D or 3D region by considering connected all neighbouring pixel in a certain direction with respects to the one in consideration.
 
 Using all possible directions for a set distance, usually $\delta$=1 or $\delta$=2, various matrices are obtained and from these a probability distribution can be built and evaluated. It should be noted that before computing these matrices the intensities in the image are discretized.
 
@@ -608,18 +617,18 @@ Using all possible directions for a set distance, usually $\delta$=1 or $\delta$
 
 		\item Neighbouring Gray Tone Difference Matrix (NGTDM) features: Born as an alternative to GLCM these features rely on a matrix that contains the sum of differences between all pixel with a given pixel value and the average of the gray levels in a neighbourhood around  them.
 
-		\item Gray Level Dependence Matrix (GLDM) features: The aim of these features is to capture in a rotationally invariant way the texture and coarsness of the image. This matrix requires the already seen concept of connectedness with a given distance as well as dependence among pixel.
+		\item Gray Level Dependence Matrix (GLDM) features: The aim of these features is to capture in a rotationally invariant way the texture and coarseness of the image. This matrix requires the already seen concept of connectedness with a given distance as well as dependence among pixel.
 
 Two voxel in a neighbourhood are dependent if the absolute value of the difference between their discretized value is less then a certain threshold. The number of dependent voxel is then counted with a particular approach to guarantee that the value be at least one
 	\end{itemize}
 \end{enumerate}
 
-In talking about the previous feature groups the concept of discretization of data which is already digital, and hence a discretized, has emerged. This is often a required step to make the computations of the matrices tractable and consists in further binning together the pixel values, which is commonly done in two main ways: either the number of bins or the width of the bins is fixed preceeding the discretization process.
-The results of the feature extraction procedure are heavily dependent on the choices made in all the steps that preceed it, main of which being the segmentation, the eventual re-discretization of the image leading to the algorithm used to compute the feature themselves.
+In talking about the previous feature groups the concept of discretization of data which is already digital, and hence a discretized, has emerged. This is often a required step to make the computations of the matrices tractable and consists in further binning together the pixel values, which is commonly done in two main ways: either the number of bins or the width of the bins is fixed preceding the discretization process.
+The results of the feature extraction procedure are heavily dependent on the choices made in all the steps that preced it, main of which being the segmentation, the eventual re-discretization of the image leading to the algorithm used to compute the feature themselves.
 
 For this reason recently the International Biomarker Standardization Initiative (IBSI \cite{IBSI}) wrote a \textit{"reference manual"} which details in depth the definitions of the features, description of data-processing procedures as well as a set of guidelines for reporting results. This was done in an attempt to reduce as much as possible the variability and lack of reproducibility of radiomic studies.
 
-In the past the main attention in radiological research was focused on improving machine performances and evaluating acquisition sequence technologies, however the great developements in artificial intelligence and performance of computers have brought a lot of attention to the field. Various papers, such as \cite{Rad_review} and \cite{Rad_review_ger} have been written with the objective of presenting the general workflow of radiomics. 
+In the past the main attention in radiological research was focused on improving machine performances and evaluating acquisition sequence technologies, however the great developments in artificial intelligence and performance of computers have brought a lot of attention to the field. Various papers, such as \cite{Rad_review} and \cite{Rad_review_ger} have been written with the objective of presenting the general workflow of radiomics. 
 
 By design the topics in this thesis have been presented to resemble the shape of the generic radiomic pipeline as outlined in \cite{Rad_review} and \cite{Rad_review_ger}, which can be summarised as:
 
@@ -645,12 +654,12 @@ It is common to refer to the event as failure since usually it is negative in na
 For example, when looking at effectiveness of a drug, the patient may develop adverse reactions to the drug and may need to stop using it, hence falling out of the study.
 
 In the context of this thesis all individuals that got sent home from the hospital are censored since their survival is known only up until the dropout and not after.
-Cases like this when the start of the followup is well known but dropout happens are called right-censored, because only the right side of the timeline is abruply interrupted.
+Cases like this when the start of the follow-up is well known but dropout happens are called right-censored, because only the right side of the timeline is abruptly interrupted.
 Cases can also be left-censored, e.g. a patients with unknown time of contraction of a disease, and interval-censored, e.g. when the contraction of the disease can be restricted to an interval as it may happen when a negative and positive test happen at successive times.
 
 Usually this variable is called \textbf{d} and is a binary variable where 1 indicates that the event occurred and 0 indicates all possible censoring causes.
 
-\item Time: This is to be intended as time, be it days, weeks, months or years, since the start of the followup to either the event or the censoring.
+\item Time: This is to be intended as time, be it days, weeks, months or years, since the start of the follow-up to either the event or the censoring.
 It usually is indicated with \textbf{T}, is referred to as survival time and, being a random variable that indicates time, it cannot be negative.
 
 In this thesis the variable used to cover this role was the {\scshape dOS} variable, which is computed as the number of days from the admission in the hospital to the discharge from the hospital facilities.
@@ -681,7 +690,7 @@ A further step in the analysis could be to try to measure the differences in sur
 
 The most basic example would be looking at the effectiveness of a drug by dividing in group A and B the patients given the actual medicine and the placebo respectively. However this could be done even for males vs females or, in the case of continuous variables, for patients with above or below threshold values
 \footnote{Generally, when no obvious threshold is available, the median of the variable is chosen.}.
-When the analysis is univariate in nature then the Kaplan-Meier survival curves are used in conjuction with the log-rank test, when the analysis is multivariate then the Cox Proportional-Hazard model is used. 
+When the analysis is univariate in nature then the Kaplan-Meier survival curves are used in conjunction with the log-rank test, when the analysis is multivariate then the Cox Proportional-Hazard model is used. 
 The Cox model is very similar to linear and logistic regression.
 
 

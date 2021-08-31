@@ -1,7 +1,7 @@
 \chapter{Materials and methodologies}\label{cap: Material_method}
 In this section there's going to be an explanation of the dataset as well as instruments and methodologies used to analyze it's properties, as such the first step is going to be an in depth discussion of the data available and a general overview of the final use. The following step is going to be a description of the preliminary work done to the data itself and to the results of this preliminary analysis in order to select the important features. The final step of this chapter is going to be an explanation of the methods used to derive the final results and to evaluate them.
 
-Worth noting that the data has been collected and used with the approvation of the ethical commettee.
+Worth noting that the data has been collected and used with the approval of the ethical committee.
 
 \section{Data and objective}
 \label{chap:freefree}
@@ -23,12 +23,12 @@ As far as exclusion criteria go the main deciding factors, except unavailability
 
 \begin{itemize}
 \item All patients that had undergone a CT exam which was retrievable via the PACS (Picture Archiving and Communication System) of \orsola
-\item All patients that had a all of the clinical and laboratory features, listed in fig:\ref{tab:ClinicalFeatures}, which have been found informative of the outcome during the clinical practice.
+\item All patients that had a all of the clinical and laboratory features, listed in Table \ref{tab:ClinicalFeatures}, which have been found informative of the outcome during the clinical practice.
 \item Since all patient had at least 2 CT exams only the closest date to the hospital admission date was taken. When more exams were performed on the same date all of them were initially taken. At first only chest or abdomen CTs were taken regardless of the acquisition protocol used.
 \end{itemize}
 
 In tables \ref{tab:ClinicalFeatures},\ref{tab:RadiologicalFeatures} and \ref{tab:ClinicalLabels} are reported all of the variables available for all patients with some information on their distribution.
-These have been divided in: Clinical features used for the models Table \ref{tab:ClinicalFeatures}, variables determined by radiologist by examining the CT scan of the patient, called Radiological fetures Table \ref{tab:RadiologicalFeatures}.
+These have been divided in: Clinical features used for the models Table \ref{tab:ClinicalFeatures}, variables determined by radiologist by examining the CT scan of the patient, called Radiological features Table \ref{tab:RadiologicalFeatures}.
 Finally in Table \ref{tab:ClinicalLabels} are contained all the variables that represent the outcome of the illness and not a property of the patient at admission which is why these won't be used in building the predictive models.
 
 \begin{table}[htbp]
@@ -92,7 +92,7 @@ NIV                              &    436 &       2 &    0 &   371 \\
 
 %\begin{figure}[H]
 %  		\includegraphics[width=1\textwidth]{Clinical_Feature_Description.png}
-%        \caption{Description of clinical label dataset, in sets of four columns there's the clinical feature, the total count of occurences, the percentage over the final dataset and the possible values the feature could take \todo[inline]{usare excel come immagine non è il massimo}\label{fig:ClinicalFeatures}}
+%        \caption{Description of clinical label dataset, in sets of four columns there's the clinical feature, the total count of occurrences, the percentage over the final dataset and the possible values the feature could take \todo[inline]{usare excel come immagine non è il massimo}\label{fig:ClinicalFeatures}}
 %\end{figure}
 
 %Most clinical features are pretty self-explanatory, for those that were obscure to me as an outsider and not otherwise explained in \ref{Clinical_Covid_Manifestations}, I'm going to provide a very simple explanation:
@@ -110,7 +110,7 @@ These scores differ in how much they add for each condition and the set of sympt
 		\item MulBSTA: This score accounts for \textbf{Mul}tilobe lung involvement, absolute \textbf{L}ymphocyte count, \textbf{B}acterial coinfection, history of \textbf{S}moking, history of hyper\textbf{T}ension and \textbf{A}ge over 60 yrs. \cite{MulBSTA}
 		\item MEWS: Modified Early Warning Score for clinical deterioration. Computed considering systolic blood pressure, heart rate, respiratory rate, temperature and AVPU(Alert Voice Pain Unresponsive) score. \cite{MEWS}
 		\item CURB65: \textbf{C}onfusion, blood \textbf{U}rea Nitrogen or Urea level, \textbf{R}espiratory Rate, \textbf{B}lood pressure, age over \textbf{65} years. This score is specific for pneumonia severity \cite{CURB65}
-		\item SOFA:  \textbf{S}equential  \textbf{O}rgan  \textbf{F}ailure  \textbf{A}ssessment score. Considers various quantities from all systems to assess the overall state of the patient, PaO$_2$/FiO$_2$\footnote{Very unrefined yet widely used indicator for lung disfunction} for respiratory system, Glasgow Coma scale\footnote{GCS for short, proposed in 1974 by Graham Teasdale and Bryan Jennet. Evaluates what kind of stymulus is necessary to obtain motor and verbal reactions in the patient as well as what's necessary for the patient to open their eyes} for nervous, mean pressure for cardiovascular, Bilirubin levels for liver, platelets for coagulation and creatine for kidneys \cite{SOFA}
+		\item SOFA:  \textbf{S}equential  \textbf{O}rgan  \textbf{F}ailure  \textbf{A}ssessment score. Considers various quantities from all systems to assess the overall state of the patient, PaO$_2$/FiO$_2$\footnote{Very unrefined yet widely used indicator for lung disfunction} for respiratory system, Glasgow Coma scale\footnote{GCS for short, proposed in 1974 by Graham Teasdale and Bryan Jennet. Evaluates what kind of stimulus is necessary to obtain motor and verbal reactions in the patient as well as what's necessary for the patient to open their eyes} for nervous, mean pressure for cardiovascular, Bilirubin levels for liver, platelets for coagulation and creatine for kidneys \cite{SOFA}
 		\item qSOFA:  \textbf{q}uick SOFA. Only considers pressure, high respiratory rate and the low values in the Glasgow scale.
 			\begin{table}[htbp]
 			\caption{All the available clinical scores, generally computed adding 1 or 0 by looking if values of laboratory exams are above or below a certain threshold \label{tab:ClinicalScores}}
@@ -130,8 +130,8 @@ These scores differ in how much they add for each condition and the set of sympt
 	\end{enumerate}
 \end{enumerate}
 
-Finally it's also useful to see a distribution of the days of permanence in the Hospital, abbreviated {\scshape dOS} for \textbf{d}ays \textbf{O}f h\textbf{O}ospitalzation
-\footnote{It's comon practice to use abbreviations such as dOS, mOS. The common way to intend these acronyms is either \textbf{d}ays or \textbf{m}onths \textbf{O}f \textbf{S}urvival},
+Finally it's also useful to see a distribution of the days of permanence in the Hospital, abbreviated {\scshape dOS} for \textbf{d}ays \textbf{O}f h\textbf{O}spitalzation
+\footnote{It's common practice to use abbreviations such as dOS, mOS. The common way to intend these acronyms is either \textbf{d}ays or \textbf{m}onths \textbf{O}f \textbf{S}urvival},
  which can be seen in Figure \ref{fig:dOSDistr}.
 
 \begin{figure}[htbp]
@@ -144,7 +144,7 @@ Finally it's also useful to see a distribution of the days of permanence in the 
 \caption{Flowchart of the patient selection procedure \label{fig:dataSelFlowchart}}
 \end{figure}
 
-This procedure, which is the starting part of what is summarized and represented in Figure \ref{fig:dataSelFlowchart}, produced a starting cohort of $\sim$700 patients which, having all various images available, created a huge set of $\sim$2200 CT scans. Since this analysis is focused on radiomics there is an evident need for as much consistency as possible in the images analysed. For this reason all CTs taken with medium of contrast were excluded, since they would have brightnesses not indicative of the disease, and for every patient only images with thin slice reconstruction were considered. 
+This procedure, which is the starting part of what is summarized and represented in Figure \ref{fig:dataSelFlowchart}, produced a starting cohort of $\sim$700 patients which, having all various images available, created a huge set of $\sim$2200 CT scans. Since this analysis is focused on radiomics there is an evident need for as much consistency as possible in the images analysed. For this reason all CTs taken with medium of contrast were excluded, since they would have brightness not indicative of the disease, and for every patient only images with thin slice reconstruction were considered. 
 
 More specifically only images with slice thickness of 1 o 1.25 mm
 \footnote{This meant that only exams called 'Parenchima' or  'HRCT' were included. Throughout the internship 'parenchima' has always appeared in contrast with 'mediastino'. These two keywords are used in the phase of reconstruction of the raw data to identify reconstructions with specific properties. Parenchima is used for finer reconstruction of lung specifically, the requiring professional uses these images to look for small nodules with very high contrast and, to do so, the reconstruction allows some noise to achieve the best resolution possible. Mediastino is used in the lung, as well as other regions, to look for bigger lesions but with low contrast. As such the 'mediastino' reconstruction compromises a worse spatial resolution for a better display of contrast, visually speaking the first images are more coarse and noisy while the second are smoother. It should be noted that even with the same identifier, be it HRCT parenchima or others, the machines on which the exams were made were different and had different proprietary convolutional kernels used for reconstruction.} 
@@ -177,12 +177,12 @@ From now on all of the features used for model construction will be considered d
 \section{Preprocessing and data analysis}
 \begin{figure}
 \includegraphics[width=\textwidth]{Preprocessing_flowchart.png}
-\caption{Flowchart for the preprocessing steps before preceeding a Lasso regularized regression. \label{fig:preprocFlowchart}}
+\caption{Flowchart for the preprocessing steps before preceding a Lasso regularized regression. \label{fig:preprocFlowchart}}
 \end{figure}
 
 Before any preprocessing a choice was made to exclude all of the clinical scores, this was done to avoid having them mask other, more straightforward variables.
 
-The first step in the analysis of this data is going to be a lasso regularized regression using either \death or \icu as target. As mentioned before when operationg with regressions it's a necessity that at least the feature distributions be as symmetric as possible, a common way to get as close as possible to this empirical requirement is to boxcox transform the data. Apart from the data which contained negative values, which cannot be fed into the boxcox transform, all variables have been transformed using this method.
+The first step in the analysis of this data is going to be a lasso regularized regression using either \death or \icu as target. As mentioned before when operating with regressions it's a necessity that at least the feature distributions be as symmetric as possible, a common way to get as close as possible to this empirical requirement is to boxcox transform the data. Apart from the data which contained negative values, which cannot be fed into the boxcox transform, all variables have been transformed using this method.
 
 \begin{figure}[htbp]
   		\includegraphics[width=1\textwidth]{distribution_Angular_second_moment.png}
@@ -194,7 +194,7 @@ The first step in the analysis of this data is going to be a lasso regularized r
         \caption{Example of boxcox applied to the radiomic feature \textit{Difference Average} which has a close to normal distribution. The graphs contain the original distribution (top-left) the transformed distribution (top-right) and the two respective quantile-quantile plots(bottom) \label{fig:boxcox_example_normal}}
 \end{figure}
 
-The quatile-quantile plots have been used for a visual check of normality, normally distributed data will populate the bisector of the graph while deviations are symptoms of non-normality. Heavy and light tails are visible as deviations respectively above and belox the bisector.
+The quantile-quantile plots have been used for a visual check of normality, normally distributed data will populate the bisector of the graph while deviations are symptoms of non-normality. Heavy and light tails are visible as deviations respectively above and below the bisector.
 
 It should be noted that when the data is normally distributed then the transform doesn't change much the distribution while, in cases with much more pronounced asymmetries in the distributions, the improvement obtainable can be visualized in Figures \ref{fig:boxcox_example} and \ref{fig:boxcox_example_normal}.
 
@@ -206,9 +206,9 @@ Given the large number of features it's very plausible that at least one of the 
 
 A pivotal point in all of this analysis is that, to obtain reasonable values in the cross-validation procedures and to avoid leakage\footnote{This term is used in the field of Machine Learning. It refers to models being created on information that comes from outside the training data.} problems, all of the preprocessing steps have been done after train-test splitting the data on the train set and then applied as defined during training on the test dataset.
 
-When it comes to cross-validation procedure the choice was made to use a stratified k-fold approach with k=10. The data is split in 10 parts with the same percentages of labels\footnote{The stratified in the name refers to this property. This method is useful when dealing with unbalanced datasets, such the one under analysis, in which the label has an uneven 15-85$\%$ frequency of occurences of the two labels} then a model is built by training on 9 of the folds and it's performance is then tested on the remaining fold. To use the whole dataset for testing a prediction of it has been built by combinimg the predictions on the 10$^{th}"$ fold for ten different models trained on the respective 9 remaining folds.
+When it comes to cross-validation procedure the choice was made to use a stratified k-fold approach with k=10. The data is split in 10 parts with the same percentages of labels\footnote{The stratified in the name refers to this property. This method is useful when dealing with unbalanced datasets, such as the one under analysis, in which the label has an uneven 15-85$\%$ frequency of occurrences of the two labels} then a model is built by training on 9 of the folds and it's performance is then tested on the remaining fold. To use the whole dataset for testing a prediction of it has been built by combining the predictions on the 10$^{th}"$ fold for ten different models trained on the respective 9 remaining folds.
 
-The lasso model from training on the 9 folds is actually chosen as the model with the hyperparameters that give the best performance with another 10-fold crossvalidation. This has been obtained by using \textit{cross$\_$val$\_$predict} on a model obtained by including a \textit{LassoCV} step inside a \textit{pipeline} from scikit-learn library in python. 
+The lasso model from training on the 9 folds is actually chosen as the model with the hyperparameters that give the best performance with another 10-fold cross-validation. This has been obtained by using \textit{cross$\_$val$\_$predict} on a model obtained by including a \textit{LassoCV} step inside a \textit{pipeline} from scikit-learn library in python. 
 
 The performance of the cross-validated predictions that, when built this way, is much more representative of the real-world performance of the model, has been evaluated using ROC curves and AUC.
 Different models have been compared with a Delong test\cite{Delong} for the significance of difference in the ROC curves.
@@ -238,7 +238,7 @@ This technique considers a user-defined number of nearest neighbours of randomly
         \caption{Example of SMOTE with 5 nearest neighbours}
 \end{figure}
 
-Worth noting that this has been done using the library imblearn in python \cite{imblearn}. To preview some of the data, looking at the performance of a vanilla random forest implementation with all preset parameters, the effect of the position of oversamplling is the following.
+Worth noting that this has been done using the library imblearn in python \cite{imblearn}. To preview some of the data, looking at the performance of a vanilla random forest implementation with all default parameters, the effect of the position of oversamplling is the following.
 
 
 \begin{figure}[H]
@@ -254,7 +254,7 @@ It's clear to see that in unbalanced case, like the one analysed in this thesis 
 
 This highlights the point that all preprocessing should be done with care when train-test splitting the data, specifically it's very important that the oversampling, as well as all other data handling, be performed after the train-test split of the data on the train data alone. 
 
-What's being observed is a leakage phenomenon, which consists in the testing data containing information regarding the training data and viceversa. In practice, especially because the points are created as convex combination of existing data\footnote{Note that this would happen with any other over/under-sampling methods, such as random oversampling which randomly duplicates data points}, when the synthetically generated points end up in the testing they depend, at least partially, on the data used in the training procedure.
+What's being observed is a leakage phenomenon, which consists in the testing data containing information regarding the training data and vice versa. In practice, especially because the points are created as convex combination of existing data\footnote{Note that this would happen with any other over/under-sampling methods, such as random oversampling which randomly duplicates data points}, when the synthetically generated points end up in the testing they depend, at least partially, on the data used in the training procedure.
 
 
 \subsection{Kaplan-Meier(KM) curves and log-rank test}
@@ -262,8 +262,8 @@ Kaplan-Meier curves can be built following a well defined procedure:
 
 The data is separated in sets using the label of the groups that need to be used then the patients in each set are ordered in ascending order of permanence in the study, which is the time variable.
 
-At each failure time T$_f$ the conditional probability of surviving past T$_f$ given availability is computed as ratio of subjects left in the study right after T$_f$ divided by the number of availabe people at that same time
-\footnote{Effectively this corresponds to dividing thenumber of available minus dead individuals by the number available at each timestep}
+At each failure time T$_f$ the conditional probability of surviving past T$_f$ given availability is computed as ratio of subjects left in the study right after T$_f$ divided by the number of available people at that same time
+\footnote{Effectively this corresponds to dividing the number of available minus dead individuals by the number available at each timestep}
 Note that this takes in account also the possible censoring by reducing the number of available people at times of event, these censoring event will be drawn on the curve using ticks at the corresponding time.
 The survival probability is computed at each event time as the product of the probability at the previous failure time with the one computed as explained before at the time of the current event.
 
@@ -273,7 +273,7 @@ The KM curve will start at 1, at week one it will drop at $\frac{3}{4}$ since 3 
 
 As a rule of thumb, two Kaplan-Meier curves that do not intersect at any point indicate good separation among the groups, this can then be formally evaluated performing a log-rank test on the data used to build the curves.
 
-The null hypothesis of this specific test is that there is no overall difference between the two survival curves \cite{SurvivalAnsalysis} which can be tested with the log-rank test.
+The null hypothesis of this specific test is that there is no overall difference between the two survival curves \cite{SurvivalAnalysis} which can be tested with the log-rank test.
 This basically consist in performing a large-sample $\chi^2$ test that uses the ordered failure times for the entire dataset as expected values vs those observed in the subsets. 
 From this testing procedure a p-value can be obtained to reject the null hypothesis, for more in depth information refer to \cite{SurvivalAnalysis}. 
 
@@ -282,11 +282,11 @@ As it was mentioned before the shape of the hazard curve, an hence of the surviv
 Some of the possible models are increasing Weibull, decreasing Weibull, Exponential and log-normal.
 All of these models are parametric because known the parameters the distribution of the outcome can be known. 
 
-When it comes to Cox PH model the distribution cannot be known because part of the model, namely the baseline hazard, remains unestimated.
+When it comes to Cox PH model the distribution cannot be known because part of the model, namely the baseline hazard, remains not estimated.
 
 Generally the data has an optimal parametric model that describes it and, if this information were known, it would make perfect sense to use said function.
 However this knowledge is not always obtainable, which give Cox PH model an occasion to shine.
-Cox Proprotional Hazard models can be described as robust in the sense that the results that it gives will approximate those obtained by the correct model, without needing to know which of the model needs to be used \cite{SurvivalAnalysis}.
+Cox Proportional Hazard models can be described as robust in the sense that the results that it gives will approximate those obtained by the correct model, without needing to know which of the model needs to be used \cite{SurvivalAnalysis}.
  
 Cox PH models rely on the use of the formula in Equation \ref{eq:CoxPHform} to express the risk of a patient with a set of k characteristic variables \textbf{X} at time t.
 
@@ -299,7 +299,7 @@ This assumption is that the baseline hazard $h_0(t)$ depends on time alone and n
 \footnote{Dropping the time independence of the \textbf{X}s is possible while still keeping the same shape, yet the model would then be called \textit{extended Cox model}.}.
 
 The $\beta$ in the exponent represents the weights assigned to each variable and, very much like what happened in linear regression, these coefficients can be intended as a proxy of importance in the model: coefficients close to zero signify no particular importance of the variable whereas the more the value is distant from zero the more relevant the variable can be considered.
-The reason why it's common practice to report the exponentiated cefficient for features is that 1-exp[$\beta$] represents the difference in likelyhood to die of individuals separated using the feature relative to $\beta$. 
+The reason why it's common practice to report the exponentiated coefficient for features is that 1-exp[$\beta$] represents the difference in likelihood to die of individuals separated using the feature relative to $\beta$. 
 
 For example, considering a binary feature {\scshape Age over 50} with exp[$\beta$]=1.6, the exponential of the parameter would indicate that people over 50 are 60\% more likely to die when adjusting for all other variables.
 It is also common procedure to provide, for each coefficient, the 95\% confidence interval of the parameter and a p-value relative to the hypothesis that the parameter be equal to zero.
@@ -309,7 +309,7 @@ The division in the resulting groups can be used as proxy for the quality of the
 
 Finally, much like the previously presented regression techniques, it's possible to penalize the regression done with the Cox model.
 
-In this thesis the Cox model was preceeded by the same feature reduction that was used before the Lasso regularized regression, however no regularization was used.
+In this thesis the Cox model was preceded by the same feature reduction that was used before the Lasso regularized regression, however no regularization was used.
 
 
 
